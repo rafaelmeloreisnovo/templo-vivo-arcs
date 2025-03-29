@@ -1,0 +1,1 @@
+Projeto gerado com flutter create real + Embedding V2 + workflow GitHub.

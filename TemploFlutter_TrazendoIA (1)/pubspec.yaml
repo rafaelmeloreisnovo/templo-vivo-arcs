@@ -1,0 +1,13 @@
+name: templo_vivo
+description: RAD no plano físico
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

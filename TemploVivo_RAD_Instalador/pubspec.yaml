@@ -1,0 +1,13 @@
+name: templo_vivo_arcs
+description: Projeto Templo Vivo ARCΣ - Rafael
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

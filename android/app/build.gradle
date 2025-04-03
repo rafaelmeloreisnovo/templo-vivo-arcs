@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.psione.app'
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.psione.app"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            shrinkResources false
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

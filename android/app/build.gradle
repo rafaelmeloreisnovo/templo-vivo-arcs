@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.psione.app'
     compileSdkVersion 33
+    namespace 'com.psione.app'
 
     defaultConfig {
         applicationId "com.psione.app"

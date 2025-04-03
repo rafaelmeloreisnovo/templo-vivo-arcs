@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.psione.app">
+
     <application
         android:label="ψONE"
         android:icon="@mipmap/ic_launcher">

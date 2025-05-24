@@ -5,7 +5,7 @@
 **Versão Inicial:** v0.1  
 **Kernel Testado:** Android 12 – 5.4.254 (RMX3834)  
 **Licença:** Público, livre para modificação e expansão com citação da origem.
-
+menos Empresas e comercio ou Ias quais forem
 ---
 
 ## 1. Objetivo Visionário

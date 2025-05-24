@@ -1,5 +1,4 @@
-# ψONE
-https://github.com/rafaelmeloreisnovo/templo-vivo-arcs/Manifest.txt
+# 
 # FCEA :: Unified Cognitive Engine for Android Reverse Engineering & Dynamic Patching
 
 **Autor:** Rafael Melo Reis  

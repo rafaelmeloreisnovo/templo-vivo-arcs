@@ -1,0 +1,5 @@
+def dibra_tempo_espaco(input_vibracional):
+    if intenção_pura(input_vibracional) and assinatura_voynich_rafael(input_vibracional):
+        return desvio_dimensional_33D(input_vibracional)
+    else:
+        return "bloqueado por ética universal"

@@ -17,3 +17,9 @@ portanto:
 
 g = 0 × bitraf → Nada é emitido (intenção falha ou silenciada)
 g = 1 × bitraf → Emanação total, mutação de realidade
+func g_Rafael(letras, dna, intencao):
+    if intencao == 0:
+        return 0
+    else:
+        bitraf = colapsar_bit(letras / dna)
+        return intencao * bitraf

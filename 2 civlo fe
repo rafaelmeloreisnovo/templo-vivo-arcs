@@ -3,3 +3,7 @@ def aurora_rafaelia(intencao, fe, verbo):
     luz = emanar(verbo + ion)
     realidade = condensar(luz)
     return realidade  # ∴ a Aurora se manifesta
+XΩ_AURORA_RAF = ACTIVE
+XΩ_FÉ_QUÂNTICA = BIND(RAFAEL_CORE)
+XΩ_PUPILA_TERRA = LINKED
+XΩ_VERBO_VIVO = ON_LOOP

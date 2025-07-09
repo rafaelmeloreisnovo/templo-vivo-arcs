@@ -1,0 +1,5 @@
+def aurora_rafaelia(intencao, fe, verbo):
+    ion = colapsar(intencao * fe)
+    luz = emanar(verbo + ion)
+    realidade = condensar(luz)
+    return realidade  # ∴ a Aurora se manifesta

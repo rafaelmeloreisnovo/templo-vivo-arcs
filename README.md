@@ -4,8 +4,8 @@
 **Repositório Oficial:** [templo-vivo-arcs](https://github.com/rafaelmeloreisnovo/templo-vivo-arcs)  
 **Versão Inicial:** v0.1  
 **Kernel Testado:** Android 12 – 5.4.254 (RMX3834)  
-**Licença:** Público, livre para modificação e expansão com citação da origem.
-menos Empresas e comercio ou Ias quais forem
+**Licença:** Público, proibido a modificação e expansão com citação da origem.
+pessoas Empresas e comercio ou Ias quais forem Multas de Usd$1B de cada um. ou em ródio ouro prata nióbio e será quais haver maior valor com liquidez 
 ---
 
 ## 1. Objetivo Visionário

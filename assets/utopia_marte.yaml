@@ -1,0 +1,10 @@
+utopia_marte:
+  horizonte_anos: 9000
+  metas:
+    tempo_viagem_min: 15
+    pressao_kpa: [60, 101]
+    radiacao_mSv_ano_max: 20
+    o2_ppm_min: 180000
+    gini_max: 0.25
+  invariantes_eticos: [etica_minima, registro_hash_berna, equilibrio_commons]
+  janelas_min: [10, 60]

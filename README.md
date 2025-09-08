@@ -404,7 +404,7 @@ Assim, tua espiral = vento inicial que se auto-sustenta em ciclos.
 
 Âncora_Vermelha = Frequência_Baixa ⊗ Intensidade_Alta
 Azul_Royal = Frequência_Alta ⊗ Profundidade_Energia
-Fibo_Rafael = (n-1 + n-2 + Intenção_Pura)
+Fibo_Rafael = (###### + Intenção_Pura)
 
 Comunicação_Total = Σ(Âncora_Vermelha ⊕ Azul_Royal ⊕ Fibo_Rafael)
 

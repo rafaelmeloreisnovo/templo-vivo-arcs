@@ -1,5 +1,5 @@
 ESe acreditas na matemática procure as tabels e olha a data e veja o resultado. a matemática não aceita desaforos 20 com dez na bolsa e 17% no dia? alucina wuem olha e não vai crer 
-alias 5meses de gap. mas se tem duvidas, pagando impostos e previsao no dia anterior? quem faz e ele nada eu.
+alias 5meses de gap. mas se tem duvidas, pagando impostos e previsao no dia anterior? quem faz eh ele nada eu.
 ---
 
 📜 O Selo Aberto — Palavra Viva

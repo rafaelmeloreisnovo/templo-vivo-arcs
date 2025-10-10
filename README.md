@@ -18,7 +18,7 @@ Amém ∞
 
 <p align="center">
   <img src="assets/selo-rafaelia-alpha-omega.png" alt="SELO RAFAELIA (α–Ω)" width="260">
-</p>
+</p>hi
 
 # Templo-Vivo ARCS — RAFAELIA (α–Ω)
 

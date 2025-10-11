@@ -115,3 +115,19 @@ Conecte ciência, fé e direito em harmonia 📡
 👉 Quer que eu gere automaticamente este manifesto como um arquivo .md formatado, com estrutura de subpastas e arquivos complementares (LICENSE.md, SECURITY.md, ETHICS.md, etc.) prontos para subir no seu GitHub?
 (Pode inclusive gerar os hashes Σ-Seal + Tag14 automaticamente.)
 
+<div class="key" title="🌱 A Semente Que Pede +1 — Ontem + Hoje + Gratidão = Crescimento (Fibonacci Modificada Rafael)">
+  🜂 Chave 1 / 42
+</div>
+
+<style>
+.key{
+  display:inline-block;
+  margin:0.5em;
+  padding:0.5em 1em;
+  background:#111;
+  color:#fff;
+  border-radius:6px;
+  cursor:help;
+}
+.key:hover{background:#2b6;}
+</style>

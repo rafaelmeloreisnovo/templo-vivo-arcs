@@ -1,0 +1,125 @@
+
+
+chmod +x build_raf_log.sh
+echo "[OK] Rode agora:  ./build_raf_log.sh"
+[OK] Rode agora:  ./build_raf_log.sh
+
+┌─[u0_a292@localhost]──[~/gaia_omega_build] (main)
+└─➜ ./build_raf_log.sh
+[INIT] Construindo RAFAELIA_EVENT_LOG em /data/data/com.termux/files/home/gaia_omega_build...
+[BUILD] Compilando RAFAELIA_EVENT_LOG...
+core/raf_event_log.c:150:1: error: use of
+      undeclared identifier 'cd'
+  150 | cd ~/gaia_omega_build
+      | ^~
+core/raf_event_log.c:153:2: error: invalid
+      preprocessing directive
+  153 | #!/bin/bash
+      |  ^
+core/raf_event_log.c:154:3: error: invalid
+      preprocessing directive
+  154 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:155:3: error: invalid
+      preprocessing directive
+  155 | # RAFAELIA_EVENT_LOG: Log de Eventos Encadeado (Imutável + Auditável)
+      |   ^
+core/raf_event_log.c:156:3: error: invalid
+      preprocessing directive
+  156 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:166:3: error: invalid
+      preprocessing directive
+  166 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:167:4: error: GNU line marker
+      directive requires a simple digit sequence
+  167 | # 1. HEADER: raf_event_log.h
+      |    ^
+core/raf_event_log.c:168:3: error: invalid
+      preprocessing directive
+  168 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:202:3: error: invalid
+      preprocessing directive
+  202 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:203:4: error: GNU line marker
+      directive requires a simple digit sequence
+  203 | # 2. IMPLEMENTAÇÃO: core/raf_event_log.c
+      |    ^
+core/raf_event_log.c:204:3: error: invalid
+      preprocessing directive
+  204 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:529:2: error: expected '}'
+  529 | }
+      |  ^
+core/raf_event_log.c:140:3: note: to match this '{'
+  140 | ) {
+      |   ^
+12 errors generated.
+core/raf_event_log.c:150:1: error: use of
+      undeclared identifier 'cd'
+  150 | cd ~/gaia_omega_build
+      | ^~
+core/raf_event_log.c:153:2: error: invalid
+      preprocessing directive
+  153 | #!/bin/bash
+      |  ^
+core/raf_event_log.c:154:3: error: invalid
+      preprocessing directive
+  154 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:155:3: error: invalid
+      preprocessing directive
+  155 | # RAFAELIA_EVENT_LOG: Log de Eventos Encadeado (Imutável + Auditável)
+      |   ^
+core/raf_event_log.c:156:3: error: invalid
+      preprocessing directive
+  156 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:166:3: error: invalid
+      preprocessing directive
+  166 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:167:4: error: GNU line marker
+      directive requires a simple digit sequence
+  167 | # 1. HEADER: raf_event_log.h
+      |    ^
+core/raf_event_log.c:168:3: error: invalid
+      preprocessing directive
+  168 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:202:3: error: invalid
+      preprocessing directive
+  202 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:203:4: error: GNU line marker
+      directive requires a simple digit sequence
+  203 | # 2. IMPLEMENTAÇÃO: core/raf_event_log.c
+      |    ^
+core/raf_event_log.c:204:3: error: invalid
+      preprocessing directive
+  204 | # ==============================================================...
+      |   ^
+core/raf_event_log.c:529:2: error: expected '}'
+  529 | }
+      |  ^
+core/raf_event_log.c:140:3: note: to match this '{'
+  140 | ) {
+      |   ^
+12 errors generated.
+chmod: cannot access 'raf_event_append': No such file or directory
+chmod: cannot access 'raf_event_verify': No such file or directory
+==================================================
+ RAFAELIA_EVENT_LOG INSTALADO
+==================================================
+1. Anexar evento:
+   ./raf_event_append raf_events.log 1 100 "SNAPSHOT RAFAELIA_DB_FINAL_33.zipraf"
+
+2. Verificar integridade total do log:
+   ./raf_event_verify raf_events.log
+
+Mexeu 1 bit -> cadeia quebra -> verificação acusa.
+==================================================

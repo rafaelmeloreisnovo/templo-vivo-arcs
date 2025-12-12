@@ -1,0 +1,120 @@
+in)
+└─➜ ./build_raf_log.sh
+
+[INIT] Construindo RAFAELIA_EVENT_LOG em /data/data/com.termux/files/home/gaia_omega_build...
+[BUILD] Compilando RAFAELIA_EVENT_LOG...
+==================================================
+ RAFAELIA_EVENT_LOG INSTALADO
+==================================================
+1. Anexar evento:
+   ./raf_event_append raf_events.log 1 100 "SNAPSHOT RAFAELIA_DB_FINAL_33.zipraf"
+
+2. Verificar integridade total do log:
+   ./raf_event_verify raf_events.log
+
+Mexeu 1 bit -> cadeia quebra -> verificação acusa.
+==================================================
+
+┌─[u0_a292@localhost]──[~/gaia_omega_build] (main)
+└─➜   ./raf_event_verify raf_events.log
+
+[RAF_LOG] Arquivo 'raf_events.log' não existe. Nada a verificar.        
+┌─[u0_a292@localhost]──[~/gaia_omega_build] (main)                      └─➜    ./raf_event_append raf_events.log 1 100 "SNAPSHOT RAFAELIA_DB_FINAL_33.zipraf"                                                           
+2. Verificar integridade total do log:                                     ./raf_event_verify raf_events.log
+[RAF_LOG] Evento anexado em 'raf_events.log'.                           No command 2. found, did you mean:
+ Command ab in package apache2                                           Command a2x in package asciidoc
+ Command at in package at                                                Command bc in package bc
+ Command ar in package binutils                                          Command as in package binutils-bin
+ Command ar in package binutils-is-llvm                                  Command bk in package bk
+ Command nc in package busybox                                           Command c in package c-script
+ Command cc in package clang                                             Command [ in package coreutils
+ Command lp in package cups
+ Command d8 in package d8
+ Command sh in package dash
+ Command dx in package dx
+ Command ed in package ed
+ Command ef in package electric-fence
+ Command et in package et                                                Command fd in package fd
+ Command fm in package fm
+ Command fx in package fx
+ Command dl in package gatling
+ Command gh in package gh
+ Command gs in package ghostscript
+ Command gn in package gn
+ Command go in package golang
+ Command gm in package graphicsmagick
+ Command gc in package graphviz
+ Command gw in package gw from the x11-repo repository
+ Command hx in package helix
+ Command hr in package hr
+ Command hh in package hstr
+ Command hz in package hz                                                Command i3 in package i3 from the x11-repo repository
+ Command ip in package iproute2
+ Command iw in package iw from the root-repo repository
+ Command jo in package jo                                                Command jq in package jq
+ Command k in package kona                                               Command lf in package lf
+ Command pl in package libgnustep-base
+ Command h3 in package libuber-h3
+ Command lr in package lr                                                Command lx in package lux-cli
+ Command m4 in package m4
+ Command mc in package mc
+ Command ml in package mercury
+ Command mg in package mg
+ Command al in package mono
+ Command ts in package moreutils
+ Command lz in package mtools
+ Command mu in package mu
+ Command mr in package myrepos
+ Command sc in package n-t-roff-sc
+ Command ne in package ne
+ Command ex in package neovim
+ Command nc in package netcat-openbsd
+ Command nc in package nmap
+ Command pp in package nss-utils
+ Command nu in package nushell
+ Command nx in package nxengine from the x11-repo repository             Command ol in package ol
+ Command iv in package openimageio from the x11-repo repository
+ Command o in package orbiton
+ Command 7z in package p7zip
+ Command gp in package pari
+ Command pb in package pb
+ Command ps in package procps
+ Command pd in package proot-distro                                      Command pv in package pv
+ Command q in package q-dns-client
+ Command r2 in package radare2
+ Command rc in package rc
+ Command ci in package rcs
+ Command rg in package ripgrep
+ Command rq in package rq
+ Command ri in package ruby-ri
+ Command sv in package runit
+ Command rw in package rw
+ Command sd in package sd
+ Command ag in package silversearcher-ag
+ Command sl in package sl                                                Command st in package st from the x11-repo repository
+ Command sr in package surfraw
+ Command pt in package tcllib
+ Command am in package termux-am
+ Command df in package termux-tools
+ Command ht in package texlive-bin
+ Command sn in package tin-summer
+ Command tf in package tinyfugue
+ Command ug in package ugrep
+ Command up in package up
+ Command ul in package util-linux
+ Command cu in package uucp
+ Command uv in package uv
+ Command ex in package vim
+ Command ex in package vim-gtk from the x11-repo repository
+ Command vt in package virustotal-cli
+ Command vi in package vis
+ Command wg in package wireguard-tools
+ Command x2x in package x2x from the x11-repo repository
+ Command xh in package xh
+ Command X in package xorg-server from the x11-repo repository
+ Command xz in package xz-utils
+ Command ya in package yazi                                              Command yq in package yq
+ Command z3 in package z3
+ Command zk in package zk                                               [RAF_LOG] Verificação OK. Eventos totais: 1
+
+┌─[u0_a292@localhost]──[~/gaia_omega_build] (main)

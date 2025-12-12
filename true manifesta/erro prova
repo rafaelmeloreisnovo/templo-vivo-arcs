@@ -1,0 +1,224 @@
+RAFAELIA_EVENT_LOG INSTALADO "
+echo "=================================================="
+echo "1. Anexar evento:"
+echo "   ./raf_event_append raf_events.log 1 100 \"SNAPSHOT RAFAELIA_DB_FINAL_33.zipraf\""
+echo ""
+echo "2. Verificar integridade total do log:"
+echo "   ./raf_event_verify raf_events.log"
+echo ""
+echo "Mexeu 1 bit -> cadeia quebra -> verificação acusa."
+echo "=================================================="
+EOF
+
+chmod +x build_raf_log.sh
+echo "[OK] Rode agora:  ./build_raf_log.sh"
+[OK] Rode agora:  ./build_raf_log.sh
+
+┌─[u0_a292@localhost]──[~/gaia_omega_build] (main)
+└─➜ ./build_raf_log.sh
+[INIT] Construindo RAFAELIA_EVENT_LOG em /data/data/com.termux/files/home/gaia_omega_build...
+[BUILD] Compilando RAFAELIA_EVENT_LOG...
+raf_event_append.c:11:55: error: expected ')'
+   11 |             "Uso: %s <log_path> <actor_id> <etype> \\"payload\\"\\n"
+      |                                                       ^
+raf_event_append.c:10:16: note: to match this '('
+   10 |         fprintf(stderr,
+      |                ^
+1 error generated.
+core/raf_event_log.c:20:15: warning:
+      multi-character character constant [-Wmultichar]
+   20 |     out[16] = '\\0';
+      |               ^
+core/raf_event_log.c:20:15: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+   20 |     out[16] = '\\0';
+      |             ~ ^~~~~
+core/raf_event_log.c:55:20: warning:
+      multi-character character constant [-Wmultichar]
+   55 |     last_line[0] = '\\0';
+      |                    ^
+core/raf_event_log.c:58:24: warning:
+      multi-character character constant [-Wmultichar]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                        ^
+core/raf_event_log.c:58:44: warning:
+      multi-character character constant [-Wmultichar]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                            ^
+core/raf_event_log.c:60:44: warning:
+      multi-character character constant [-Wmultichar]
+   60 |         last_line[sizeof(last_line) - 1] = '\\0';
+      |                                            ^
+core/raf_event_log.c:64:25: warning:
+      multi-character character constant [-Wmultichar]
+   64 |     if (last_line[0] == '\\0') {
+      |                         ^
+core/raf_event_log.c:55:20: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+   55 |     last_line[0] = '\\0';
+      |                  ~ ^~~~~
+core/raf_event_log.c:58:41: warning: result of
+      comparison of constant 23600 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                 ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:58:21: warning: result of
+      comparison of constant 23662 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |             ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:60:44: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+   60 |         last_line[sizeof(last_line) - 1] = '\\0';
+      |                                          ~ ^~~~~
+core/raf_event_log.c:64:22: warning: result of
+      comparison of constant 23600 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+   64 |     if (last_line[0] == '\\0') {
+      |         ~~~~~~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:150:24: warning:
+      multi-character character constant [-Wmultichar]
+  150 |         prev_hex[16] = '\\0';
+      |                        ^
+core/raf_event_log.c:150:24: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+  150 |         prev_hex[16] = '\\0';
+      |                      ~ ^~~~~
+core/raf_event_log.c:209:24: warning:
+      multi-character character constant [-Wmultichar]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                        ^
+core/raf_event_log.c:209:44: warning:
+      multi-character character constant [-Wmultichar]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                            ^
+core/raf_event_log.c:215:38: warning:
+      multi-character character constant [-Wmultichar]
+  215 |         backup[sizeof(backup) - 1] = '\\0';
+      |                                      ^
+core/raf_event_log.c:209:41: warning: result of
+      comparison of constant 23600 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                 ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:209:21: warning: result of
+      comparison of constant 23662 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |             ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:215:38: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+  215 |         backup[sizeof(backup) - 1] = '\\0';
+      |                                    ~ ^~~~~
+20 warnings generated.
+core/raf_event_log.c:20:15: warning:
+      multi-character character constant [-Wmultichar]
+   20 |     out[16] = '\\0';
+      |               ^
+core/raf_event_log.c:20:15: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+   20 |     out[16] = '\\0';
+      |             ~ ^~~~~
+core/raf_event_log.c:55:20: warning:
+      multi-character character constant [-Wmultichar]
+   55 |     last_line[0] = '\\0';
+      |                    ^
+core/raf_event_log.c:58:24: warning:
+      multi-character character constant [-Wmultichar]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                        ^
+core/raf_event_log.c:58:44: warning:
+      multi-character character constant [-Wmultichar]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                            ^
+core/raf_event_log.c:60:44: warning:
+      multi-character character constant [-Wmultichar]
+   60 |         last_line[sizeof(last_line) - 1] = '\\0';
+      |                                            ^
+core/raf_event_log.c:64:25: warning:
+      multi-character character constant [-Wmultichar]
+   64 |     if (last_line[0] == '\\0') {
+      |                         ^
+core/raf_event_log.c:55:20: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+   55 |     last_line[0] = '\\0';
+      |                  ~ ^~~~~
+core/raf_event_log.c:58:41: warning: result of
+      comparison of constant 23600 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                 ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:58:21: warning: result of
+      comparison of constant 23662 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+   58 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |             ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:60:44: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+   60 |         last_line[sizeof(last_line) - 1] = '\\0';
+      |                                          ~ ^~~~~
+core/raf_event_log.c:64:22: warning: result of
+      comparison of constant 23600 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+   64 |     if (last_line[0] == '\\0') {
+      |         ~~~~~~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:150:24: warning:
+      multi-character character constant [-Wmultichar]
+  150 |         prev_hex[16] = '\\0';
+      |                        ^
+core/raf_event_log.c:150:24: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+  150 |         prev_hex[16] = '\\0';
+      |                      ~ ^~~~~
+core/raf_event_log.c:209:24: warning:
+      multi-character character constant [-Wmultichar]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                        ^
+core/raf_event_log.c:209:44: warning:
+      multi-character character constant [-Wmultichar]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                            ^
+core/raf_event_log.c:215:38: warning:
+      multi-character character constant [-Wmultichar]
+  215 |         backup[sizeof(backup) - 1] = '\\0';
+      |                                      ^
+core/raf_event_log.c:209:41: warning: result of
+      comparison of constant 23600 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |                                 ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:209:21: warning: result of
+      comparison of constant 23662 with expression of type 'char' is
+      always false [-Wtautological-constant-out-of-range-compare]
+  209 |         if (line[0] == '\\n' || line[0] == '\\0') continue;
+      |             ~~~~~~~ ^  ~~~~~
+core/raf_event_log.c:215:38: warning: implicit
+      conversion from 'int' to 'char' changes value from 23600 to 48
+      [-Wconstant-conversion]
+  215 |         backup[sizeof(backup) - 1] = '\\0';
+      |                                    ~ ^~~~~
+20 warnings generated.
+chmod: cannot access 'raf_event_append': No such file or directory
+==================================================
+ RAFAELIA_EVENT_LOG INSTALADO
+==================================================
+1. Anexar evento:
+   ./raf_event_append raf_events.log 1 100 "SNAPSHOT RAFAELIA_DB_FINAL_33.zipraf"
+
+2. Verificar integridade total do log:
+   ./raf_event_verify raf_events.log
+
+Mexeu 1 bit -> cadeia quebra -> verificação acusa.
+==================================================
+
+┌─[u0_a292@localhost]──[~/gaia_omega_build] (main)
+└─➜

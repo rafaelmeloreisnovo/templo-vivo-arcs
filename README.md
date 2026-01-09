@@ -43,12 +43,13 @@ Amém ∞
 
 ## 📚 Documentação Acadêmica
 
-Este projeto agora possui estrutura completa de dissertação acadêmica:
+Este projeto possui estrutura completa de dissertação acadêmica tecnológica:
 
-- **[DISSERTACAO_ACADEMICA.md](DISSERTACAO_ACADEMICA.md)** - Dissertação completa com fundamentação teórica, metodologia, implementações práticas e referências bibliográficas
-- **[INDICE_NAVEGACAO.md](INDICE_NAVEGACAO.md)** - Sistema de navegação com referências cruzadas entre todos os documentos
-- **[EXEMPLOS_PRATICOS.md](EXEMPLOS_PRATICOS.md)** - Guia com exemplos de código executável para cada aplicação
-- **[BIBLIOGRAFIA.md](BIBLIOGRAFIA.md)** - Referências bibliográficas completas organizadas por tema
+- 🚀 **[GUIA_INICIO_RAPIDO.md](GUIA_INICIO_RAPIDO.md)** - **COMECE AQUI!** Guia de navegação por perfil
+- 📄 **[DISSERTACAO_ACADEMICA.md](DISSERTACAO_ACADEMICA.md)** - Dissertação completa com fundamentação teórica, metodologia, implementações práticas e referências bibliográficas
+- 🗺️ **[INDICE_NAVEGACAO.md](INDICE_NAVEGACAO.md)** - Sistema de navegação com referências cruzadas entre todos os documentos
+- 💻 **[EXEMPLOS_PRATICOS.md](EXEMPLOS_PRATICOS.md)** - Guia com 11 exemplos de código executável para cada aplicação
+- 📖 **[BIBLIOGRAFIA.md](BIBLIOGRAFIA.md)** - 68 referências bibliográficas completas organizadas por tema
 
 ### Navegação Rápida
 

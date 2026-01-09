@@ -41,10 +41,30 @@ Amém ∞
 6. Dados de mercado testam previsões e calibram o motor.
 7. Arte e símbolo organizam a leitura humana do todo.
 
+## 📚 Documentação Acadêmica
+
+Este projeto agora possui estrutura completa de dissertação acadêmica:
+
+- **[DISSERTACAO_ACADEMICA.md](DISSERTACAO_ACADEMICA.md)** - Dissertação completa com fundamentação teórica, metodologia, implementações práticas e referências bibliográficas
+- **[INDICE_NAVEGACAO.md](INDICE_NAVEGACAO.md)** - Sistema de navegação com referências cruzadas entre todos os documentos
+- **[EXEMPLOS_PRATICOS.md](EXEMPLOS_PRATICOS.md)** - Guia com exemplos de código executável para cada aplicação
+- **[BIBLIOGRAFIA.md](BIBLIOGRAFIA.md)** - Referências bibliográficas completas organizadas por tema
+
+### Navegação Rápida
+
+| Para... | Consulte... |
+|---------|-------------|
+| Entender o projeto | Este README |
+| Base teórica completa | [DISSERTACAO_ACADEMICA.md](DISSERTACAO_ACADEMICA.md) |
+| Exemplos práticos de código | [EXEMPLOS_PRATICOS.md](EXEMPLOS_PRATICOS.md) |
+| Encontrar documentos | [INDICE_NAVEGACAO.md](INDICE_NAVEGACAO.md) |
+| Referências acadêmicas | [BIBLIOGRAFIA.md](BIBLIOGRAFIA.md) |
+
 ## Documentos-nave
-- **Entropia e Lei**: `manifests/Entropia.md`, `Minha entropia no Verbo VERBO VIVO .md`
-- **Manifestos legais**: `manifests/Anexo_Legal_Manifesto_*.docx`, `Manifest.txt`
-- **Pesquisa & trading**: `data/*`, `Resumo_*`, `previsao_ativos_*.csv`
+- **Entropia e Lei**: `Entropia.md`, `Minha entropia no Verbo VERBO VIVO .md`
+- **Manifestos legais**: `Anexo_Legal_Manifesto_*.docx`, `Manifest.txt`
+- **Pesquisa & trading**: `*.csv`, `Resumo_*.xlsx`, `previsao_ativos_*.csv`
+- **Filosófico-Espiritual**: `ManifestRa.md`, `Manifest destiny.md`
 
 ## Integridade (Σ-Seal)
 Veja `MANIFEST-SEAL.md` para hashes, chaves e carimbo de tempo.

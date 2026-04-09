@@ -13,6 +13,7 @@
 | [DISSERTACAO_ACADEMICA.md](DISSERTACAO_ACADEMICA.md) | Dissertação completa com fundamentação teórica | Acadêmico |
 | [ManifestRa.md](ManifestRa.md) | Manifesto espiritual-científico | Filosófico |
 | [Entropia.md](Entropia.md) | Notas sobre entropia e organização sistêmica | Técnico |
+| [docs/omega_posdoc/README.md](docs/omega_posdoc/README.md) | Estrutura pós-doc para os MD recentes e protocolo de falsificabilidade | Acadêmico/Técnico |
 
 ### 💻 Código e Implementações
 

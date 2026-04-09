@@ -349,3 +349,17 @@
 
 **Última Atualização:** 2026-01-09  
 **Versão do Índice:** 1.0.0
+
+---
+
+## 🧭 NOVA CAMADA PÓS-DOC (ÚLTIMOS 2 DIAS)
+
+Para refatoração acadêmica avançada com falsificabilidade e rastreabilidade, consulte:
+
+- [docs_posdoc_2dias/README.md](docs_posdoc_2dias/README.md)
+- [Índice dos MD recentes](docs_posdoc_2dias/00_indice/MD_ULTIMOS_2_DIAS.md)
+- [Arquitetura documental](docs_posdoc_2dias/01_arquitetura/ARQUITETURA_DOCUMENTAL_POSDOC.md)
+- [Protocolo científico e falsificabilidade](docs_posdoc_2dias/02_metodologia/PROTOCOLO_CIENTIFICO_E_FALSIFICABILIDADE.md)
+- [Bibliografia acadêmica estruturada](docs_posdoc_2dias/03_bibliografia/BIBLIOGRAFIA_ACADEMICA_E_REFERENCIAL.md)
+- [Template de artigo técnico](docs_posdoc_2dias/04_protocolos/TEMPLATE_ARTIGO_TECNICO.md)
+- [Matriz de rastreabilidade](docs_posdoc_2dias/05_rastreabilidade/MATRIZ_RASTREABILIDADE.md)

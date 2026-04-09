@@ -349,3 +349,16 @@
 
 **Última Atualização:** 2026-01-09  
 **Versão do Índice:** 1.0.0
+
+---
+
+### 🧭 Estrutura Pós-Doc (Refatoração dos Últimos MD)
+
+| Documento | Finalidade |
+|-----------|------------|
+| [docs/posdoc_2dias/README.md](docs/posdoc_2dias/README.md) | Hub navegável da trilha pós-doc |
+| [docs/posdoc_2dias/01_Arquitetura_Estrutural.md](docs/posdoc_2dias/01_Arquitetura_Estrutural.md) | Arquitetura documental e pipeline científico |
+| [docs/posdoc_2dias/02_Formalismo_Matematico_e_Hipoteses.md](docs/posdoc_2dias/02_Formalismo_Matematico_e_Hipoteses.md) | Objetos formais e hipóteses falsificáveis |
+| [docs/posdoc_2dias/03_Protocolo_Falsificabilidade.md](docs/posdoc_2dias/03_Protocolo_Falsificabilidade.md) | Protocolo de testes e critérios de refutação |
+| [docs/posdoc_2dias/04_Bibliografia_Curadoria.md](docs/posdoc_2dias/04_Bibliografia_Curadoria.md) | Curadoria bibliográfica aplicada |
+| [docs/posdoc_2dias/05_Mapa_Ultimos_MD_2_Dias.md](docs/posdoc_2dias/05_Mapa_Ultimos_MD_2_Dias.md) | Priorização dos MD recentes para refatoração |

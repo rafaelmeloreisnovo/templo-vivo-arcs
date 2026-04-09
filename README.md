@@ -50,6 +50,7 @@ Este projeto possui estrutura completa de dissertação acadêmica tecnológica:
 - 🗺️ **[INDICE_NAVEGACAO.md](INDICE_NAVEGACAO.md)** - Sistema de navegação com referências cruzadas entre todos os documentos
 - 💻 **[EXEMPLOS_PRATICOS.md](EXEMPLOS_PRATICOS.md)** - Guia com 11 exemplos de código executável para cada aplicação
 - 📖 **[BIBLIOGRAFIA.md](BIBLIOGRAFIA.md)** - 68 referências bibliográficas completas organizadas por tema
+- 🧭 **[docs/posdoc_2dias/README.md](docs/posdoc_2dias/README.md)** - Estrutura pós-doc navegável para formalização, falsificabilidade e refatoração dos MD recentes
 
 ### Navegação Rápida
 

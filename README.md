@@ -62,6 +62,14 @@ Este projeto possui estrutura completa de dissertação acadêmica tecnológica:
 | Encontrar documentos | [INDICE_NAVEGACAO.md](INDICE_NAVEGACAO.md) |
 | Referências acadêmicas | [BIBLIOGRAFIA.md](BIBLIOGRAFIA.md) |
 
+### Estrutura Pós-Doc (refatoração de documentação recente)
+
+- 🧭 **[docs/posdoc_estrutura/README.md](docs/posdoc_estrutura/README.md)** — índice navegável da refatoração formal.
+- 🗂️ **[docs/posdoc_estrutura/01_INVENTARIO_MD_2DIAS.md](docs/posdoc_estrutura/01_INVENTARIO_MD_2DIAS.md)** — mapeamento dos `.md` recentes.
+- 🧱 **[docs/posdoc_estrutura/02_ARQUITETURA_ACADEMICA.md](docs/posdoc_estrutura/02_ARQUITETURA_ACADEMICA.md)** — arquitetura documental em camadas.
+- 🔬 **[docs/posdoc_estrutura/03_PROTOCOLO_FALSIFICABILIDADE.md](docs/posdoc_estrutura/03_PROTOCOLO_FALSIFICABILIDADE.md)** — protocolo de hipótese e refutação.
+- 📚 **[docs/posdoc_estrutura/04_MATRIZ_REFERENCIAS_EVIDENCIAS.md](docs/posdoc_estrutura/04_MATRIZ_REFERENCIAS_EVIDENCIAS.md)** — matriz de referência-evidência.
+
 ## Documentos-nave
 - **Entropia e Lei**: `Entropia.md`, `Minha entropia no Verbo VERBO VIVO .md`
 - **Manifestos legais**: `Anexo_Legal_Manifesto_*.docx`, `Manifest.txt`

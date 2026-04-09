@@ -13,6 +13,7 @@
 | [DISSERTACAO_ACADEMICA.md](DISSERTACAO_ACADEMICA.md) | Dissertação completa com fundamentação teórica | Acadêmico |
 | [ManifestRa.md](ManifestRa.md) | Manifesto espiritual-científico | Filosófico |
 | [Entropia.md](Entropia.md) | Notas sobre entropia e organização sistêmica | Técnico |
+| [docs/omega_posdoc/README.md](docs/omega_posdoc/README.md) | Estrutura pós-doc para os MD recentes e protocolo de falsificabilidade | Acadêmico/Técnico |
 
 ### 💻 Código e Implementações
 
@@ -362,3 +363,14 @@
 | [docs/posdoc_2dias/03_Protocolo_Falsificabilidade.md](docs/posdoc_2dias/03_Protocolo_Falsificabilidade.md) | Protocolo de testes e critérios de refutação |
 | [docs/posdoc_2dias/04_Bibliografia_Curadoria.md](docs/posdoc_2dias/04_Bibliografia_Curadoria.md) | Curadoria bibliográfica aplicada |
 | [docs/posdoc_2dias/05_Mapa_Ultimos_MD_2_Dias.md](docs/posdoc_2dias/05_Mapa_Ultimos_MD_2_Dias.md) | Priorização dos MD recentes para refatoração |
+## 🧭 NOVA CAMADA PÓS-DOC (ÚLTIMOS 2 DIAS)
+
+Para refatoração acadêmica avançada com falsificabilidade e rastreabilidade, consulte:
+
+- [docs_posdoc_2dias/README.md](docs_posdoc_2dias/README.md)
+- [Índice dos MD recentes](docs_posdoc_2dias/00_indice/MD_ULTIMOS_2_DIAS.md)
+- [Arquitetura documental](docs_posdoc_2dias/01_arquitetura/ARQUITETURA_DOCUMENTAL_POSDOC.md)
+- [Protocolo científico e falsificabilidade](docs_posdoc_2dias/02_metodologia/PROTOCOLO_CIENTIFICO_E_FALSIFICABILIDADE.md)
+- [Bibliografia acadêmica estruturada](docs_posdoc_2dias/03_bibliografia/BIBLIOGRAFIA_ACADEMICA_E_REFERENCIAL.md)
+- [Template de artigo técnico](docs_posdoc_2dias/04_protocolos/TEMPLATE_ARTIGO_TECNICO.md)
+- [Matriz de rastreabilidade](docs_posdoc_2dias/05_rastreabilidade/MATRIZ_RASTREABILIDADE.md)

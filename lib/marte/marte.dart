@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'dart:convert';
+import 'package:yaml/yaml.dart';
 
 class MartePage extends StatefulWidget { const MartePage({super.key}); @override State<MartePage> createState()=>_MartePageState(); }
 
@@ -11,8 +11,13 @@ class _MartePageState extends State<MartePage> {
   @override void initState(){ super.initState(); _loadCfg(); }
   Future<void> _loadCfg() async {
     final y = await rootBundle.loadString('assets/utopia_marte.yaml');
-    // troque por um parser YAML real; aqui é placeholder de leitura
-    cfg = {'utopia_marte': y}; setState((){});
+    final parsed = loadYaml(y);
+    if (parsed is YamlMap) {
+      cfg = Map<String, dynamic>.from(parsed);
+    } else {
+      cfg = {'raw': y};
+    }
+    setState(() {});
   }
   @override Widget build(BuildContext context){
     return Scaffold(

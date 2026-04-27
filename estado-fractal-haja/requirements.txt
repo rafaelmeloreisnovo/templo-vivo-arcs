@@ -1,0 +1,5 @@
+pydantic>=2.7,<3
+numpy>=1.26,<3
+scipy>=1.13,<2
+cryptography>=42,<47
+networkx>=3.2,<4

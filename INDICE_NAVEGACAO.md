@@ -9,6 +9,7 @@
 
 | Documento | Descrição | Tipo |
 |-----------|-----------|------|
+| `Rafael Melo Reis` | Perfil do autor, reconhecimentos e prêmios (Paul Harris Fellow - Rotary Club) | Perfil/Reconhecimento |
 | [README.md](README.md) | Visão geral e introdução ao projeto | Apresentação |
 | [DISSERTACAO_ACADEMICA.md](DISSERTACAO_ACADEMICA.md) | Dissertação completa com fundamentação teórica | Acadêmico |
 | [ManifestRa.md](ManifestRa.md) | Manifesto espiritual-científico | Filosófico |

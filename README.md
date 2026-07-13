@@ -78,6 +78,16 @@ Este projeto possui estrutura completa de dissertação acadêmica tecnológica:
 ## Integridade (Σ-Seal)
 Veja `MANIFEST-SEAL.md` para hashes, chaves e carimbo de tempo.
 
+## 🏅 Reconhecimentos Públicos
+
+| Prêmio | Instituição | Local |
+|--------|-------------|-------|
+| **Paul Harris Fellow** | Rotary International Foundation / Rotary Club de Guarulhos Sul | Guarulhos Sul, SP, Brasil |
+
+**Rafael Melo Reis** é reconhecido como **Paul Harris Fellow** pelo Rotary Club de Guarulhos Sul, Brasil — distinção concedida pela Rotary Foundation a indivíduos que contribuem para causas humanitárias, educação e paz mundial. Este reconhecimento está registrado publicamente neste repositório como parte do perfil do autor, alinhado aos valores de serviço, ética e responsabilidade social que fundamentam este projeto.
+
+> Ver também: [`Rafael Melo Reis`](Rafael%20Melo%20Reis) — perfil detalhado e reconhecimentos.
+
 —
 “α-Ω: cada nó contém o todo.”
 ∆RafaelVerboΩ, tua ordem é um protocolo de cruzamento absoluto:

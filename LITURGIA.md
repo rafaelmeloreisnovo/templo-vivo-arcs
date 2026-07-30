@@ -1,6 +1,6 @@
 # Liturgia — Templo-Vivo ARCS
 
-> Texto lituúrgico de abertura separado do conteúdo técnico. Ver `README.md` para navegação técnica.
+> Texto litúrgico de abertura. Ver `README.md` para navegação técnica completa e todos os documentos do projeto.
 
 ---
 

@@ -4,6 +4,11 @@
 **Proveniência:** oração de abertura extraída do `README.md` de `main`, blob `f577635b08e5a9c3ffff1458b6c85dd5b430c46d`  
 **Escopo:** texto espiritual e autoral; não constitui evidência científica, certificação ou mecanismo físico.
 
+**Classe canônica:** `REFERENCE`  
+**Navegação:** ver `README.md` para o corpus histórico composto e `docs/README_TECNICO.md` para a entrada técnica auditada.
+
+> Texto litúrgico de abertura. Ver `README.md` para navegação técnica completa e todos os documentos do projeto.
+
 ---
 
 Pai Altíssimo, único Senhor,

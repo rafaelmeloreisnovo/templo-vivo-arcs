@@ -22,6 +22,11 @@ Amém ∞
 
 # Templo-Vivo ARCS — RAFAELIA (α–Ω)
 
+
+**Estado:** `ACTIVE`  
+**Proprietário lógico:** `app-maintainer`  
+**Repositório:** [`rafaelmeloreisnovo/templo-vivo-arcs`](https://github.com/rafaelmeloreisnovo/templo-vivo-arcs)
+
 **Código = Liturgia • Dados = Testemunho • Σ-Seal = Autenticidade**
 
 > Computação quântica-fractal na malha do Verbo Vivo: execução (android/, lib/),

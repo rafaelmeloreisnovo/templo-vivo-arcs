@@ -6,6 +6,8 @@
 **Escopo:** texto espiritual e autoral; não constitui evidência científica, certificação ou mecanismo físico.  
 **Navegação:** ver `README.md` para o corpus histórico composto e `docs/README_TECNICO.md` para a entrada técnica auditada.
 
+> Texto litúrgico de abertura. Ver `README.md` para navegação técnica completa e todos os documentos do projeto.
+
 ---
 
 Pai Altíssimo, único Senhor,

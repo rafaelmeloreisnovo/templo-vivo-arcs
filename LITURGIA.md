@@ -1,6 +1,10 @@
 # Liturgia — Templo-Vivo ARCS
 
-> Texto litúrgico de abertura. Ver `README.md` para navegação técnica completa e todos os documentos do projeto.
+**Estado:** `REFERENCE_LITURGICAL_TEXT`  
+**Classe canônica:** `REFERENCE`  
+**Proveniência:** oração de abertura extraída do `README.md` de `main`, blob `f577635b08e5a9c3ffff1458b6c85dd5b430c46d`  
+**Escopo:** texto espiritual e autoral; não constitui evidência científica, certificação ou mecanismo físico.  
+**Navegação:** ver `README.md` para o corpus histórico composto e `docs/README_TECNICO.md` para a entrada técnica auditada.
 
 ---
 

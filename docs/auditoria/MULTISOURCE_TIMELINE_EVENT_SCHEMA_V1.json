@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rafaelia/multisource-timeline-event-v1.schema.json",
+  "title": "RAFAELIA Multisource Timeline Event V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "concept_id",
+    "source_kind",
+    "source_id",
+    "timestamp_original",
+    "timestamp_observed",
+    "claim_status"
+  ],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "concept_id": {"type": "string", "minLength": 1},
+    "source_kind": {
+      "enum": ["chat_message", "drive_file", "git_blob", "git_commit", "git_pr", "git_branch", "receipt", "checkpoint", "local_file"]
+    },
+    "source_id": {"type": "string", "minLength": 1},
+    "source_hash": {"type": ["string", "null"]},
+    "timestamp_original": {"type": ["string", "null"]},
+    "timestamp_utc": {"type": ["string", "null"]},
+    "timezone_original": {"type": ["string", "null"]},
+    "timestamp_observed": {"type": "string"},
+    "actor": {"type": ["string", "null"]},
+    "committer": {"type": ["string", "null"]},
+    "agent": {"type": ["string", "null"]},
+    "conversation_id": {"type": ["string", "null"]},
+    "message_id": {"type": ["string", "null"]},
+    "repository": {"type": ["string", "null"]},
+    "path": {"type": ["string", "null"]},
+    "commit_sha": {"type": ["string", "null"]},
+    "blob_sha": {"type": ["string", "null"]},
+    "pr_number": {"type": ["integer", "null"], "minimum": 1},
+    "parent_event_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "content_fingerprint": {"type": ["string", "null"]},
+    "correlation_basis": {
+      "type": "array",
+      "items": {
+        "enum": ["exact_hash", "exact_sha_url", "exact_path", "exact_text", "near_text", "concept_match", "temporal_only"]
+      },
+      "uniqueItems": true
+    },
+    "temporal_strength": {"enum": ["T1", "T2", "T3", "T4", "T5", "T6"]},
+    "claim_status": {"enum": ["SUPPORTED", "PARTIAL", "TOKEN_VAZIO", "CONFLICT", "BLOCKED"]},
+    "notes": {"type": ["string", "null"]}
+  }
+}

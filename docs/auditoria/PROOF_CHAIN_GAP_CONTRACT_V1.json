@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "state": "CLAIM_GATE_ON",
+  "invariant": "create->record->version->derive->execute->govern->organize",
+  "promotion_rule": "evidence_delta > 0",
+  "claims": {
+    "PRE_AGENT_MATERIALIZATION": "SUPPORTED_LIMITED",
+    "PRE_AGENT_ARCHITECTURAL_COMPONENTS": "SUPPORTED_LIMITED",
+    "COPILOT_PR2_IDENTITY": "SUPPORTED",
+    "COPILOT_PR2_MATERIAL_DELTA": "ZERO",
+    "COPILOT_PR3_IDENTITY": "SUPPORTED",
+    "COPILOT_PR3_MATERIAL_DELTA": "ZERO",
+    "WORLD_FIRST": "BLOCKED_PENDING_PRIOR_ART",
+    "PATENT_GRANTED": "NOT_DEMONSTRATED"
+  },
+  "gaps": [
+    {
+      "gap_id": "TV-PUSH-2025",
+      "status": "OPEN_ACTIONABLE",
+      "claim": "exact historical push event",
+      "expected_sources": ["audit log", "event log", "webhook", "local git log/reflog", "export", "independent notification"],
+      "next_action": "correlate push-capable event records with key commit SHAs",
+      "closure": "verifiable event associates ref/commit with push timestamp"
+    },
+    {
+      "gap_id": "TV-AUTHORSHIP-LINE",
+      "status": "OPEN_ACTIONABLE",
+      "claim": "line-by-line authorship",
+      "expected_sources": ["NOVOexport raw messages", "local earlier versions", "editor history", "patches"],
+      "next_action": "fingerprint exact text/code between pre-commit sources and Git blobs",
+      "closure": "reproducible documented match or explicit unresolved attribution"
+    },
+    {
+      "gap_id": "TV-TAGS-2025",
+      "status": "OPEN_ACTIONABLE",
+      "claim": "historical tag anchors",
+      "expected_sources": ["refs/tags", "annotated tag objects", "releases", "tag signatures"],
+      "next_action": "catalog tag->target_sha->tagger->timestamp->signature->release",
+      "closure": "verifiable historical tag inventory"
+    },
+    {
+      "gap_id": "TV-C5-CRISTAL",
+      "status": "PARTIAL_C4_5",
+      "claim": "historical reproduction of cristal.sh",
+      "expected_sources": ["historical checkout", "runtime receipt", "stdout", "stderr", "environment manifest"],
+      "next_action": "run exact historical blob in isolated historical checkout",
+      "closure": "deterministic receipt supports C5 or records reproducible failure"
+    }
+  ],
+  "anti_regression": {
+    "no_silent_gap_closure": true,
+    "no_time_based_claim_promotion": true,
+    "no_semantic_similarity_as_identity": true,
+    "preserve_negative_results": true
+  }
+}

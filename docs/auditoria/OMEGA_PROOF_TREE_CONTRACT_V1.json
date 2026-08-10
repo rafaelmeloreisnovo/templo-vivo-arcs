@@ -1,0 +1,102 @@
+{
+  "schema": "OMEGA_PROOF_TREE_CONTRACT_V1",
+  "mode": "APPEND_ONLY",
+  "claim_gate": true,
+  "dimensions": [
+    "TEMPORALITY",
+    "PROVENANCE",
+    "INTEGRITY",
+    "CAPABILITY",
+    "CONVERGENCE",
+    "LEGAL_PI",
+    "FALSIFIABILITY_ACTION"
+  ],
+  "claim_strength_rule": "ESSENTIAL_WEAKEST_LINK",
+  "token_vazio": {
+    "allowed_state": true,
+    "hidden_gap_forbidden": true,
+    "required_fields": [
+      "gap_id",
+      "claim_id",
+      "dimension",
+      "priority",
+      "expected_primary_source",
+      "minimum_closure_evidence",
+      "next_verifiable_action",
+      "failure_criterion",
+      "status"
+    ],
+    "status_enum": ["OPEN", "PARTIAL", "CLOSED", "CONFLICT"]
+  },
+  "capability_classes": {
+    "C0": "TEXTUAL",
+    "C1": "FORMAL",
+    "C2": "STRUCTURED",
+    "C3": "EXECUTABLE_PARTIAL",
+    "C4": "EXECUTABLE",
+    "C5": "REPRODUCED",
+    "C6": "INDEPENDENTLY_REPRODUCED"
+  },
+  "temporal_strength": {
+    "T1": "ONE_SOURCE",
+    "T2": "TWO_CONCORDANT_SOURCES",
+    "T3": "THREE_SOURCES_WITH_CONTENT_LINK",
+    "T4": "EXACT_SHA_HASH_PATH_OR_TEXT_LINK",
+    "T5": "REPRODUCIBLE_ORIGIN_TRANSFORMATION_COMMIT_CHAIN",
+    "T6": "INDEPENDENT_VERIFICATION"
+  },
+  "source_classes": {
+    "PRIMARY": ["RAW_NOVOEXPORT", "GIT_BLOB", "GIT_COMMIT", "ORIGINAL_ARTIFACT"],
+    "CORROBORATIVE": ["DRIVE_METADATA", "PULL_REQUEST", "CHECKPOINT", "RECEIPT"],
+    "INTERPRETIVE": ["SUMMARY", "ASSISTANT_ANALYSIS", "PARABLE", "TRADITION", "MANIFESTO_CLAIM"]
+  },
+  "forbidden_promotions": [
+    "DRIVE_UPLOAD_DATE_TO_ORIGINAL_CHAT_DATE",
+    "TEXT_STYLE_TO_AGENT_IDENTITY",
+    "MANIFESTO_TO_OFFICIAL_REGISTRATION",
+    "POC_TO_FULL_SYSTEM_VALIDATION",
+    "MULTIPLE_DERIVED_DOCS_TO_INDEPENDENT_EVIDENCE",
+    "PARABLE_OR_TRADITION_TO_EMPIRICAL_PROOF",
+    "TIME_ELAPSED_TO_EVIDENCE"
+  ],
+  "priority_contract": {
+    "P0": [
+      "NOVOEXPORT_FIRST_OCCURRENCE",
+      "HISTORICAL_RECEIPTS",
+      "AGENT_IDENTITY_BOUNDARY",
+      "LEGAL_STATUS_BOUNDARY",
+      "LICENSE_VERSION_BINDING"
+    ],
+    "P1": [
+      "POC_C4_TO_C5",
+      "CROSS_REPOSITORY_CONVERGENCE",
+      "EVIDENCE_DEDUPLICATION",
+      "PRIOR_ART_PER_MECHANISM"
+    ],
+    "P2": [
+      "INDEPENDENT_REPLICATION",
+      "SIGNED_ATTESTATIONS",
+      "FORMAL_IP_REGISTRATIONS_WHERE_APPROPRIATE"
+    ]
+  },
+  "permutation_heuristics": [
+    ["TEMPORALITY", "PROVENANCE"],
+    ["TEMPORALITY", "INTEGRITY"],
+    ["PROVENANCE", "CAPABILITY"],
+    ["INTEGRITY", "CAPABILITY"],
+    ["CONVERGENCE", "TEMPORALITY"],
+    ["CONVERGENCE", "PROVENANCE", "INTEGRITY"],
+    ["CAPABILITY", "LEGAL_PI"],
+    ["RAW_NOVOEXPORT", "GIT_COMMIT", "CAPABILITY"],
+    ["FALSIFIABILITY_ACTION", "LEGAL_PI"]
+  ],
+  "current_claims": {
+    "PRE_AGENT_ARCHITECTURAL_CONVERGENCE": "SUPPORTED_LIMITED",
+    "2025_INTERNAL_ANTERIORITY": "SUPPORTED_FOR_CATALOGUED_ARTIFACTS",
+    "CHAIN_OF_CUSTODY": "PARTIAL_STRONG_EXPANDING",
+    "WORLD_FIRST": "BLOCKED",
+    "NEW_PHYSICS": "BLOCKED",
+    "PATENT_GRANTED": "BLOCKED_UNLESS_OFFICIAL_SOURCE",
+    "OPENAI_VALIDATED": "BLOCKED"
+  }
+}

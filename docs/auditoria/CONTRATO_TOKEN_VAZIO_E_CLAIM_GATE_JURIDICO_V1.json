@@ -1,0 +1,56 @@
+{
+  "schema": "rafaelia.audit.claim_gate.v1",
+  "mode": "append_only",
+  "claim_allowed_default": false,
+  "directions": [
+    "anterioridade_temporal",
+    "proveniencia_autoria_agente",
+    "integridade_cadeia_custodia",
+    "capacidade_poc",
+    "convergencia_arquitetural",
+    "formalidade_juridica_pi",
+    "falsificabilidade_revisao_acao"
+  ],
+  "token_vazio_contract": {
+    "required_fields": [
+      "gap_id",
+      "claim_id",
+      "owner",
+      "urgency",
+      "expected_primary_source",
+      "minimum_evidence",
+      "next_verifiable_action",
+      "closure_criterion",
+      "status"
+    ],
+    "allowed_status": ["TOKEN_VAZIO", "IN_PROGRESS", "SUPPORTED", "CONFLICT", "REJECTED"],
+    "closure_requires_receipt": true
+  },
+  "claim_gate": {
+    "required": [
+      "claim_id",
+      "claim_text",
+      "scope",
+      "primary_evidence_ids",
+      "temporal_strength",
+      "capability_strength",
+      "agent_attribution_status",
+      "custody_status",
+      "legal_classification",
+      "disconfirming_evidence",
+      "decision"
+    ],
+    "decision_enum": ["ALLOW_LIMITED", "BLOCK", "TOKEN_VAZIO", "REJECT"]
+  },
+  "rules": {
+    "world_first_requires_prior_art": true,
+    "new_physics_requires_independent_testing": true,
+    "patent_granted_requires_official_record": true,
+    "agent_identity_requires_documentary_link": true,
+    "drive_upload_time_is_not_original_creation_time": true,
+    "current_timestamp_does_not_backdate_2025": true,
+    "conceptual_poc_is_not_runtime": true,
+    "higher_capability_level_requires_direct_evidence": true,
+    "historical_originals_must_not_be_rewritten": true
+  }
+}

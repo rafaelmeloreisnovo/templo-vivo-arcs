@@ -1,0 +1,14 @@
+{
+  "schema": "RAFAELIA_PROOF_GAP_LEDGER_V1",
+  "claim_gate": true,
+  "anti_regression": true,
+  "promotion_rule": "evidence_delta > 0",
+  "gaps": [
+    {"gap_id":"PUSH_EVENT_EXACT","status":"OPEN","source_expected":"GitHub audit/event log or contemporaneous external receipt","action":"locate push event evidence","failure_condition":"no independent event record","next_state":"SUPPORTED or UNRESOLVED"},
+    {"gap_id":"LINE_BY_LINE_AUTHORSHIP","status":"OPEN","source_expected":"NOVOexport + diffs + authorship metadata","action":"correlate genesis and materialization","failure_condition":"attribution remains ambiguous","next_state":"ATTRIBUTED_LIMITED or UNRESOLVED"},
+    {"gap_id":"NOVOEXPORT_FIRST_KNOWN","status":"OPEN","source_expected":"raw conversations JSON create_time/message nodes","action":"extract first occurrence per mechanism","failure_condition":"no exact semantic/hash/code link","next_state":"T1-T5 temporal class"},
+    {"gap_id":"TAG_HISTORICAL_ENUMERATION","status":"OPEN","source_expected":"Git tag refs and tag objects","action":"catalog tag-target-date-signature","failure_condition":"tag absent or mutable provenance unknown","next_state":"TAG_ANCHOR_CLASSIFIED"},
+    {"gap_id":"C5_HISTORICAL_REPRODUCTION","status":"PARTIAL","source_expected":"historical checkout + environment receipt","action":"run historical POC and preserve stdout/stderr/hash","failure_condition":"environment or behavior prevents faithful reproduction","next_state":"C5_REPRODUCED or C4_5_BLOCKED"},
+    {"gap_id":"PRIOR_ART","status":"OPEN","source_expected":"patent/literature/code prior-art search per mechanism","action":"compare claims mechanism-by-mechanism","failure_condition":"earlier equivalent art found or search incomplete","next_state":"NOVELTY_ASSESSED or BLOCKED"}
+  ]
+}

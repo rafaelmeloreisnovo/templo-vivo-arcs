@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rafaelia/provenance-receipt-v1.schema.json",
+  "title": "RAFAELIA Provenance Receipt V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "proof_id",
+    "repository",
+    "path",
+    "commit_sha",
+    "audit_time_utc",
+    "capability_class",
+    "claim_status"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "proof_id": {"type": "string", "minLength": 1},
+    "concept_id": {"type": ["string", "null"]},
+    "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "path": {"type": "string", "minLength": 1},
+    "blob_sha": {"type": ["string", "null"]},
+    "commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "parent_sha": {"type": ["string", "null"]},
+    "authored_at": {"type": ["string", "null"], "format": "date-time"},
+    "committed_at": {"type": ["string", "null"], "format": "date-time"},
+    "audit_time_utc": {"type": "string", "format": "date-time"},
+    "author_account": {"type": ["string", "null"]},
+    "committer_account": {"type": ["string", "null"]},
+    "agent_identity": {"type": ["string", "null"]},
+    "agent_evidence": {
+      "type": "string",
+      "enum": ["EXPLICIT", "INFERRED", "UNKNOWN", "NONE_OBSERVED"]
+    },
+    "diff_summary": {"type": ["string", "null"]},
+    "content_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "capability_class": {
+      "type": "string",
+      "enum": ["C0_TEXTUAL", "C1_FORMAL", "C2_STRUCTURED", "C3_EXECUTABLE_PARTIAL", "C4_EXECUTABLE", "C5_REPRODUCED", "C6_INDEPENDENT"]
+    },
+    "capability_demonstrated": {"type": ["string", "null"]},
+    "limitation": {"type": ["string", "null"]},
+    "derived_from": {"type": "array", "items": {"type": "string"}},
+    "derived_into": {"type": "array", "items": {"type": "string"}},
+    "reproduction_status": {
+      "type": "string",
+      "enum": ["NOT_APPLICABLE", "NOT_RUN", "PASS", "FAIL", "PARTIAL", "TOKEN_VAZIO"]
+    },
+    "claim_status": {
+      "type": "string",
+      "enum": ["PROVED_INTERNAL", "PROVED_PRE_AGENT", "PARTIAL", "HISTORICAL_CLAIM", "TOKEN_VAZIO", "BLOCKED_PRIOR_ART"]
+    },
+    "notes": {"type": ["string", "null"]}
+  }
+}

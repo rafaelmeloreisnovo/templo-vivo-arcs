@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "mode": "append_only_claim_gate",
+  "invariant": ["content","record","identity","time","provenance","transformation","capability","governance","claim","test","receipt","feedback"],
+  "arcs": [
+    {"id":"A1","name":"genesis_antecedence","required":["first_known_event","source_locator","time_basis"],"forbidden_inference":["commit_equals_push"]},
+    {"id":"A2","name":"provenance_agents","required":["author_status","committer_status","agent_status"],"forbidden_inference":["platform_equals_author"]},
+    {"id":"A3","name":"integrity_custody","required":["fingerprint","historical_state","custody_event"],"forbidden_inference":["later_receipt_backdates_origin"]},
+    {"id":"A4","name":"capability_poc","required":["capability_level","evidence","reproduction_status"],"levels":["C0","C1","C2","C3","C4","C5","C6"]},
+    {"id":"A5","name":"architectural_convergence","required":["objects","mapping","preserved_property"],"forbidden_inference":["convergence_equals_scientific_validation"]},
+    {"id":"A6","name":"legal_ip","required":["legal_class","official_status","claim_boundary"],"forbidden_inference":["repository_equals_patent","prior_existence_equals_world_first"]},
+    {"id":"A7","name":"falsifiability_completion","required":["gap_status","expected_source","next_action","failure_condition","closure_criterion"]}
+  ],
+  "gap_contract": {
+    "allowed_states":["OPEN","PARTIAL","CLOSED","CONFLICT"],
+    "token_vazio_policy":"must_be_routed_not_hidden",
+    "promotion_rule":"evidence_delta_gt_zero"
+  },
+  "current_claim_gate": {
+    "PRE_AGENT_MATERIALIZATION":"SUPPORTED_LIMITED",
+    "PRE_AGENT_ARCHITECTURAL_CONVERGENCE":"SUPPORTED_LIMITED",
+    "PRE_AGENT_HASH_TIMESTAMP_POC":"SUPPORTED_C4",
+    "PRE_AGENT_APPLICATION_POC":"SUPPORTED_PARTIAL_C3",
+    "C5_HISTORICAL_REPRODUCED":"NOT_YET",
+    "WORLD_FIRST":"BLOCKED_PENDING_PRIOR_ART",
+    "PATENT_GRANTED":"NOT_DEMONSTRATED"
+  }
+}

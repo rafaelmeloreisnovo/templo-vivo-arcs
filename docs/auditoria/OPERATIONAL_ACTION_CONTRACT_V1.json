@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rafaelia:operational-action-contract:v1",
+  "title": "RAFAELIA Operational Action Contract V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "action_id",
+    "objective",
+    "scope",
+    "source_state",
+    "gaps_before",
+    "decision_rule",
+    "action",
+    "evidence_out",
+    "verification",
+    "failure_condition",
+    "claim_delta",
+    "gaps_after",
+    "status",
+    "next_action"
+  ],
+  "properties": {
+    "action_id": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "scope": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "source_state": {
+      "type": "object",
+      "required": ["source_type", "identifier"],
+      "properties": {
+        "source_type": {"enum": ["GITHUB", "DRIVE", "NOVOEXPORT", "LOCAL", "EXTERNAL", "OTHER"]},
+        "identifier": {"type": "string", "minLength": 1},
+        "sha_or_hash": {"type": ["string", "null"]},
+        "timestamp": {"type": ["string", "null"]},
+        "path_or_message_id": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "assumptions": {"type": "array", "items": {"type": "string"}, "default": []},
+    "gaps_before": {"type": "array", "items": {"type": "string"}},
+    "decision_rule": {"type": "string", "minLength": 1},
+    "action": {"type": "string", "minLength": 1},
+    "artifact_out": {"type": "array", "items": {"type": "string"}, "default": []},
+    "evidence_out": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "verification": {
+      "type": "object",
+      "required": ["result", "method"],
+      "properties": {
+        "result": {"enum": ["PASS", "FAIL", "PARTIAL", "NOT_RUN"]},
+        "method": {"type": "string", "minLength": 1},
+        "receipt": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "failure_condition": {"type": "string", "minLength": 1},
+    "rollback_or_recovery": {"type": ["string", "null"]},
+    "claim_delta": {
+      "type": "object",
+      "required": ["promoted", "unchanged", "demoted"],
+      "properties": {
+        "promoted": {"type": "array", "items": {"type": "string"}},
+        "unchanged": {"type": "array", "items": {"type": "string"}},
+        "demoted": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "gaps_after": {"type": "array", "items": {"type": "string"}},
+    "priority": {"enum": ["P0", "P1", "P2"]},
+    "status": {"enum": ["GREEN", "YELLOW", "RED", "GREY"]},
+    "next_action": {"type": "string", "minLength": 1}
+  }
+}

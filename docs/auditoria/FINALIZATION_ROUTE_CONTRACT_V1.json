@@ -1,0 +1,48 @@
+{
+  "schema": "FINALIZATION_ROUTE_CONTRACT_V1",
+  "mode": "APPEND_ONLY_NO_UNMANAGED_GAPS",
+  "claim_gate": true,
+  "route_state_enum": ["OPEN_WITH_ROUTE", "IN_PROGRESS", "CLOSED", "CONFLICT", "REJECTED"],
+  "priority_enum": ["P0", "P1", "P2"],
+  "required_fields": [
+    "route_id",
+    "claim_id",
+    "dimension",
+    "priority",
+    "source_expected",
+    "action",
+    "gate",
+    "failure_condition",
+    "evidence_out",
+    "next_action",
+    "state"
+  ],
+  "invariant": [
+    "OBSERVAR",
+    "DELIMITAR",
+    "PRESERVAR",
+    "EXECUTAR",
+    "VERIFICAR",
+    "GOVERNAR",
+    "RETROALIMENTAR"
+  ],
+  "promotion_rule": "evidence_delta > 0",
+  "anti_regression": {
+    "rewrite_historical_original": false,
+    "infer_agent_by_style": false,
+    "promote_by_elapsed_time": false,
+    "promote_by_repetition": false,
+    "count_duplicate_documents_as_independent": false,
+    "allow_unmanaged_gap": false
+  },
+  "completion_conditions": {
+    "p0_all": "CLOSED_OR_CONFLICT",
+    "cristal_sh": "C5_OR_REPRODUCIBLE_FAILURE",
+    "yaml": "STRUCTURALLY_VALIDATED",
+    "flutter": "ANALYSIS_OR_BUILD_RESULT_RECORDED",
+    "first_known_2025": "MULTISOURCE_FOR_PRIORITY_CONCEPTS",
+    "historical_tags": "CATALOGUED_WHEN_ACCESSIBLE",
+    "legal_claims": "VERIFIABLE_STATUS",
+    "all_gaps": "NEXT_ACTION_AND_FAILURE_CONDITION_PRESENT"
+  }
+}

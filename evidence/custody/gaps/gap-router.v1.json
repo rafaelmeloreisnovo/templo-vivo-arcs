@@ -1,0 +1,139 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-08-10T22:12:00-03:00",
+  "invariant": "unknown -> classify -> identify provider/source -> define falsifiable closure condition -> collect evidence -> append-only resolution -> gate -> receipt",
+  "scalar_token_vazio_effective": 0,
+  "gaps": [
+    {
+      "gap_id": "GAP-AGENT-IDENTITY-2025",
+      "priority": "P1",
+      "state": "AGENT_UNKNOWN",
+      "scope": "POC-00..POC-10",
+      "claim_allowed": false,
+      "why_open": "Git commit objects prove author/committer metadata but do not identify a specific AI/assistant agent responsible for generating or editing historical content.",
+      "closure_requires": [
+        "historical prompt/export/tool trace explicitly naming the agent or provider",
+        "or an authenticated execution/audit log linked by timestamp and artifact fingerprint"
+      ],
+      "forbidden_shortcut": "Do not infer agent identity from prose style, vocabulary, filename, or GitHub committer web-flow/GitHub."
+    },
+    {
+      "gap_id": "GAP-PUSH-EVENT-EXACT-2025",
+      "priority": "P2",
+      "state": "BLOCKED_PROVIDER_RETENTION",
+      "claim_allowed": false,
+      "why_open": "GitHub REST Events documentation states that event timelines contain only events created within the past 30 days; 2025 PushEvent records are outside that provider window in August 2026.",
+      "closure_requires": [
+        "historical webhook delivery archive",
+        "GitHub audit/security export retained from the period",
+        "local/Drive/NOVOexport log containing push_id/ref/before/head with verifiable fingerprint",
+        "or another contemporaneous provider record"
+      ],
+      "source_basis": [
+        "https://docs.github.com/en/rest/activity/events"
+      ]
+    },
+    {
+      "gap_id": "GAP-POC07-C5-EXACT-WORKTREE",
+      "priority": "P1",
+      "state": "BLOCKED_FILESYSTEM_PATH_LENGTH",
+      "claim_allowed": false,
+      "why_open": "Exact 2025 worktree contains 85 paths and a basename of 268 UTF-8 bytes; audited Ubuntu materialization fails with File name too long. Git commit and cristal.sh blob identity remain verified.",
+      "closure_requires": [
+        "path-preserving environment capable of materializing every tracked historical path without rename/omission",
+        "successful execution of the unchanged historical script",
+        "contemporaneous receipt with stdout/stderr/exit code and resulting CHANGELOG delta"
+      ],
+      "source_basis": [
+        "GitHub Actions run 31447393819",
+        "Artifact 9085046139"
+      ]
+    },
+    {
+      "gap_id": "GAP-POC08-COMPLETE-APP",
+      "priority": "P1",
+      "state": "BLOCKED_ASSET_UNDECLARED_AND_PARSER_PLACEHOLDER",
+      "claim_allowed": false,
+      "why_open": "Exact-object audit proves marte.dart references assets/utopia_marte.yaml, but historical pubspec.yaml does not declare that asset; source also explicitly labels YAML parsing as placeholder.",
+      "closure_requires": [
+        "identify a later historical commit that declares the asset and implements a real YAML parser, then create a new proof record",
+        "or reproduce a historically accurate build/runtime state that already contains those fixes"
+      ],
+      "source_basis": [
+        "GitHub Actions run 31448468086",
+        "POC-08 receipt sha256:5f1fb8e4ab9c20f06b262f510e38a1c39fecb31c95ce0b3d3f4f4b5164ccf655"
+      ]
+    },
+    {
+      "gap_id": "GAP-POC10-METRIC-SUPPORT",
+      "priority": "P1",
+      "state": "BLOCKED_NO_STRONG_SUPPORT_CANDIDATE_IN_REPO",
+      "claim_allowed": false,
+      "why_open": "Deterministic scan of 213 tracked UTF-8 text files found 21 lexical matches but zero strong supporting candidates after excluding derived audit/legal material and requiring rare/co-occurring claim terms plus data/receipt/calculation markers.",
+      "closure_requires": [
+        "raw observations/dataset linked to the 30 assets / 10-buy / 10-sell sampling claim",
+        "calculation code or notebook",
+        "reproducible receipt establishing the stated accuracy/error metrics",
+        "independent rerun"
+      ],
+      "next_sources": [
+        "Drive/NOVOexport",
+        "local archived databases",
+        "other repositories by fingerprint"
+      ],
+      "source_basis": [
+        "GitHub Actions run 31448468086",
+        "POC-10 search receipt sha256:b6bc42f5ef7cba12d7b6b3e90ec336609a758081261cc2d75a60e06ac749e2b1"
+      ]
+    },
+    {
+      "gap_id": "GAP-LINE-BY-LINE-AUTHORSHIP",
+      "priority": "P2",
+      "state": "BLOCKED_GRANULAR_PROVENANCE_MISSING",
+      "claim_allowed": false,
+      "why_open": "Commit-level author metadata is not equivalent to intellectual authorship of each line or generation event.",
+      "closure_requires": [
+        "original drafts/prompts/tool outputs with hashes",
+        "or granular editing provenance tied to exact line ranges and timestamps"
+      ]
+    },
+    {
+      "gap_id": "GAP-PRIOR-ART-WORLD-FIRST",
+      "priority": "P1",
+      "state": "EXTERNAL_PRIOR_ART_RESEARCH_REQUIRED",
+      "claim_allowed": false,
+      "why_open": "Repository chronology can prove internal anteriority but cannot by itself prove worldwide novelty or first occurrence.",
+      "closure_requires": [
+        "claim-by-claim novelty definition",
+        "dated patent and non-patent literature search",
+        "documented search strings/databases/cutoff dates",
+        "human legal/technical review for any patentability conclusion"
+      ]
+    },
+    {
+      "gap_id": "GAP-PATENT-STATUS",
+      "priority": "P1",
+      "state": "OFFICIAL_REGISTRY_EVIDENCE_REQUIRED",
+      "claim_allowed": false,
+      "why_open": "A repository document describing items as patentable or assigning patent-like labels does not establish filing, publication, grant, ownership, or legal scope.",
+      "closure_requires": [
+        "official application/publication/grant identifier",
+        "registry source such as INPI/WIPO/USPTO/EPO as applicable",
+        "applicant/inventor/status/date match"
+      ]
+    },
+    {
+      "gap_id": "GAP-INDEPENDENT-VALUATION",
+      "priority": "P2",
+      "state": "INDEPENDENT_VALUATION_REQUIRED",
+      "claim_allowed": false,
+      "why_open": "Self-authored market-value ranges are not independent valuation evidence.",
+      "closure_requires": [
+        "defined asset/rights being valued",
+        "comparable transactions or defensible income/cost model",
+        "assumptions and sensitivity analysis",
+        "independent qualified review"
+      ]
+    }
+  ]
+}

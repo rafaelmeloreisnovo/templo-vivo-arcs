@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rafaelmeloreisnovo.github.io/templo-vivo-arcs/evidence/custody/schema/evidence-record.v1.schema.json",
+  "title": "Templo Vivo Evidence Record V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proof_id", "concept_id", "repository", "path", "blob_sha", "commit_sha",
+    "commit_prefix_observed", "authored_at", "committed_at", "author_account",
+    "committer_account", "agent_identity", "agent_evidence", "capability_class",
+    "capability_demonstrated", "limitation", "derived_from", "derived_into",
+    "reproduction_status", "claim_status", "claim_allowed", "source_basis",
+    "audit_timestamp"
+  ],
+  "properties": {
+    "proof_id": {"type": "string", "pattern": "^[A-Z0-9_-]+$"},
+    "concept_id": {"type": "string", "minLength": 1},
+    "repository": {"const": "rafaelmeloreisnovo/templo-vivo-arcs"},
+    "path": {"type": "string", "minLength": 1},
+    "blob_sha": {"type": "string", "pattern": "^([0-9a-f]{40}|TOKEN_VAZIO)$"},
+    "commit_sha": {"type": "string", "pattern": "^([0-9a-f]{40}|TOKEN_VAZIO)$"},
+    "commit_prefix_observed": {"type": "string", "pattern": "^([0-9a-f]{8,40}|TOKEN_VAZIO)$"},
+    "authored_at": {"type": "string", "minLength": 1},
+    "committed_at": {"type": "string", "minLength": 1},
+    "author_account": {"type": "string", "minLength": 1},
+    "committer_account": {"type": "string", "minLength": 1},
+    "agent_identity": {"type": "string", "minLength": 1},
+    "agent_evidence": {"type": "string", "minLength": 1},
+    "capability_class": {
+      "enum": ["C0_TEXTUAL", "C1_FORMAL", "C2_STRUCTURED", "C3_EXECUTABLE_PARTIAL", "C4_EXECUTABLE", "C5_REPRODUCED", "C6_INDEPENDENT", "TOKEN_VAZIO"]
+    },
+    "capability_demonstrated": {"type": "string", "minLength": 1},
+    "limitation": {"type": "string", "minLength": 1},
+    "derived_from": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "derived_into": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "reproduction_status": {
+      "enum": ["NOT_APPLICABLE", "NOT_REPRODUCED", "MECHANICS_REPRODUCED", "HISTORICAL_REPRODUCED", "INDEPENDENT_REPRODUCED", "TOKEN_VAZIO"]
+    },
+    "claim_status": {
+      "enum": ["PROVED_INTERNAL", "PROVED_PRE_AGENT", "PROVED_PRE_AGENT_PARTIAL", "PROVED_PRE_AGENT_STRUCTURE", "HISTORICAL_METHOD_RECORD", "HISTORICAL_CLAIM", "PARTIAL", "BLOCKED_PRIOR_ART", "TOKEN_VAZIO"]
+    },
+    "claim_allowed": {"type": "boolean"},
+    "source_basis": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "audit_timestamp": {"type": "string", "minLength": 1}
+  }
+}

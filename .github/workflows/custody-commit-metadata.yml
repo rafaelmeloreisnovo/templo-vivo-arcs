@@ -1,0 +1,99 @@
+name: Custody Commit Metadata Extraction
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/custody-commit-metadata.yml'
+      - 'evidence/custody/**'
+      - 'scripts/audit/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract-commit-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract author and committer metadata from exact Git objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+
+          commits = [
+              ('POC-00','ee9c7d4ab25e8e33c36994212d029039892a91ec'),
+              ('POC-01','2e6562b05b5fab173b30a1b1f507ade91163f6d8'),
+              ('POC-02','a8a96d0a01adaff8d7ebcb9e3c8a5bd84fe29ca6'),
+              ('POC-03','2f3232284a84835b54b51ebd0e5eafe712b6692a'),
+              ('POC-04','48b62c7ea5269fa5a45a4a855469c45de4cc6dda'),
+              ('POC-05','becf137a0c9c05d0a0889bd192f44a52b11eafad'),
+              ('POC-06','2eeab71c271a5054cd81e7f1f96bced0f8c8bb40'),
+              ('POC-07','4fe1d9dce27a3f8023cbcdc116521e1ce90c3fc3'),
+              ('POC-08','b1a57f568b8f4a9c8ed5b23c32b62d816b972a88'),
+              ('POC-09','b64e6ec604c64389b8b132cb3f1e9d2863bf875f'),
+              ('POC-10','a2b139670de165eb5ddb712e3971f72361db8d91'),
+          ]
+
+          out = Path('custody-commit-metadata.jsonl')
+          rows = []
+          for proof_id, sha in commits:
+              subprocess.run(['git','cat-file','-e',f'{sha}^{{commit}}'], check=True)
+              fmt = '%H%x09%aI%x09%cI%x09%an%x09%ae%x09%cn%x09%ce%x09%P'
+              raw = subprocess.check_output(['git','show','-s',f'--format={fmt}',sha], text=True).rstrip('\n')
+              parts = raw.split('\t')
+              if len(parts) != 8:
+                  raise SystemExit(f'unexpected metadata field count for {proof_id}: {len(parts)}')
+              commit_raw = subprocess.check_output(['git','cat-file','commit',sha])
+              row = {
+                  'proof_id': proof_id,
+                  'commit_sha': parts[0],
+                  'authored_at_git': parts[1],
+                  'committed_at_git': parts[2],
+                  'git_author_name': parts[3],
+                  'git_author_email': parts[4],
+                  'git_committer_name': parts[5],
+                  'git_committer_email': parts[6],
+                  'parents': parts[7].split() if parts[7] else [],
+                  'commit_object_sha256': hashlib.sha256(commit_raw).hexdigest(),
+              }
+              if not row['authored_at_git'] or not row['committed_at_git']:
+                  raise SystemExit(f'missing Git timestamp for {proof_id}')
+              rows.append(row)
+
+          out.write_text(''.join(json.dumps(r, ensure_ascii=False, separators=(',',':'))+'\n' for r in rows), encoding='utf-8')
+          digest = hashlib.sha256(out.read_bytes()).hexdigest()
+          print(f'records={len(rows)}')
+          print(f'metadata_sha256={digest}')
+          print('AUTHOR_DATE_GATE=PASS')
+          for row in rows:
+              print(f"{row['proof_id']} authored_at={row['authored_at_git']} committed_at={row['committed_at_git']} author={row['git_author_name']} <{row['git_author_email']}> committer={row['git_committer_name']} <{row['git_committer_email']}>")
+          PY
+
+      - name: Receipt digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "head=${GITHUB_SHA}"
+            sha256sum custody-commit-metadata.jsonl
+          } > custody-commit-metadata.receipt.txt
+          cat custody-commit-metadata.receipt.txt
+
+      - name: Upload metadata evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: custody-commit-metadata
+          path: |
+            custody-commit-metadata.jsonl
+            custody-commit-metadata.receipt.txt
+          if-no-files-found: error

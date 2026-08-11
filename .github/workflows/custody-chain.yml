@@ -58,6 +58,7 @@ jobs:
           python3 scripts/audit/check_append_only.py "$BASE" evidence/custody/ledger/evidence-ledger.v1.jsonl | tee -a custody-validation-receipt.txt
           python3 scripts/audit/check_append_only.py "$BASE" evidence/custody/ledger/evidence-resolutions.v1.jsonl | tee -a custody-validation-receipt.txt
           python3 scripts/audit/check_append_only.py "$BASE" evidence/custody/ledger/evidence-authored-at.v1.jsonl | tee -a custody-validation-receipt.txt
+          python3 scripts/audit/check_append_only.py "$BASE" evidence/custody/ledger/evidence-blockers.v1.jsonl | tee -a custody-validation-receipt.txt
 
       - name: Add workflow context to receipt
         shell: bash
@@ -71,6 +72,7 @@ jobs:
             sha256sum custody-validation-receipt.txt
             sha256sum evidence/custody/generated/custody-effective-v1.jsonl
             sha256sum evidence/custody/ledger/evidence-authored-at.v1.jsonl
+            sha256sum evidence/custody/ledger/evidence-blockers.v1.jsonl
             sha256sum poc08-marte-contract-receipt.json
             sha256sum poc10-search-receipt.json
           } | tee -a custody-validation-receipt.txt
@@ -82,6 +84,7 @@ jobs:
             custody-validation-receipt.txt
             evidence/custody/generated/custody-effective-v1.jsonl
             evidence/custody/ledger/evidence-authored-at.v1.jsonl
+            evidence/custody/ledger/evidence-blockers.v1.jsonl
             poc08-marte-contract-receipt.json
             poc10-search-receipt.json
           if-no-files-found: error

@@ -15,6 +15,7 @@ BASE = Path("evidence/custody/ledger/evidence-ledger.v1.jsonl")
 RESOLUTION_FILES = [
     Path("evidence/custody/ledger/evidence-resolutions.v1.jsonl"),
     Path("evidence/custody/ledger/evidence-authored-at.v1.jsonl"),
+    Path("evidence/custody/ledger/evidence-blockers.v1.jsonl"),
 ]
 OUT = Path("evidence/custody/generated/custody-effective-v1.jsonl")
 

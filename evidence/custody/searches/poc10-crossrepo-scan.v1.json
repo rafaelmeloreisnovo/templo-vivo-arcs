@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "audit_timestamp": "2026-08-10T22:16:00-03:00",
+  "target": "POC-10 hashing_time_metrics_claim",
+  "claim_signatures": ["98%", "0.0005", "30 ativos", "10 ativos", "10 vendas", "accuracidade"],
+  "repositories_sampled": [
+    "rafaelmeloreisnovo/Rafaelia",
+    "rafaelmeloreisnovo/Rafaelia_Private",
+    "rafaelmeloreisnovo/rafaelia-core-enterprise",
+    "rafaelmeloreisnovo/IaFcea",
+    "rafaelmeloreisnovo/CientiEspiritual-tiEs-",
+    "rafaelmeloreisnovo/verbum-vivo",
+    "rafaelmeloreisnovo/ZIPRAF_OMEGA_FULL",
+    "rafaelmeloreisnovo/Fisica",
+    "rafaelmeloreisnovo/templo-vivo-arcs"
+  ],
+  "scope_note": "Connector code search over a selected set of installed repositories. This is not proof of absence across all GitHub repositories, Drive/NOVOexport, local databases, or historical deleted/unindexed content.",
+  "findings": [
+    {
+      "repository": "rafaelmeloreisnovo/Rafaelia_Private",
+      "path": "Anews/RAFAELIA_SOC_COMPARE_4_2.py",
+      "blob_sha": "fdcc632416c9d9fe483dc4efdd2d1c5dc6bc3c20",
+      "matched": "0.0005",
+      "classification": "REJECTED_FALSE_POSITIVE",
+      "reason": "0.0005 is used as a threshold update coefficient in a SOC-vs-dense benchmark; the artifact does not establish the POC-10 trading accuracy/error statement."
+    },
+    {
+      "repository": "rafaelmeloreisnovo/Rafaelia_Private",
+      "path": "data/exemplo_rafaelia_out.csv",
+      "classification": "CANDIDATE_UNLINKED_DATASET",
+      "reason": "The file contains timestamped close/volume and technical-indicator columns and therefore is data-like, but no verified identifier, hash edge, sampling description, calculation receipt, or text ties it to POC-10's 30-assets / 10-buy / 10-sell / 98% / 0.0005% statement."
+    },
+    {
+      "repository": "cross-repo selected sample",
+      "query": "accuracidade 98%",
+      "classification": "NO_MATCH_IN_SAMPLED_REPOS",
+      "reason": "No connector code-search result returned for the paired phrase in the sampled repositories."
+    },
+    {
+      "repository": "cross-repo/global connector search",
+      "query": "0.0005 30 ativos 10 vendas",
+      "classification": "NO_VERIFIED_CROSS_REPO_SUPPORT_EDGE",
+      "reason": "Search returned unrelated global hits and the historical Hashing times artifact; no external candidate was established as evidence for the same metric claim."
+    }
+  ],
+  "effective_conclusion": "POC-10 remains HISTORICAL_CLAIM / claim_allowed=false. Cross-repo search expanded recall but produced no verified support edge. Data-like candidates must remain unlinked until fingerprint/provenance and calculation chain are demonstrated.",
+  "next_sources": [
+    "Drive/NOVOexport by exact phrase and neighboring export context",
+    "local archived databases/logs by timestamp 2025-10-10 and source fingerprint",
+    "other installed repositories by exact file/hash references rather than numeric coincidence"
+  ]
+}

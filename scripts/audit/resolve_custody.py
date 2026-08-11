@@ -12,7 +12,10 @@ from pathlib import Path
 from validate_custody import load_jsonl, validate_record
 
 BASE = Path("evidence/custody/ledger/evidence-ledger.v1.jsonl")
-RESOLUTIONS = Path("evidence/custody/ledger/evidence-resolutions.v1.jsonl")
+RESOLUTION_FILES = [
+    Path("evidence/custody/ledger/evidence-resolutions.v1.jsonl"),
+    Path("evidence/custody/ledger/evidence-authored-at.v1.jsonl"),
+]
 OUT = Path("evidence/custody/generated/custody-effective-v1.jsonl")
 
 ALLOWED_PATCH_FIELDS = {
@@ -41,8 +44,8 @@ def load_resolution_rows(path: Path):
         try:
             obj = json.loads(raw)
         except json.JSONDecodeError as exc:
-            raise ValueError(f"resolution line {lineno}: invalid JSON: {exc}") from exc
-        rows.append((lineno, obj))
+            raise ValueError(f"{path}: line {lineno}: invalid JSON: {exc}") from exc
+        rows.append((path, lineno, obj))
     return rows
 
 
@@ -57,12 +60,14 @@ def is_safe_fill(field: str, old, new) -> bool:
 
 
 def main() -> int:
-    if not BASE.is_file() or not RESOLUTIONS.is_file():
+    if not BASE.is_file() or any(not path.is_file() for path in RESOLUTION_FILES):
         print("ERROR: missing base or resolution ledger", file=sys.stderr)
         return 2
 
     base_rows = load_jsonl(BASE)
-    resolution_rows = load_resolution_rows(RESOLUTIONS)
+    resolution_rows = []
+    for path in RESOLUTION_FILES:
+        resolution_rows.extend(load_resolution_rows(path))
     effective = {rec["proof_id"]: deepcopy(rec) for _, rec in base_rows}
     order = [rec["proof_id"] for _, rec in base_rows]
 
@@ -75,62 +80,59 @@ def main() -> int:
         "source_basis", "remaining_uncertainty", "audit_timestamp",
     }
 
-    for lineno, res in resolution_rows:
+    for source_path, lineno, res in resolution_rows:
+        where = f"{source_path}: line {lineno}"
         missing = required_resolution - res.keys()
         extra = res.keys() - required_resolution
         if missing:
-            errors.append(f"resolution line {lineno}: missing {sorted(missing)}")
+            errors.append(f"{where}: missing {sorted(missing)}")
             continue
         if extra:
-            errors.append(f"resolution line {lineno}: unexpected {sorted(extra)}")
+            errors.append(f"{where}: unexpected {sorted(extra)}")
             continue
 
         rid = res["resolution_id"]
         target = res["target_proof_id"]
         mode = res["mode"]
         if rid in seen_resolution_ids:
-            errors.append(f"resolution line {lineno}: duplicate resolution_id {rid}")
+            errors.append(f"{where}: duplicate resolution_id {rid}")
             continue
         seen_resolution_ids.add(rid)
 
         if target not in effective:
-            errors.append(f"resolution line {lineno}: unknown target {target}")
+            errors.append(f"{where}: unknown target {target}")
             continue
         if mode not in {"FILL_TOKEN_VAZIO", "CORRECT_WITH_EVIDENCE"}:
-            errors.append(f"resolution line {lineno}: invalid mode {mode}")
+            errors.append(f"{where}: invalid mode {mode}")
             continue
         if not isinstance(res["fields"], dict) or not res["fields"]:
-            errors.append(f"resolution line {lineno}: fields must be non-empty object")
+            errors.append(f"{where}: fields must be non-empty object")
             continue
         if not isinstance(res["evidence_delta"], list) or not res["evidence_delta"]:
-            errors.append(f"resolution line {lineno}: evidence_delta required")
+            errors.append(f"{where}: evidence_delta required")
             continue
         if not isinstance(res["source_basis"], list) or not res["source_basis"]:
-            errors.append(f"resolution line {lineno}: source_basis required")
+            errors.append(f"{where}: source_basis required")
             continue
         if not isinstance(res["remaining_uncertainty"], list):
-            errors.append(f"resolution line {lineno}: remaining_uncertainty must be list")
+            errors.append(f"{where}: remaining_uncertainty must be list")
             continue
 
         rec = effective[target]
         for field, new in res["fields"].items():
             if field not in ALLOWED_PATCH_FIELDS:
-                errors.append(f"resolution line {lineno}: field not patchable: {field}")
+                errors.append(f"{where}: field not patchable: {field}")
                 continue
             old = rec[field]
             if mode == "FILL_TOKEN_VAZIO" and not is_safe_fill(field, old, new):
-                errors.append(
-                    f"resolution line {lineno}: FILL cannot overwrite {field}: {old!r} -> {new!r}"
-                )
+                errors.append(f"{where}: FILL cannot overwrite {field}: {old!r} -> {new!r}")
                 continue
             if field == "capability_class":
                 if new not in CAP_RANK:
-                    errors.append(f"resolution line {lineno}: invalid capability {new}")
+                    errors.append(f"{where}: invalid capability {new}")
                     continue
                 if CAP_RANK[new] > CAP_RANK.get(old, -1):
-                    errors.append(
-                        f"resolution line {lineno}: capability promotion requires a new proof record, not resolution"
-                    )
+                    errors.append(f"{where}: capability promotion requires a new proof record, not resolution")
                     continue
             rec[field] = new
 
@@ -169,6 +171,7 @@ def main() -> int:
     digest = hashlib.sha256(OUT.read_bytes()).hexdigest()
 
     print(f"base_records={len(order)}")
+    print(f"resolution_files={len(RESOLUTION_FILES)}")
     print(f"resolution_records={len(resolution_rows)}")
     print(f"resolutions_applied={applied}")
     print(f"effective_token_vazio_scalar_fields={token_vazio}")

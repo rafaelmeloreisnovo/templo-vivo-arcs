@@ -1,0 +1,101 @@
+name: C5 Historical Reproduction - cristal.sh
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c5-reproduce-cristal.yml'
+      - 'evidence/custody/**'
+      - 'scripts/audit/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce-cristal:
+    runs-on: ubuntu-latest
+    env:
+      HISTORICAL_COMMIT: 4fe1d9dce27a3f8023cbcdc116521e1ce90c3fc3
+      EXPECTED_SCRIPT_BLOB: 6b176a7341f97ea1367d81753a294d4e3af014ee
+    steps:
+      - name: Checkout audit branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout exact historical state
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.HISTORICAL_COMMIT }}
+          path: historical
+          fetch-depth: 1
+
+      - name: Execute historical cristal.sh and capture receipt inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "reproduction_run_utc=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            echo "runner_os=${RUNNER_OS}"
+            echo "runner_arch=${RUNNER_ARCH}"
+            echo "github_run_id=${GITHUB_RUN_ID}"
+            echo "audit_head=${GITHUB_SHA}"
+          } > c5-cristal-receipt.txt
+
+          cd historical
+          ACTUAL_COMMIT="$(git rev-parse HEAD)"
+          TREE_SHA="$(git rev-parse HEAD^{tree})"
+          SCRIPT_BLOB="$(git rev-parse HEAD:scripts/cristal.sh)"
+          SCRIPT_SHA256="$(sha256sum scripts/cristal.sh | awk '{print $1}')"
+          {
+            echo "historical_commit=${ACTUAL_COMMIT}"
+            echo "historical_tree=${TREE_SHA}"
+            echo "script_blob=${SCRIPT_BLOB}"
+            echo "script_sha256=${SCRIPT_SHA256}"
+          } >> ../c5-cristal-receipt.txt
+
+          set +e
+          bash scripts/cristal.sh > ../c5-cristal.stdout 2> ../c5-cristal.stderr
+          RC=$?
+          set -e
+          echo "$RC" > ../c5-cristal.exit-code
+          echo "script_exit_code=${RC}" >> ../c5-cristal-receipt.txt
+
+          if [ -f CHANGELOG.md ]; then
+            CHANGELOG_SHA256="$(sha256sum CHANGELOG.md | awk '{print $1}')"
+            echo "post_run_changelog_sha256=${CHANGELOG_SHA256}" >> ../c5-cristal-receipt.txt
+            git diff -- CHANGELOG.md > ../c5-cristal-changelog.diff || true
+          fi
+          cd ..
+
+          sha256sum c5-cristal.stdout c5-cristal.stderr c5-cristal.exit-code >> c5-cristal-receipt.txt
+
+      - name: Verify C5 reproduction criteria
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C historical rev-parse HEAD)" = "$HISTORICAL_COMMIT"
+          test "$(git -C historical rev-parse HEAD:scripts/cristal.sh)" = "$EXPECTED_SCRIPT_BLOB"
+          test "$(cat c5-cristal.exit-code)" = "0"
+          grep -q '^\[Cristal\]' c5-cristal.stdout
+          grep -q 'hash_berna:' historical/CHANGELOG.md
+          echo "C5_HISTORICAL_REPRODUCED=PASS" | tee -a c5-cristal-receipt.txt
+
+      - name: Final receipt digest
+        if: always()
+        shell: bash
+        run: |
+          sha256sum c5-cristal-receipt.txt | tee -a c5-cristal-receipt.txt
+
+      - name: Upload C5 reproduction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: c5-cristal-historical-reproduction
+          path: |
+            c5-cristal-receipt.txt
+            c5-cristal.stdout
+            c5-cristal.stderr
+            c5-cristal.exit-code
+            c5-cristal-changelog.diff
+          if-no-files-found: warn

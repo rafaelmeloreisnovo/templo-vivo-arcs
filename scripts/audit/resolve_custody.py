@@ -16,8 +16,8 @@ RESOLUTIONS = Path("evidence/custody/ledger/evidence-resolutions.v1.jsonl")
 OUT = Path("evidence/custody/generated/custody-effective-v1.jsonl")
 
 ALLOWED_PATCH_FIELDS = {
-    "path", "blob_sha", "commit_sha", "committed_at", "author_account",
-    "committer_account", "agent_identity", "agent_evidence",
+    "path", "blob_sha", "commit_sha", "authored_at", "committed_at",
+    "author_account", "committer_account", "agent_identity", "agent_evidence",
     "capability_class", "limitation",
 }
 

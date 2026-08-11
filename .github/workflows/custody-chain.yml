@@ -26,12 +26,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Validate evidence ledger
+      - name: Validate historical evidence ledger
         run: |
           set -euo pipefail
           python3 scripts/audit/validate_custody.py | tee custody-validation-receipt.txt
 
-      - name: Enforce append-only history
+      - name: Resolve effective custody state
+        run: |
+          set -euo pipefail
+          python3 scripts/audit/resolve_custody.py | tee -a custody-validation-receipt.txt
+
+      - name: Enforce append-only history and resolutions
         shell: bash
         run: |
           set -euo pipefail
@@ -40,7 +45,8 @@ jobs:
           else
             BASE="HEAD^"
           fi
-          python3 scripts/audit/check_append_only.py "$BASE" | tee -a custody-validation-receipt.txt
+          python3 scripts/audit/check_append_only.py "$BASE" evidence/custody/ledger/evidence-ledger.v1.jsonl | tee -a custody-validation-receipt.txt
+          python3 scripts/audit/check_append_only.py "$BASE" evidence/custody/ledger/evidence-resolutions.v1.jsonl | tee -a custody-validation-receipt.txt
 
       - name: Add workflow context to receipt
         shell: bash
@@ -52,10 +58,13 @@ jobs:
             echo "commit=${GITHUB_SHA}"
             echo "event=${GITHUB_EVENT_NAME}"
             sha256sum custody-validation-receipt.txt
+            sha256sum evidence/custody/generated/custody-effective-v1.jsonl
           } | tee -a custody-validation-receipt.txt
 
       - uses: actions/upload-artifact@v4
         with:
-          name: custody-validation-receipt
-          path: custody-validation-receipt.txt
+          name: custody-validation-bundle
+          path: |
+            custody-validation-receipt.txt
+            evidence/custody/generated/custody-effective-v1.jsonl
           if-no-files-found: error

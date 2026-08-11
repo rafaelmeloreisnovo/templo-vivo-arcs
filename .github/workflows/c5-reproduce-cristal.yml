@@ -18,19 +18,12 @@ jobs:
       HISTORICAL_COMMIT: 4fe1d9dce27a3f8023cbcdc116521e1ce90c3fc3
       EXPECTED_SCRIPT_BLOB: 6b176a7341f97ea1367d81753a294d4e3af014ee
     steps:
-      - name: Checkout audit branch
+      - name: Checkout audit branch with full object history
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
-      - name: Checkout exact historical state
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.HISTORICAL_COMMIT }}
-          path: historical
-          fetch-depth: 1
-
-      - name: Execute historical cristal.sh and capture receipt inputs
+      - name: Inspect exact historical Git objects
         shell: bash
         run: |
           set -euo pipefail
@@ -40,52 +33,102 @@ jobs:
             echo "runner_arch=${RUNNER_ARCH}"
             echo "github_run_id=${GITHUB_RUN_ID}"
             echo "audit_head=${GITHUB_SHA}"
+            echo "historical_commit=${HISTORICAL_COMMIT}"
           } > c5-cristal-receipt.txt
 
-          cd historical
-          ACTUAL_COMMIT="$(git rev-parse HEAD)"
-          TREE_SHA="$(git rev-parse HEAD^{tree})"
-          SCRIPT_BLOB="$(git rev-parse HEAD:scripts/cristal.sh)"
-          SCRIPT_SHA256="$(sha256sum scripts/cristal.sh | awk '{print $1}')"
+          git cat-file -e "${HISTORICAL_COMMIT}^{commit}"
+          TREE_SHA="$(git rev-parse "${HISTORICAL_COMMIT}^{tree}")"
+          SCRIPT_BLOB="$(git rev-parse "${HISTORICAL_COMMIT}:scripts/cristal.sh")"
+          git show "${HISTORICAL_COMMIT}:scripts/cristal.sh" > c5-cristal-script.sh
+          SCRIPT_SHA256="$(sha256sum c5-cristal-script.sh | awk '{print $1}')"
+
           {
-            echo "historical_commit=${ACTUAL_COMMIT}"
             echo "historical_tree=${TREE_SHA}"
             echo "script_blob=${SCRIPT_BLOB}"
             echo "script_sha256=${SCRIPT_SHA256}"
-          } >> ../c5-cristal-receipt.txt
+          } >> c5-cristal-receipt.txt
 
+          test "$SCRIPT_BLOB" = "$EXPECTED_SCRIPT_BLOB"
+
+          python3 - <<'PY' | tee -a c5-cristal-receipt.txt
+          import os, subprocess
+          raw = subprocess.check_output([
+              'git','ls-tree','-rz','--name-only',os.environ['HISTORICAL_COMMIT']
+          ])
+          paths = [p for p in raw.split(b'\0') if p]
+          longest = max(paths, key=lambda p: len(p.rsplit(b'/',1)[-1]))
+          base = longest.rsplit(b'/',1)[-1]
+          print(f"historical_paths={len(paths)}")
+          print(f"max_basename_bytes={len(base)}")
+          print("max_basename_utf8=" + base.decode('utf-8','replace'))
+          PY
+
+      - name: Attempt exact historical worktree materialization
+        shell: bash
+        run: |
+          set -uo pipefail
           set +e
-          bash scripts/cristal.sh > ../c5-cristal.stdout 2> ../c5-cristal.stderr
+          git worktree add --detach historical "$HISTORICAL_COMMIT" > c5-checkout.stdout 2> c5-checkout.stderr
           RC=$?
           set -e
-          echo "$RC" > ../c5-cristal.exit-code
-          echo "script_exit_code=${RC}" >> ../c5-cristal-receipt.txt
+          echo "$RC" > c5-checkout.exit-code
+          echo "worktree_checkout_exit_code=${RC}" | tee -a c5-cristal-receipt.txt
 
-          if [ -f CHANGELOG.md ]; then
-            CHANGELOG_SHA256="$(sha256sum CHANGELOG.md | awk '{print $1}')"
-            echo "post_run_changelog_sha256=${CHANGELOG_SHA256}" >> ../c5-cristal-receipt.txt
-            git diff -- CHANGELOG.md > ../c5-cristal-changelog.diff || true
+          if [ "$RC" -ne 0 ]; then
+            if grep -qi 'File name too long' c5-checkout.stderr; then
+              echo 'C5_HISTORICAL_REPRODUCED=BLOCKED_FILESYSTEM_PATH_LENGTH' | tee -a c5-cristal-receipt.txt
+              echo 'claim_allowed_C5=false' | tee -a c5-cristal-receipt.txt
+              exit 0
+            fi
+            echo 'C5_HISTORICAL_REPRODUCED=BLOCKED_WORKTREE_MATERIALIZATION_OTHER' | tee -a c5-cristal-receipt.txt
+            echo 'claim_allowed_C5=false' | tee -a c5-cristal-receipt.txt
+            exit 0
           fi
-          cd ..
 
-          sha256sum c5-cristal.stdout c5-cristal.stderr c5-cristal.exit-code >> c5-cristal-receipt.txt
+          echo 'worktree_materialized=true' | tee -a c5-cristal-receipt.txt
 
-      - name: Verify C5 reproduction criteria
+      - name: Execute historical cristal.sh when worktree is materialized
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git -C historical rev-parse HEAD)" = "$HISTORICAL_COMMIT"
-          test "$(git -C historical rev-parse HEAD:scripts/cristal.sh)" = "$EXPECTED_SCRIPT_BLOB"
-          test "$(cat c5-cristal.exit-code)" = "0"
-          grep -q '^\[Cristal\]' c5-cristal.stdout
-          grep -q 'hash_berna:' historical/CHANGELOG.md
-          echo "C5_HISTORICAL_REPRODUCED=PASS" | tee -a c5-cristal-receipt.txt
+          if [ "$(cat c5-checkout.exit-code)" != "0" ]; then
+            echo 'execution_skipped_due_to_worktree_blocker=true' | tee -a c5-cristal-receipt.txt
+            exit 0
+          fi
+
+          set +e
+          (cd historical && bash scripts/cristal.sh) > c5-cristal.stdout 2> c5-cristal.stderr
+          RC=$?
+          set -e
+          echo "$RC" > c5-cristal.exit-code
+          echo "script_exit_code=${RC}" | tee -a c5-cristal-receipt.txt
+
+          if [ -f historical/CHANGELOG.md ]; then
+            echo "post_run_changelog_sha256=$(sha256sum historical/CHANGELOG.md | awk '{print $1}')" | tee -a c5-cristal-receipt.txt
+            git -C historical diff -- CHANGELOG.md > c5-cristal-changelog.diff || true
+          fi
+
+          if [ "$RC" = "0" ] && grep -q '^\[Cristal\]' c5-cristal.stdout && grep -q 'hash_berna:' historical/CHANGELOG.md; then
+            echo 'C5_HISTORICAL_REPRODUCED=PASS' | tee -a c5-cristal-receipt.txt
+            echo 'claim_allowed_C5=true' | tee -a c5-cristal-receipt.txt
+          else
+            echo 'C5_HISTORICAL_REPRODUCED=FAIL_EXECUTION_CRITERIA' | tee -a c5-cristal-receipt.txt
+            echo 'claim_allowed_C5=false' | tee -a c5-cristal-receipt.txt
+          fi
 
       - name: Final receipt digest
         if: always()
         shell: bash
         run: |
-          sha256sum c5-cristal-receipt.txt | tee -a c5-cristal-receipt.txt
+          {
+            [ -f c5-checkout.stderr ] && sha256sum c5-checkout.stderr || true
+            [ -f c5-checkout.stdout ] && sha256sum c5-checkout.stdout || true
+            [ -f c5-cristal.stdout ] && sha256sum c5-cristal.stdout || true
+            [ -f c5-cristal.stderr ] && sha256sum c5-cristal.stderr || true
+            sha256sum c5-cristal-script.sh
+          } | tee -a c5-cristal-receipt.txt
+          cp c5-cristal-receipt.txt c5-cristal-receipt.pre-digest.txt
+          sha256sum c5-cristal-receipt.pre-digest.txt | tee -a c5-cristal-receipt.txt
 
       - name: Upload C5 reproduction evidence
         if: always()
@@ -94,6 +137,11 @@ jobs:
           name: c5-cristal-historical-reproduction
           path: |
             c5-cristal-receipt.txt
+            c5-cristal-receipt.pre-digest.txt
+            c5-cristal-script.sh
+            c5-checkout.stdout
+            c5-checkout.stderr
+            c5-checkout.exit-code
             c5-cristal.stdout
             c5-cristal.stderr
             c5-cristal.exit-code

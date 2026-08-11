@@ -1,0 +1,61 @@
+name: Custody Chain Gate
+
+on:
+  pull_request:
+    paths:
+      - 'evidence/custody/**'
+      - 'scripts/audit/**'
+      - 'docs/auditoria/**'
+      - '.github/workflows/custody-chain.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'evidence/custody/**'
+      - 'scripts/audit/**'
+      - 'docs/auditoria/**'
+      - '.github/workflows/custody-chain.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  custody-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate evidence ledger
+        run: |
+          set -euo pipefail
+          python3 scripts/audit/validate_custody.py | tee custody-validation-receipt.txt
+
+      - name: Enforce append-only history
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="$(git merge-base HEAD origin/${{ github.base_ref }})"
+          else
+            BASE="HEAD^"
+          fi
+          python3 scripts/audit/check_append_only.py "$BASE" | tee -a custody-validation-receipt.txt
+
+      - name: Add workflow context to receipt
+        shell: bash
+        run: |
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "workflow=${GITHUB_WORKFLOW}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "commit=${GITHUB_SHA}"
+            echo "event=${GITHUB_EVENT_NAME}"
+            sha256sum custody-validation-receipt.txt
+          } | tee -a custody-validation-receipt.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: custody-validation-receipt
+          path: custody-validation-receipt.txt
+          if-no-files-found: error

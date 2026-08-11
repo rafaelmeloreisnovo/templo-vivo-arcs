@@ -36,6 +36,11 @@ jobs:
           set -euo pipefail
           python3 scripts/audit/resolve_custody.py | tee -a custody-validation-receipt.txt
 
+      - name: Search deterministically for POC-10 supporting artifacts
+        run: |
+          set -euo pipefail
+          python3 scripts/audit/find_hashing_claim_evidence.py | tee -a custody-validation-receipt.txt
+
       - name: Enforce append-only history and resolutions
         shell: bash
         run: |
@@ -59,6 +64,7 @@ jobs:
             echo "event=${GITHUB_EVENT_NAME}"
             sha256sum custody-validation-receipt.txt
             sha256sum evidence/custody/generated/custody-effective-v1.jsonl
+            sha256sum poc10-search-receipt.json
           } | tee -a custody-validation-receipt.txt
 
       - uses: actions/upload-artifact@v4
@@ -67,4 +73,5 @@ jobs:
           path: |
             custody-validation-receipt.txt
             evidence/custody/generated/custody-effective-v1.jsonl
+            poc10-search-receipt.json
           if-no-files-found: error

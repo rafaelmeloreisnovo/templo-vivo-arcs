@@ -13,6 +13,8 @@ Este documento preserva a distinção:
 
 Nenhuma declaração espiritual é promovida automaticamente a obrigação jurídica, e nenhuma licença de software é tratada como autorização para exposição de dados privados.
 
+A implementação modular correspondente está em `LICENSES/`.
+
 ## 2. Liberdade de consciência, crença e culto
 
 O Templo Vivo ARCS reconhece como princípio de governança a liberdade de consciência e crença, o livre exercício de culto e o respeito ao espaço de manifestação religiosa/espiritual, dentro das garantias e limites do ordenamento jurídico aplicável.
@@ -74,10 +76,11 @@ A organização recomendada é:
 ## 8. Próxima evolução verificável
 
 1. revisar este texto contra a legislação brasileira vigente e registrar fontes jurídicas específicas;
-2. criar política separada de privacidade e classificação de dados;
-3. criar protocolo detalhado de integridade/não-profanação;
-4. reconciliar esses documentos com `LICENSE`, documentos legais existentes e índice canônico;
-5. preservar alterações append-only e receipts de revisão.
+2. revisar `LICENSES/PRIVACY_NOTICE.md` e `LICENSES/CULT_WORSHIP_NOTICE.md`;
+3. revisar `LICENSES/SACRED_INTEGRITY_POLICY.md`;
+4. decidir explicitamente a licença do código em `LICENSES/SOFTWARE_LICENSE_DECISION.md`;
+5. reconciliar os documentos com `LICENSE`, documentos legais existentes e índice canônico;
+6. preservar alterações append-only e receipts de revisão.
 
 ---
 

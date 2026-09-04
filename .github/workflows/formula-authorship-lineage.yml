@@ -1,0 +1,29 @@
+name: Formula Authorship Lineage Gate
+
+on:
+  pull_request:
+    paths:
+      - 'docs/autoria/**'
+      - 'data/autoria/**'
+      - 'scripts/audit/validate_formula_authorship_lineage.py'
+      - '.github/workflows/formula-authorship-lineage.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/autoria/**'
+      - 'data/autoria/**'
+      - 'scripts/audit/validate_formula_authorship_lineage.py'
+      - '.github/workflows/formula-authorship-lineage.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate authorship lineage registry
+        run: python3 scripts/audit/validate_formula_authorship_lineage.py

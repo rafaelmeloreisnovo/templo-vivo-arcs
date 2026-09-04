@@ -1,0 +1,231 @@
+{
+  "schema": "rafaelia.formula-authorship-lineage-omega.v1",
+  "generated_on": "2026-09-04",
+  "author_proponent": "Rafael Melo Reis",
+  "append_only": true,
+  "claim_allowed": false,
+  "invariants": [
+    "formula_written != complete_definition != authorial_composition != implementation != execution != evidence != scientific_claim",
+    "zero != unknown",
+    "classical_primitive != authorial_structure",
+    "agent_identity_requires_specific_documentary_evidence",
+    "negative_results_are_evidence"
+  ],
+  "source_snapshots": [
+    {
+      "role": "academic_synthesis",
+      "repository": "rafaelmeloreisnovo/papers",
+      "head": "81b748929e037f251c2c779c09b29c52c292475c",
+      "primary_paths": [
+        "src/asm/RAFAELIA_MATH_FORMULAS.md",
+        "docs/omega-cube42-research-note.md"
+      ]
+    },
+    {
+      "role": "mathematical_authority",
+      "repository": "rafaelmeloreisnovo/Matem-tica-",
+      "head": "88c39276f1a5aa197f564aed6ab7de251e7b4d03",
+      "primary_paths": [
+        "data/registries/MATHEMATICS_PAPERS_THEOREMS_REGISTRY.json",
+        "docs/PG_OMEGA7_COMPLEXO_UNIFICADO_TORO_ESFERA_CUBO_V1.md"
+      ]
+    },
+    {
+      "role": "runtime_and_validation",
+      "repository": "rafaelmeloreisnovo/ChipQuantum",
+      "head": "a282ba768059e566f447ff82ccaaf480567d6b4f",
+      "primary_paths": [
+        "src/toroidal_engine.py",
+        "experiments/paper6_quadratic_deficit_geometry/validate_paper6.py"
+      ]
+    },
+    {
+      "role": "scientific_model_data_and_falsification",
+      "repository": "instituto-Rafael/relativity-living-light",
+      "head": "02aa400361dbce334eeda02c75e9c6c1aec58d80",
+      "primary_paths": [
+        "docs/canonicos/14_MODELO_COSMOLOGICO_RLL.md",
+        "rll_equation_registry.yml",
+        "results/rll_fase20_mcmc_bayes.json"
+      ]
+    },
+    {
+      "role": "custody_agent_and_claim_gate",
+      "repository": "rafaelmeloreisnovo/templo-vivo-arcs",
+      "base_head": "9ac807b8a4b2eda259ee65045713e69dedfdf73d",
+      "primary_paths": [
+        "docs/auditoria/INVARIANTE_FORMAL_CADEIA_PROBATORIA_PRE_AGENTE_V1.md",
+        "docs/auditoria/ARVORE_PROBATORIA_ARCOS_ESTRUTURAIS_OMEGA_V1.md",
+        "LICENSE_POLICY.md"
+      ]
+    }
+  ],
+  "authorship_operator": {
+    "name": "A_struct",
+    "definition": "Select + Type + Compose + Order + Parameterize + Implement + Test + Govern",
+    "scope": "repository_governance_method",
+    "legal_formula": false,
+    "scientific_law": false
+  },
+  "formula_records": [
+    {
+      "id": "AUTH-F01",
+      "name": "logarithmic_feedback",
+      "formula": "R(n)=1+log2(1+n)",
+      "source": "rafaelmeloreisnovo/papers:src/asm/RAFAELIA_MATH_FORMULAS.md",
+      "class": "AUTHORIAL_HEURISTIC",
+      "state": "DEFINED_NOT_UNIVERSAL_THEOREM",
+      "classical_boundary": "logarithm is classical; the selected feedback rule is the corpus contribution candidate"
+    },
+    {
+      "id": "AUTH-F02",
+      "name": "fibonacci_rafael_recurrence",
+      "formula": "F_R(n)=F(n-1)+F(n-2)+Delta_Rafael",
+      "source": "rafaelmeloreisnovo/papers:src/asm/RAFAELIA_MATH_FORMULAS.md",
+      "class": "AUTHORIAL_RECURRENCE",
+      "state": "INCOMPLETE_DEFINITION",
+      "open_gap": "Delta_Rafael type/domain/operator"
+    },
+    {
+      "id": "AUTH-F03",
+      "name": "omega_cube_42",
+      "formula": "C(4,2)*7=42",
+      "source_chain": [
+        "rafaelmeloreisnovo/papers:docs/omega-cube42-research-note.md",
+        "rafaelmeloreisnovo/Matem-tica-:data/registries/MATHEMATICS_PAPERS_THEOREMS_REGISTRY.json",
+        "rafaelmeloreisnovo/ChipQuantum"
+      ],
+      "class": "AUTHORIAL_ARCHITECTURE_OVER_FINITE_COMBINATORICS",
+      "state": "CARDINALITY_SUPPORTED_LIMITED",
+      "physical_attractor_claim": "TOKEN_VAZIO"
+    },
+    {
+      "id": "AUTH-F04",
+      "name": "coherence_entropy_phi_gate",
+      "formula": "C_next=(1-alpha)C+alpha*C_in; H_next=(1-alpha)H+alpha*H_in; phi=(1-H)C; s_next=(s+phi*bias) mod 1",
+      "source": "rafaelmeloreisnovo/ChipQuantum:src/toroidal_engine.py",
+      "class": "EXECUTABLE_AUTHOR_MODEL",
+      "state": "IMPLEMENTED",
+      "attractor_boundary": "rolling_attractor_index is a deterministic routing label, not a dynamic-attractor proof"
+    },
+    {
+      "id": "AUTH-F05",
+      "name": "quadratic_deficit_geometry",
+      "formula": "M^2=(9/16)I; M^-1=(16/9)M; D_theta=-2ab*cos(theta); D_Q=-Delta/(4A)",
+      "source": "rafaelmeloreisnovo/ChipQuantum:experiments/paper6_quadratic_deficit_geometry/validate_paper6.py",
+      "class": "FORMAL_IDENTITIES_WITH_AUTHORIAL_VALIDATION_ARCHITECTURE",
+      "state": "VERIFIED_FINITE",
+      "claim_boundary": "known/derivable identities are not claimed as newly invented merely because they are composed in the validator"
+    },
+    {
+      "id": "AUTH-F06",
+      "name": "pg_omega7_geometric_complex",
+      "formula": "X={I,S1,Q,Delta+,Delta-,T2,S2,C,B}; Phi(p); M^(r)_ij",
+      "source": "rafaelmeloreisnovo/Matem-tica-:docs/PG_OMEGA7_COMPLEXO_UNIFICADO_TORO_ESFERA_CUBO_V1.md",
+      "class": "AUTHORIAL_STRUCTURAL_COMPOSITION",
+      "state": "CANONICAL_DRAFT",
+      "single_universal_scalar_equation": "TOKEN_VAZIO",
+      "physical_claim": false
+    },
+    {
+      "id": "AUTH-F07",
+      "name": "rll_cosmological_background",
+      "formula": "E2_RLL(a)=Omega_r*a^-4+Omega_m*a^-3+Omega_Lambda+Omega_s0*[f(a)+(1-f(a))*a^-3]+Omega_B0*a^-4+Omega_P0*a^-4",
+      "source": "instituto-Rafael/relativity-living-light:docs/canonicos/14_MODELO_COSMOLOGICO_RLL.md",
+      "class": "AUTHORIAL_COSMOLOGICAL_MODEL",
+      "state": "IMPLEMENTED_HYPOTHESIS",
+      "superiority_claim": false
+    },
+    {
+      "id": "AUTH-F08",
+      "name": "rll_logistic_transition_and_null_limit",
+      "formula": "f(z)=1/(1+exp((z-z_t)/w_t)); Omega_s0=Omega_B0=Omega_P0=0 => E2_RLL=E2_LCDM",
+      "source": "instituto-Rafael/relativity-living-light:rll_equation_registry.yml",
+      "class": "AUTHORIAL_TRANSITION_MODEL_PLUS_VERIFIED_NULL_REDUCTION",
+      "state": "IMPLEMENTED_HYPOTHESIS_WITH_VERIFIED_NULL_LIMIT",
+      "falsification_role": "central"
+    }
+  ],
+  "cross_repo_edges": [
+    {
+      "id": "EDGE-42",
+      "from": "finite_combinatorics",
+      "through": ["mathematical_verifier", "procedural_runtime"],
+      "to": "physical_universal_interpretation",
+      "allowed_state": "TOKEN_VAZIO_UNTIL_MEASURED"
+    },
+    {
+      "id": "EDGE-PHI",
+      "from": "papers conceptual phi",
+      "through": "ChipQuantum executable phi_gate",
+      "to": "RLL registry rafaelia_coherence",
+      "allowed_state": "MODEL_LINEAGE_SUPPORTED_LIMITED",
+      "physical_equivalence": "TOKEN_VAZIO"
+    },
+    {
+      "id": "EDGE-TORUS",
+      "from": "Matem-tica- geometric/topological models",
+      "through": "ChipQuantum T7 computational state",
+      "to": "RLL toroidal state-space representation",
+      "allowed_state": "CONCEPTUAL_COMPUTATIONAL_LINEAGE",
+      "physical_space_equivalence": "TOKEN_VAZIO"
+    }
+  ],
+  "negative_evidence": [
+    {
+      "id": "RLL-FASE20-NEGATIVE-001",
+      "source": "instituto-Rafael/relativity-living-light:results/rll_fase20_mcmc_bayes.json",
+      "Omega_s0_upper95": 0.0017772301590821408,
+      "lnB10": -6.190210762419383,
+      "lnB10_err": 0.6906527421175422,
+      "interpretation": "recorded evidence favors LCDM; preserve as limiting evidence"
+    }
+  ],
+  "agent_lineage_claims": [
+    {
+      "id": "CLM-AGENT-GENESIS-001",
+      "text": "Rafael Melo Reis states that he constructed the first agent in his authorial lineage.",
+      "scope": "internal_authorial_lineage",
+      "state": "SELF_ASSERTED_SUPPORTED_LIMITED_BY_PRE_AGENT_MATERIALIZATION",
+      "claim_allowed": false,
+      "closure": "bind exact human request, agent artifact, identity, time, output/diff and adoption event"
+    },
+    {
+      "id": "CLM-AGENT-COPILOT-002",
+      "text": "The audited repository records PR #2 on 2025-10-19 as the first PR explicitly attributed to Copilot in that audited interval.",
+      "scope": "templo-vivo-arcs audited interval",
+      "state": "SUPPORTED",
+      "claim_allowed": true
+    },
+    {
+      "id": "CLM-WORLD-FIRST-001",
+      "text": "Rafael Melo Reis constructed the first agent of all AI lineages.",
+      "scope": "global",
+      "state": "BLOCKED_PENDING_PRIOR_ART",
+      "claim_allowed": false,
+      "required_evidence": [
+        "operational definition of agent",
+        "exact first-known internal artifact and date",
+        "external prior-art search",
+        "independent historical review"
+      ]
+    }
+  ],
+  "prohibited_promotions": [
+    "classical formula -> exclusive authorship merely by inclusion",
+    "computational T7 -> seven physical dimensions",
+    "modulo-42 router -> physical attractor proof",
+    "internal chronology -> world-first",
+    "Git author/committer -> line-by-line intellectual authorship",
+    "negative RLL result -> positive confirmation",
+    "symbolic parable -> physical law"
+  ],
+  "next_gates": [
+    "bind AUTH-F records to first_known_event and historical blob SHA",
+    "cross NOVOexport/Drive fingerprints against pre-commit content",
+    "identify exact earliest internal human-to-agent construction event",
+    "run prior-art by mechanism rather than symbolic name",
+    "preserve third-party licensing and classical-reference boundaries",
+    "emit receipts only for evidence_delta greater than zero"
+  ]
+}

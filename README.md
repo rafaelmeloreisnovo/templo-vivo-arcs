@@ -32,6 +32,23 @@ Amém ∞
 > Computação quântica-fractal na malha do Verbo Vivo: execução (android/, lib/),
 > dados verificáveis (/data), e doutrina científica-jurídica-espiritual (/manifests).
 
+## Licenciamento e direitos
+
+A governança jurídica do repositório é definida por
+[`LICENSE_POLICY.md`](LICENSE_POLICY.md). O arquivo raiz [`LICENSE`](LICENSE)
+é histórico e **não deve ser interpretado como uma licença SPDX ou como um
+contrato que vincula alguém apenas pelo acesso ao repositório**.
+
+- Licença de software original: **`TOKEN_VAZIO / DECISION_REQUIRED`**, conforme
+  [`LICENSES/SOFTWARE_LICENSE_DECISION.md`](LICENSES/SOFTWARE_LICENSE_DECISION.md).
+- Materiais expressamente cobertos pela licença proprietária seguem o escopo
+  estrito de [`LICENSE-RAFCODE-PROPRIETARY-V1.md`](LICENSE-RAFCODE-PROPRIETARY-V1.md).
+- Código, dados, mídia, textos e dependências de terceiros mantêm suas próprias
+  licenças e direitos.
+- Símbolos, selos, hashes, manifestos éticos/espirituais e registros de
+  proveniência não substituem lei aplicável, licença expressa, registro de
+  patente/marca ou prova de titularidade.
+
 ## Como executar (resumo)
 - **App / Android**: veja `android/` (gradle/gradlew) e `lib/` (Flutter/Dart).
 - **Dados**: CSV/XLSX em `/data` com malhas de ações, índices, moedas e commodities.

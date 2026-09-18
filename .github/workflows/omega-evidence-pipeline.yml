@@ -1,0 +1,133 @@
+name: Omega Evidence Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/audit/**'
+      - 'tests/test_omega*'
+      - 'governance/**'
+      - 'evidence/custody/**'
+      - 'data/autoria/**'
+      - 'docs/auditoria/**'
+      - '.github/workflows/omega-evidence-pipeline.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit/**'
+      - 'tests/test_omega*'
+      - 'governance/**'
+      - 'evidence/custody/**'
+      - 'data/autoria/**'
+      - 'docs/auditoria/**'
+      - '.github/workflows/omega-evidence-pipeline.yml'
+  workflow_dispatch:
+    inputs:
+      base_sha:
+        description: Full ancestor SHA for append-only comparison
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: omega-evidence-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  evidence:
+    name: Seven gates and execution receipt
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      OMEGA_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      OMEGA_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || inputs.base_sha }}
+      OMEGA_OUT: omega-evidence-output-${{ github.run_id }}-${{ github.run_attempt }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout the exact source commit
+        id: checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, resolved 2026-09-18
+        with:
+          ref: ${{ env.OMEGA_SOURCE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run falsifiers and regression tests
+        id: tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p 'test_omega*.py' -v 2>&1 | tee "$RUNNER_TEMP/omega-tests.log"
+
+      - name: Execute bounded dependency graph
+        id: audit
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        run: |
+          set -euo pipefail
+          python3 scripts/audit/omega_pipeline.py \
+            --base "$OMEGA_BASE_SHA" --head "$OMEGA_SOURCE_SHA" --out "$OMEGA_OUT"
+
+      - name: Preserve workflow outcome even when an earlier step failed
+        if: ${{ always() }}
+        env:
+          CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$OMEGA_OUT"
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          out = Path(os.environ['OMEGA_OUT'])
+          outcome = {key: os.environ[key] for key in ('CHECKOUT_OUTCOME','TEST_OUTCOME','AUDIT_OUTCOME')}
+          outcome.update(claim_allowed=False, source_sha=os.environ['OMEGA_SOURCE_SHA'],
+                         event_sha=os.environ['GITHUB_SHA'], run_id=os.environ['GITHUB_RUN_ID'],
+                         run_attempt=os.environ['GITHUB_RUN_ATTEMPT'])
+          outcome['status'] = 'PASS_SCOPED' if all(outcome[k] == 'success' for k in
+              ('CHECKOUT_OUTCOME','TEST_OUTCOME','AUDIT_OUTCOME')) else 'FAIL_CLOSED'
+          (out/'workflow-outcome.json').write_text(json.dumps(outcome, sort_keys=True, indent=2)+'\n')
+          log = Path(os.environ['RUNNER_TEMP'])/'omega-tests.log'
+          if log.is_file():
+              (out/'tests.log').write_bytes(log.read_bytes())
+          if not (out/'receipt.json').exists():
+              (out/'receipt.json').write_text(json.dumps({
+                  'schema':'rafaelia.omega-workflow-failure.v1', 'pipeline_status':'FAIL_CLOSED',
+                  'claim_allowed':False, 'source_sha':os.environ['OMEGA_SOURCE_SHA'],
+                  'F_gap':['EXECUTION_RECEIPT_ABSENT'],
+                  'F_next':['Inspect workflow-outcome and provider logs; rerun the exact source commit.']
+              }, indent=2)+'\n')
+          files = sorted(p for p in out.iterdir() if p.is_file() and p.name != 'SHA256SUMS')
+          (out/'SHA256SUMS').write_text(''.join(
+              hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in files))
+          summary = out/'summary.md'
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as stream:
+              stream.write(summary.read_text() if summary.is_file() else '# Omega: FAIL_CLOSED\n')
+              stream.write('\nWorkflow outcome: '+outcome['status']+'; claim_allowed=false\n')
+          PY
+
+      - name: Publish execution receipt and failure evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: omega-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.OMEGA_OUT }}/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Require all technical stages
+        if: ${{ always() }}
+        env:
+          CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+        run: |
+          set -euo pipefail
+          test "$CHECKOUT_OUTCOME" = success
+          test "$TEST_OUTCOME" = success
+          test "$AUDIT_OUTCOME" = success

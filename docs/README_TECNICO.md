@@ -52,3 +52,11 @@ Nenhum conteúdo histórico deve ser removido do tree principal sem uma tabela d
 3. Mover somente após equivalência de conteúdo e links ser testada.
 4. Gerar receipt de preservação com contagem de linhas, hashes e mapa origem → destino.
 5. Substituir o README composto apenas quando o corpus estiver integralmente navegável no novo tree.
+
+## Append — pipeline Ω / DMAIC — 2026-09-18
+
+Rota operacional: [contrato e execução Ω](auditoria/OMEGA_PIPELINE_6SIGMA_V1.md)
+→ [fila de exames](../governance/omega-exams.v1.json)
+→ [workflow](../.github/workflows/omega-evidence-pipeline.yml)
+→ receipt por execução. `PASS_SCOPED` valida os exames declarados;
+`claim_allowed=false` preserva as lacunas de domínio e a fronteira de promoção.

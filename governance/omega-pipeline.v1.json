@@ -1,0 +1,17 @@
+{
+  "schema": "rafaelia.omega-pipeline.v1",
+  "repository": "rafaelmeloreisnovo/templo-vivo-arcs",
+  "objective": "Executar exames de custódia e produzir evidência, contradições, lacunas e próximos probes sem promover claims de domínio.",
+  "claim_allowed": false,
+  "max_cycles": 1,
+  "stop": "RECEIPT_AND_F_NEXT",
+  "gates": [
+    {"id":"context","needs":[],"ctq":"Objetivo e checkout vinculados a SHA explícito; base ancestral disponível; árvore rastreada limpa.","failure_condition":"SHA diferente, base inválida ou mudança sem commit.","next_probe":"Recuperar os objetos Git e executar no SHA solicitado com base ancestral explícita."},
+    {"id":"provenance","needs":["context"],"ctq":"100% das entradas desta auditoria vinculadas ao commit e SHA-256.","failure_condition":"Arquivo ausente, bytes divergentes ou path fora do repositório.","next_probe":"Localizar o arquivo em seu commit produtor e conferir bytes antes de repetir."},
+    {"id":"custody","needs":["provenance"],"ctq":"Validar ledgers e materializar resoluções preservando estados históricos.","failure_condition":"Schema inválido, resolução incompatível ou promoção indevida.","next_probe":"Examinar stderr do validador e criar correção ou resolução sucessora sem apagar a origem."},
+    {"id":"contradiction","needs":["custody"],"ctq":"Preservar evidências negativas e distinguir sucesso do exame de sucesso do objeto examinado.","failure_condition":"Validador falha ou objeto histórico indisponível.","next_probe":"Reexecutar o exame histórico indicado pelo log e registrar o resultado negativo ou bloqueio."},
+    {"id":"uncertainty","needs":["context"],"ctq":"Cada gap legado possui responsável funcional, prioridade, fonte, gatilho, saída e gate de fechamento.","failure_condition":"Gap sem rota, identidade duplicada ou fechamento sem sucessor.","next_probe":"Completar apenas a rota faltante e manter TOKEN_VAZIO no conhecimento ainda ausente."},
+    {"id":"reproduction","needs":["custody"],"ctq":"Duas execuções locais do resolvedor produzem bytes idênticos.","failure_condition":"SHA-256 do estado efetivo muda com as mesmas entradas.","next_probe":"Comparar as duas saídas e suas entradas; depois executar em ambiente independente."},
+    {"id":"rollback","needs":["provenance"],"ctq":"Prefixo byte a byte de cinco ledgers preservado contra base verificada.","failure_condition":"Base inexistente, bytes históricos editados, removidos, reordenados ou fronteira de linha quebrada.","next_probe":"Restaurar os bytes históricos e acrescentar registro sucessor; repetir controle negativo da base inválida."}
+  ]
+}

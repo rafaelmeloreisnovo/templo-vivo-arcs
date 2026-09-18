@@ -1,0 +1,348 @@
+name: Omega Evidence Orchestrator
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: omega-evidence-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  omega-control-plane:
+    name: Provenance · Context · Evidence · Gaps · Receipt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve observation boundary
+        id: boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .omega-run
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="$(git merge-base HEAD "origin/${{ github.base_ref }}")"
+          elif [ -n "${{ github.event.before || '' }}" ] && [ "${{ github.event.before || '' }}" != "0000000000000000000000000000000000000000" ]; then
+            BASE="${{ github.event.before }}"
+          elif git rev-parse HEAD^ >/dev/null 2>&1; then
+            BASE="$(git rev-parse HEAD^)"
+          else
+            BASE="$(git rev-list --max-parents=0 HEAD)"
+          fi
+          echo "OMEGA_BASE=$BASE" >> "$GITHUB_ENV"
+          printf '%s\n' "$BASE" > .omega-run/base.txt
+          git diff --name-only "$BASE" HEAD | sort > .omega-run/changed-files.txt
+          {
+            echo "repository=$GITHUB_REPOSITORY"
+            echo "workflow=$GITHUB_WORKFLOW"
+            echo "run_id=$GITHUB_RUN_ID"
+            echo "event=$GITHUB_EVENT_NAME"
+            echo "base=$BASE"
+            echo "head=$GITHUB_SHA"
+          } | tee .omega-run/context.txt
+
+      - name: Parse control-plane JSON
+        id: json_contract
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' | tee .omega-run/json-contract.txt
+          import json
+          from pathlib import Path
+
+          required = [
+              Path('PRODUCTO.json'),
+              Path('docs/auditoria/OMEGA_STRUCTURAL_ARCS_CONTRACT_V1.json'),
+              Path('docs/auditoria/PROOF_GAP_LEDGER_2025_V1.json'),
+              Path('evidence/custody/gaps/gap-router.v1.json'),
+          ]
+          for path in required:
+              if not path.is_file():
+                  raise SystemExit(f'MISSING_CONTROL_OBJECT={path}')
+              json.loads(path.read_text(encoding='utf-8'))
+              print(f'JSON_OK={path}')
+          print('JSON_CONTROL_PLANE_GATE=PASS')
+          PY
+
+      - name: Validate custody ledger
+        id: custody
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/audit/validate_custody.py | tee .omega-run/custody.txt
+
+      - name: Resolve effective custody state
+        id: custody_resolve
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/audit/resolve_custody.py | tee .omega-run/custody-effective.txt
+
+      - name: Validate formula and authorship lineage
+        id: formula
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/audit/validate_formula_authorship_lineage.py | tee .omega-run/formula-lineage.txt
+
+      - name: Enforce append-only evidence history
+        id: append_only
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          for ledger in \
+            evidence/custody/ledger/evidence-ledger.v1.jsonl \
+            evidence/custody/ledger/evidence-resolutions.v1.jsonl \
+            evidence/custody/ledger/evidence-authored-at.v1.jsonl \
+            evidence/custody/ledger/evidence-blockers.v1.jsonl
+          do
+            if [ -f "$ledger" ]; then
+              python3 scripts/audit/check_append_only.py "$OMEGA_BASE" "$ledger"
+            else
+              echo "TOKEN_VAZIO_MISSING_LEDGER=$ledger"
+            fi
+          done | tee .omega-run/append-only.txt
+
+      - name: Detect context drift and unresolved authority
+        id: context_drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' | tee .omega-run/context-drift.txt
+          import json
+          import subprocess
+          from pathlib import Path
+
+          product = json.loads(Path('PRODUCTO.json').read_text(encoding='utf-8'))
+          recorded = product.get('github_identity', {}).get('main_sha', 'TOKEN_VAZIO')
+          try:
+              observed = subprocess.check_output(
+                  ['git', 'rev-parse', 'origin/main'], text=True
+              ).strip()
+          except subprocess.CalledProcessError:
+              observed = 'TOKEN_VAZIO'
+
+          stale = recorded not in ('TOKEN_VAZIO', observed)
+          payload = {
+              'recorded_main_sha': recorded,
+              'observed_origin_main_sha': observed,
+              'context_stale': stale,
+              'state': 'CONTEXT_STALE' if stale else 'CONTEXT_ALIGNED',
+              'claim_allowed': False,
+          }
+          Path('.omega-run/context-drift.json').write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          print(json.dumps(payload, ensure_ascii=False))
+          PY
+
+      - name: Classify unresolved software-license gate
+        id: license_gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' | tee .omega-run/license-gate.txt
+          import json
+          from pathlib import Path
+
+          path = Path('LICENSES/SOFTWARE_LICENSE_DECISION.md')
+          text = path.read_text(encoding='utf-8') if path.is_file() else ''
+          unresolved = (not path.is_file()) or ('TOKEN_VAZIO' in text) or ('DECISION_REQUIRED' in text)
+          payload = {
+              'path': str(path),
+              'unresolved': unresolved,
+              'state': 'TOKEN_VAZIO_DECISION_REQUIRED' if unresolved else 'RESOLVED_DECLARED',
+              'hard_fail': False,
+          }
+          Path('.omega-run/license-gate.json').write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          print(json.dumps(payload, ensure_ascii=False))
+          PY
+
+      - name: Build Omega receipt
+        id: receipt
+        if: always()
+        env:
+          GATE_JSON: ${{ steps.json_contract.outcome }}
+          GATE_CUSTODY: ${{ steps.custody.outcome }}
+          GATE_CUSTODY_RESOLVE: ${{ steps.custody_resolve.outcome }}
+          GATE_FORMULA: ${{ steps.formula.outcome }}
+          GATE_APPEND_ONLY: ${{ steps.append_only.outcome }}
+          GATE_CONTEXT: ${{ steps.context_drift.outcome }}
+          GATE_LICENSE: ${{ steps.license_gate.outcome }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          root = Path('.omega-run')
+          def load(name, default):
+              path = root / name
+              if not path.is_file():
+                  return default
+              try:
+                  return json.loads(path.read_text(encoding='utf-8'))
+              except json.JSONDecodeError:
+                  return default
+
+          changed = []
+          p = root / 'changed-files.txt'
+          if p.is_file():
+              changed = [x for x in p.read_text(encoding='utf-8').splitlines() if x]
+
+          drift = load('context-drift.json', {'state':'TOKEN_VAZIO','context_stale':None})
+          license_gate = load('license-gate.json', {'state':'TOKEN_VAZIO','unresolved':None})
+          gates = {
+              'json_control_plane': os.environ.get('GATE_JSON', 'TOKEN_VAZIO'),
+              'custody': os.environ.get('GATE_CUSTODY', 'TOKEN_VAZIO'),
+              'custody_resolution': os.environ.get('GATE_CUSTODY_RESOLVE', 'TOKEN_VAZIO'),
+              'formula_authorship_lineage': os.environ.get('GATE_FORMULA', 'TOKEN_VAZIO'),
+              'append_only': os.environ.get('GATE_APPEND_ONLY', 'TOKEN_VAZIO'),
+              'context_drift_probe': os.environ.get('GATE_CONTEXT', 'TOKEN_VAZIO'),
+              'software_license_probe': os.environ.get('GATE_LICENSE', 'TOKEN_VAZIO'),
+          }
+          hard = ['json_control_plane','custody','custody_resolution','formula_authorship_lineage','append_only']
+          hard_fail = [k for k in hard if gates.get(k) != 'success']
+
+          contradictions = []
+          if drift.get('context_stale'):
+              contradictions.append({
+                  'id':'CONTEXT-STALENESS-PRODUCTO-MAIN-SHA',
+                  'state':'OPEN',
+                  'evidence':drift,
+                  'next':'refresh product-card binding in a separate reviewed delta',
+              })
+
+          uncertainty = []
+          if license_gate.get('unresolved'):
+              uncertainty.append({
+                  'id':'SOFTWARE-LICENSE-DECISION',
+                  'state':'TOKEN_VAZIO',
+                  'next':'owner decision -> compatibility review -> explicit adoption receipt',
+              })
+
+          receipt = {
+              'schema':'rafaelia.omega-evidence-orchestrator.receipt.v1',
+              'observed_at':datetime.now(timezone.utc).isoformat(),
+              'source':{
+                  'repository':os.environ.get('GITHUB_REPOSITORY'),
+                  'base':os.environ.get('OMEGA_BASE'),
+                  'head':os.environ.get('GITHUB_SHA'),
+                  'event':os.environ.get('GITHUB_EVENT_NAME'),
+                  'run_id':os.environ.get('GITHUB_RUN_ID'),
+                  'run_attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),
+              },
+              'changed_files':changed,
+              'provenance':{
+                  'provider':'github-actions',
+                  'workflow':os.environ.get('GITHUB_WORKFLOW'),
+                  'actor':os.environ.get('GITHUB_ACTOR'),
+                  'ref':os.environ.get('GITHUB_REF'),
+              },
+              'context':drift,
+              'evidence':{'gates':gates},
+              'contradictions':contradictions,
+              'uncertainty':uncertainty,
+              'hard_failures':hard_fail,
+              'claim_allowed':False,
+              'r3':{
+                  'F_ok':'control-plane sources and validators observed in one run',
+                  'F_gap':'open contradictions/uncertainties remain explicit',
+                  'F_next':'close highest-priority typed gap with a source-specific reproducible gate',
+              },
+              'six_sigma':{
+                  'Define':'scope=control-plane evidence integrity',
+                  'Measure':'changed files + validators + exact refs',
+                  'Analyze':'drift + contradiction + uncertainty classification',
+                  'Improve':'small reversible source-specific deltas only',
+                  'Control':'receipt + sha256 + artifact + fail-closed hard gates',
+              },
+          }
+          out = root / 'omega-evidence-receipt.json'
+          out.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          digest = hashlib.sha256(out.read_bytes()).hexdigest()
+          (root / 'omega-evidence-receipt.sha256').write_text(f'{digest}  {out.name}\n', encoding='utf-8')
+          print(json.dumps(receipt, ensure_ascii=False, indent=2))
+          print(f'RECEIPT_SHA256={digest}')
+          PY
+
+      - name: Publish run summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## Ω Evidence Orchestrator'
+            echo
+            echo '- SOURCE ≠ ARTEFATO ≠ EXECUÇÃO ≠ EVIDÊNCIA ≠ CLAIM'
+            echo '- TOKEN_VAZIO is preserved as an explicit state'
+            echo '- Receipt: `omega-evidence-receipt.json`'
+            echo
+            echo '### Changed files'
+            sed 's/^/- `/' .omega-run/changed-files.txt | sed 's/$/`/' || true
+            echo
+            echo '### Receipt digest'
+            cat .omega-run/omega-evidence-receipt.sha256 || true
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Omega evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-evidence-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .omega-run/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Enforce hard gates
+        if: always()
+        env:
+          GATE_JSON: ${{ steps.json_contract.outcome }}
+          GATE_CUSTODY: ${{ steps.custody.outcome }}
+          GATE_CUSTODY_RESOLVE: ${{ steps.custody_resolve.outcome }}
+          GATE_FORMULA: ${{ steps.formula.outcome }}
+          GATE_APPEND_ONLY: ${{ steps.append_only.outcome }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+          for pair in \
+            "json_control_plane=$GATE_JSON" \
+            "custody=$GATE_CUSTODY" \
+            "custody_resolution=$GATE_CUSTODY_RESOLVE" \
+            "formula_authorship_lineage=$GATE_FORMULA" \
+            "append_only=$GATE_APPEND_ONLY"
+          do
+            key="${pair%%=*}"
+            value="${pair#*=}"
+            if [ "$value" != "success" ]; then
+              echo "HARD_GATE_FAIL $key=$value"
+              failed=1
+            fi
+          done
+          if [ "$failed" -ne 0 ]; then
+            exit 1
+          fi
+          echo 'OMEGA_EVIDENCE_ORCHESTRATOR=PASS'
+          echo 'claim_allowed=false'

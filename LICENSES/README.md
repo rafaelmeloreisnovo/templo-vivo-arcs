@@ -6,6 +6,12 @@
 
 Este diretório separa domínios que não devem ser fundidos em um único texto jurídico.
 
+## Administrative state
+
+O snapshot atual de `LICENSES/` está marcado administrativamente como `RESTING` em [`RESTING_STATUS.md`](./RESTING_STATUS.md).
+
+`RESTING` preserva os arquivos sem promover licença, aprovação, claim ou publicidade jurídica. Os estados internos de cada documento continuam governando seu efeito.
+
 ## Camadas
 
 | Arquivo | Domínio | Efeito pretendido |

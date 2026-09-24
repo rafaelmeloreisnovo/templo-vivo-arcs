@@ -1,11 +1,17 @@
 {
-  "artifact": "rll-crf-formalization-v1",
+  "artifact": "rll-crf-a-formalization-v1",
+  "base_artifact": "rll-crf-formalization-v1",
   "claim_allowed": false,
   "counts": {
     "A": 25,
     "B": 8,
     "C": 1,
     "total": 34
+  },
+  "formalization_counts": {
+    "A_fail": 0,
+    "A_pass": 25,
+    "A_total": 25
   },
   "groups": {
     "A": [
@@ -54,6 +60,46 @@
       "code": "Matem-tica-:src/verify_123.py",
       "evidence": "Matem-tica-:papers/2026-05-23_teorema_forma_normal_123.md",
       "expression": "red(∅^n 0^n 1123)=123, n>=0",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "free monoid Σ*",
+            "explicit rewrite rules"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "rewrite holds for 0<=n<=256",
+          "analytic proof stored in registry"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "red deletes ∅ and 0, rewrites 11→1, preserves 123, and iterates to a fixed point.",
+        "evidence_boundary": "Proof is internal to the declared rewrite system; confluence for larger grammars is not claimed.",
+        "lemma": "red(∅^n)=ε, red(0^n)=ε, red(11)=1.",
+        "prior_art_state": "GLOBAL_NOVELTY_TOKEN_VAZIO",
+        "proof": {
+          "kind": "DIRECT_REWRITE",
+          "steps": [
+            "Apply red to ∅^n and 0^n to obtain ε.",
+            "Rewrite 11→1.",
+            "The remaining suffix 23 is unchanged.",
+            "Concatenate ε ε 1 23 = 123."
+          ]
+        },
+        "signature": {
+          "codomain": "Σ*",
+          "domain": "Σ* with Σ={∅,0,1,2,3}; n∈N0"
+        },
+        "status": "PROVED_INTERNAL_REWRITE_SYSTEM",
+        "test": "Execute the rewrite for 0≤n≤256; finite execution is corroboration, not the proof itself.",
+        "theorem": "For every n∈N0, red(∅^n 0^n 1123)=123.",
+        "token_vazio": [
+          "GLOBAL_NOVELTY",
+          "FULL_REWRITE_SYSTEM_CONFLUENCE"
+        ]
+      },
       "gaps": [
         "GLOBAL_NOVELTY_TOKEN_VAZIO"
       ],
@@ -69,6 +115,43 @@
       "code": "Matem-tica-:src/verify_omega_cube42.py",
       "evidence": "Matem-tica-:results/omega_cube42_verification.json",
       "expression": "C(4,2)*7=42",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "binomial coefficient"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "C(4,2)=6",
+          "6*7=42"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Choose one unordered edge from 4 vertices and pair it with one of 7 phase classes.",
+        "evidence_boundary": "This is a finite combinatorial count, not evidence of 42 physical attractors.",
+        "lemma": "A complete graph on 4 vertices has C(4,2)=6 unordered edges.",
+        "prior_art_state": "CLASSICAL_COMBINATORICS_PROJECT_BINDING",
+        "proof": {
+          "kind": "PRODUCT_CARDINALITY",
+          "steps": [
+            "Count 6 unordered vertex pairs.",
+            "Multiply by 7 independent phase labels.",
+            "Obtain 42 distinct edge-phase identifiers."
+          ]
+        },
+        "signature": {
+          "codomain": "N",
+          "domain": "4 labeled vertices and 7 phase classes"
+        },
+        "status": "PROVED_FINITE_COMBINATORICS",
+        "test": "Evaluate comb(4,2)*7 exactly.",
+        "theorem": "The edge-phase product set has cardinality 6·7=42.",
+        "token_vazio": [
+          "PHYSICAL_ATTRACTOR_COUPLING"
+        ]
+      },
       "gaps": [
         "PHYSICAL_COUPLING_TOKEN_VAZIO"
       ],
@@ -84,6 +167,40 @@
       "code": "Matem-tica-:src/verify_crown_geodesic_fold_v1.py",
       "evidence": "Matem-tica-:results/crown_geodesic_fold_v1_verification.json",
       "expression": "δ=π/12",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "180°=π radians"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "15 degrees converts to pi/12 radians"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "δ is the radian measure of 15 degrees.",
+        "evidence_boundary": "Classical angle conversion; project relevance is compositional.",
+        "lemma": "15/180=1/12.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "UNIT_CONVERSION",
+          "steps": [
+            "Use θ_rad=θ_deg·π/180.",
+            "Substitute 15 degrees.",
+            "Reduce 15/180 to 1/12."
+          ]
+        },
+        "signature": {
+          "codomain": "R radians",
+          "domain": "15 degree angular step"
+        },
+        "status": "PROVED_ANGLE_CONVERSION",
+        "test": "Numerically compare 15π/180 and π/12.",
+        "theorem": "δ=15·π/180=π/12.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-003",
       "kind": "GEOMETRY",
@@ -97,6 +214,40 @@
       "code": "Matem-tica-:src/verify_crown_geodesic_fold_v1.py",
       "evidence": "Matem-tica-:results/crown_geodesic_fold_v1_verification.json",
       "expression": "A_ann(θ)=θ/2*(r_o^2-r_i^2)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "sector area A=θr²/2"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "annular-sector subtraction identity checked"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Annular sector area is outer sector area minus inner sector area.",
+        "evidence_boundary": "Classical geometry.",
+        "lemma": "A_outer=θr_o²/2 and A_inner=θr_i²/2.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "SUBTRACTION",
+          "steps": [
+            "Write both sector areas.",
+            "Subtract inner from outer.",
+            "Factor θ/2."
+          ]
+        },
+        "signature": {
+          "codomain": "R≥0 for θ≥0",
+          "domain": "θ∈R radians; r_o≥r_i≥0"
+        },
+        "status": "PROVED_CLASSICAL_GEOMETRY",
+        "test": "Check several radii and angles against direct sector subtraction.",
+        "theorem": "A_ann(θ)=θ(r_o²-r_i²)/2.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-004",
       "kind": "GEOMETRY",
@@ -110,6 +261,40 @@
       "code": "Matem-tica-:src/verify_crown_geodesic_fold_v1.py",
       "evidence": "Matem-tica-:results/crown_geodesic_fold_v1_verification.json",
       "expression": "q=R sin(θ/2); d=R cos(θ/2); q^2+d^2=R^2",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "sin²x+cos²x=1"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "q^2+d^2=R^2 on deterministic angle grid"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "q and d are the perpendicular half-chord and center-to-chord components of a radius-R right triangle.",
+        "evidence_boundary": "Classical trigonometry.",
+        "lemma": "q²+d²=R²(sin²(θ/2)+cos²(θ/2)).",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "PYTHAGOREAN_TRIG_IDENTITY",
+          "steps": [
+            "Square both definitions.",
+            "Add.",
+            "Apply sin²+cos²=1."
+          ]
+        },
+        "signature": {
+          "codomain": "R² lengths and identity",
+          "domain": "R≥0; θ∈R"
+        },
+        "status": "PROVED_TRIGONOMETRIC_IDENTITY",
+        "test": "Evaluate on a deterministic angle grid.",
+        "theorem": "q²+d²=R².",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-005",
       "kind": "GEOMETRY",
@@ -123,6 +308,44 @@
       "code": "Matem-tica-:src/verify_octagon_k8_geometry_v1.py",
       "evidence": "Matem-tica-:results/octagon_k8_geometry_v1_verification.json",
       "expression": "V=57; E=136; F=81; V-E+F=2",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "witnessed V,E,F counts",
+            "Euler formula for connected planar graphs"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "Euler arithmetic closure 57-136+81=2",
+          "planarization counts remain external witness"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "χ=V-E+F for the declared planarized graph.",
+        "evidence_boundary": "This formalization does not re-prove the geometric enumeration that produced V,E,F; it proves the Euler closure conditional on those witnessed counts.",
+        "lemma": "57-136+81=2.",
+        "prior_art_state": "CLASSICAL_EULER_PLUS_PROJECT_PLANARIZATION",
+        "proof": {
+          "kind": "CONDITIONAL_ARITHMETIC_PLUS_EULER",
+          "steps": [
+            "Take V=57,E=136,F=81 as verified input counts.",
+            "Compute 57-136+81=2.",
+            "This matches the connected planar Euler invariant."
+          ]
+        },
+        "signature": {
+          "codomain": "Euler characteristic",
+          "domain": "connected planarization with witnessed counts V=57,E=136,F=81"
+        },
+        "status": "PROVED_CONDITIONAL_ON_VERIFIED_COUNTS",
+        "test": "Exact integer arithmetic.",
+        "theorem": "Given the declared connected planarization counts, χ=2.",
+        "token_vazio": [
+          "INDEPENDENT_REDERIVATION_OF_PLANARIZATION_COUNTS"
+        ]
+      },
       "gaps": [
         "COMPOSITE_POLYGON_CATALOG_TOKEN_VAZIO"
       ],
@@ -138,6 +361,44 @@
       "code": "Matem-tica-:src/verify_octagon_k8_cycle_prefix_v1.py",
       "evidence": "Matem-tica-:results/octagon_k8_cycle_prefix_v1.json",
       "expression": "β1=E-V+1=80",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "connectedness",
+            "witnessed V,E"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "cycle rank arithmetic 136-57+1=80",
+          "connectedness/counts remain declared witness"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "For a connected finite graph, β1=E-V+1.",
+        "evidence_boundary": "Conditional on the graph/count witness and connectedness.",
+        "lemma": "136-57+1=80.",
+        "prior_art_state": "CLASSICAL_CYCLE_SPACE_PLUS_PROJECT_PLANARIZATION",
+        "proof": {
+          "kind": "CYCLE_RANK_THEOREM",
+          "steps": [
+            "Apply β1=E-V+1 for a connected graph.",
+            "Substitute E=136,V=57.",
+            "Obtain 80."
+          ]
+        },
+        "signature": {
+          "codomain": "N cycle-space dimension",
+          "domain": "connected graph with V=57,E=136"
+        },
+        "status": "PROVED_CONDITIONAL_ON_VERIFIED_COUNTS",
+        "test": "Exact integer arithmetic.",
+        "theorem": "The cycle-space dimension is 80.",
+        "token_vazio": [
+          "INDEPENDENT_REDERIVATION_OF_PLANARIZATION_COUNTS"
+        ]
+      },
       "gaps": [],
       "id": "CRF-007",
       "kind": "GRAPH_TOPOLOGY",
@@ -151,6 +412,41 @@
       "code": "ChipQuantum:src/geometry/sqrt3_geometry_matrix/global_context_closure_v4.py",
       "evidence": "ChipQuantum:src/geometry/sqrt3_geometry_matrix/results/global_context_closure_v4.json",
       "expression": "q=√3/2",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "real square root"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "0<sqrt(3)/2<1",
+          "q^2=3/4"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "q:=√3/2.",
+        "evidence_boundary": "Classical constant; project use is a chosen kernel.",
+        "lemma": "q²=3/4.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "REAL_ARITHMETIC",
+          "steps": [
+            "Since 0<3<4, 0<√3<2.",
+            "Divide by 2 to get 0<q<1.",
+            "Square q to obtain 3/4."
+          ]
+        },
+        "signature": {
+          "codomain": "R",
+          "domain": "positive real geometry scale"
+        },
+        "status": "DEFINED_AND_BOUND_PROVED",
+        "test": "Verify q²≈0.75 and bounds in floating-point corroboration.",
+        "theorem": "0<q<1 and q²=3/4.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-008",
       "kind": "GEOMETRY_SCALE",
@@ -164,6 +460,40 @@
       "code": "TOKEN_VAZIO",
       "evidence": "EXACT_DIMENSIONAL_SCALING",
       "expression": "L_n=L_0 q^n; A_n=A_0 q^(2n); V_n=V_0 q^(3n)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "Euclidean scaling laws"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "length/area/volume scaling powers checked n=0..12"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Uniform linear scale factor after n steps is s=q^n.",
+        "evidence_boundary": "Classical Euclidean scaling; no physical mechanism implied.",
+        "lemma": "Area scales as s² and volume as s³.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "DIMENSIONAL_POWER_LAW",
+          "steps": [
+            "Set s=q^n.",
+            "Use L→sL, A→s²A, V→s³V.",
+            "Substitute s=q^n and simplify powers."
+          ]
+        },
+        "signature": {
+          "codomain": "scaled quantities",
+          "domain": "q>0,n∈N0; base length/area/volume"
+        },
+        "status": "PROVED_DIMENSIONAL_SCALING",
+        "test": "Check ratio laws for n=0..12.",
+        "theorem": "L_n=L_0q^n, A_n=A_0q^(2n), V_n=V_0q^(3n).",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-009",
       "kind": "GEOMETRY_SCALE",
@@ -177,6 +507,41 @@
       "code": "ChipQuantum:src/geometry/sqrt3_geometry_matrix/relation_calculus.py",
       "evidence": "LOCAL_RELATION_CALCULUS_TESTS",
       "expression": "Q(θ)=θ/[2 sin(θ/2)]",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "s=Rθ",
+            "c=2R sin(θ/2)"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "arc/chord ratio agrees with direct s/c"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Q is arc length divided by chord length for central angle θ.",
+        "evidence_boundary": "Classical circle geometry.",
+        "lemma": "R cancels in s/c.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "RATIO_SIMPLIFICATION",
+          "steps": [
+            "Write s=Rθ and c=2Rsin(θ/2).",
+            "Divide s by c.",
+            "Cancel R≠0."
+          ]
+        },
+        "signature": {
+          "codomain": "R",
+          "domain": "R>0; θ with sin(θ/2)≠0"
+        },
+        "status": "PROVED_CIRCLE_GEOMETRY",
+        "test": "Compare direct s/c and closed form over deterministic θ values.",
+        "theorem": "Q(θ)=θ/[2 sin(θ/2)].",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-010",
       "kind": "CALCULUS_GEOMETRY",
@@ -190,6 +555,40 @@
       "code": "TOKEN_VAZIO",
       "evidence": "DERIVED_STANDARD_GEOMETRY",
       "expression": "s_n=2R sin(π/n)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "chord formula"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "side formula matches coordinate chord distance n=3..24"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "s_n is the chord subtending central angle 2π/n.",
+        "evidence_boundary": "Classical geometry.",
+        "lemma": "Half of the isosceles central triangle has angle π/n and hypotenuse R.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "RIGHT_TRIANGLE",
+          "steps": [
+            "Bisect the central triangle.",
+            "Half-side equals Rsin(π/n).",
+            "Double the half-side."
+          ]
+        },
+        "signature": {
+          "codomain": "R>0",
+          "domain": "R>0,n∈Z,n≥3"
+        },
+        "status": "PROVED_REGULAR_POLYGON_GEOMETRY",
+        "test": "Cross-check with coordinate distance for n=3..24.",
+        "theorem": "s_n=2Rsin(π/n).",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-011",
       "kind": "GEOMETRY",
@@ -203,6 +602,40 @@
       "code": "TOKEN_VAZIO",
       "evidence": "DERIVED_STANDARD_GEOMETRY",
       "expression": "r_n=R cos(π/n)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "right-triangle decomposition of regular n-gon"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "apothem matches midpoint distance n=3..24"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "r_n is the perpendicular distance from center to a side.",
+        "evidence_boundary": "Classical geometry.",
+        "lemma": "The apothem is adjacent to angle π/n in a right triangle with hypotenuse R.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "RIGHT_TRIANGLE",
+          "steps": [
+            "Bisect one central isosceles triangle.",
+            "Use cosine on angle π/n.",
+            "Obtain adjacent length Rcos(π/n)."
+          ]
+        },
+        "signature": {
+          "codomain": "R>0",
+          "domain": "R>0,n≥3"
+        },
+        "status": "PROVED_REGULAR_POLYGON_GEOMETRY",
+        "test": "Check against midpoint coordinate distance for n=3..24.",
+        "theorem": "r_n=Rcos(π/n).",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-012",
       "kind": "GEOMETRY",
@@ -216,6 +649,40 @@
       "code": "TOKEN_VAZIO",
       "evidence": "DERIVED_STANDARD_GEOMETRY",
       "expression": "A_n=(n/2)R^2 sin(2π/n)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "triangle area ab sin C /2"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "area formula matches shoelace coordinates n=3..20"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Area is the sum of n congruent center triangles.",
+        "evidence_boundary": "Classical geometry.",
+        "lemma": "Each center triangle has area R²sin(2π/n)/2.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "TRIANGLE_DECOMPOSITION",
+          "steps": [
+            "Partition polygon into n center triangles.",
+            "Compute one triangle area.",
+            "Multiply by n."
+          ]
+        },
+        "signature": {
+          "codomain": "R>0",
+          "domain": "R>0,n≥3"
+        },
+        "status": "PROVED_REGULAR_POLYGON_GEOMETRY",
+        "test": "Compare with shoelace area of regular n-gon coordinates for n=3..20.",
+        "theorem": "A_n=(n/2)R²sin(2π/n).",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-013",
       "kind": "GEOMETRY",
@@ -229,6 +696,42 @@
       "code": "TOKEN_VAZIO",
       "evidence": "EXACT_DECLARED_PROJECTION_MODEL",
       "expression": "a_e=R; b_e=R|cos i|; e=|sin i|",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "orthographic projection",
+            "ellipse eccentricity e=sqrt(1-b²/a²)"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "orthographic ellipse equation/eccentricity checked on t-grid"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Project a radius-R circle tilted by angle i orthographically onto the image plane.",
+        "evidence_boundary": "Exact only for the declared orthographic tilted-circle model; it is not a universal circle-to-ellipse mechanism.",
+        "lemma": "A parametrization is x=Rcos t, y=Rcos(i)sin t.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "PARAMETRIC_ELIMINATION",
+          "steps": [
+            "Use the projected parametrization.",
+            "Eliminate t to obtain x²/R²+y²/(R²cos²i)=1.",
+            "Read semiaxes.",
+            "Substitute into eccentricity formula."
+          ]
+        },
+        "signature": {
+          "codomain": "ellipse/degenerate ellipse parameters",
+          "domain": "R>0; inclination i; orthographic projection"
+        },
+        "status": "PROVED_ORTHOGRAPHIC_PROJECTION_MODEL",
+        "test": "Check ellipse equation over t-grid and inclinations excluding the degenerate endpoint.",
+        "theorem": "a_e=R, b_e=R|cos i| and, when nondegenerate, e=|sin i|.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-014",
       "kind": "PROJECTION_GEOMETRY",
@@ -242,6 +745,14 @@
       "code": "TOKEN_VAZIO_DEDICATED_VERIFIER",
       "evidence": "CONSTRUCTED_DEFINITION",
       "expression": "R_k=q^(p_k)",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "DEDICATED_VERIFIER",
         "PRIOR_ART"
@@ -258,6 +769,43 @@
       "code": "TOKEN_VAZIO_DEDICATED_VERIFIER",
       "evidence": "EXACT_DERIVATION",
       "expression": "R_(k+1)/R_k=q^(g_k)=(3/4)^(g_k/2)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "CRF-008",
+            "prime sequence"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "prime-gap radial ratio checked on first 11 gaps"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "R_k:=q^(p_k).",
+        "evidence_boundary": "Identity follows from project definitions; novelty/usefulness remains a separate prior-art question.",
+        "lemma": "R_(k+1)/R_k=q^(p_(k+1)-p_k)=q^(g_k).",
+        "prior_art_state": "PRIOR_ART_REQUIRED",
+        "proof": {
+          "kind": "EXPONENT_LAWS",
+          "steps": [
+            "Divide q powers.",
+            "Use g_k definition.",
+            "Use q²=3/4, so q^g=(q²)^(g/2) for real exponent notation."
+          ]
+        },
+        "signature": {
+          "codomain": "R>0",
+          "domain": "q=√3/2; consecutive primes p_k,p_(k+1); g_k=p_(k+1)-p_k"
+        },
+        "status": "PROVED_FROM_PROJECT_DEFINITIONS",
+        "test": "Check consecutive prime pairs deterministically.",
+        "theorem": "R_(k+1)/R_k=q^(g_k)=(3/4)^(g_k/2).",
+        "token_vazio": [
+          "GLOBAL_NOVELTY"
+        ]
+      },
       "gaps": [
         "PRIOR_ART"
       ],
@@ -273,6 +821,45 @@
       "code": "TOKEN_VAZIO_DEDICATED_VERIFIER",
       "evidence": "EXACT_DERIVATION",
       "expression": "z_k=q^(p_k)e^(i p_k θ0); z_(k+1)/z_k=(q e^(iθ0))^(g_k)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "complex exponential",
+            "exponent laws",
+            "g_k prime gap"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "complex transition identity checked across prime gaps/phases"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "z_k:=q^(p_k)exp(i p_k θ0).",
+        "evidence_boundary": "Exact algebraic consequence of the definition; prior-art/interpretation remains open.",
+        "lemma": "z_(k+1)/z_k=q^(g_k)exp(i g_k θ0).",
+        "prior_art_state": "PRIOR_ART_REQUIRED",
+        "proof": {
+          "kind": "COMPLEX_EXPONENT_LAWS",
+          "steps": [
+            "Divide magnitudes q powers.",
+            "Subtract exponential phases.",
+            "Factor the common integer exponent g_k."
+          ]
+        },
+        "signature": {
+          "codomain": "C\\{0}",
+          "domain": "q>0; θ0∈R; consecutive primes"
+        },
+        "status": "PROVED_FROM_PROJECT_DEFINITIONS",
+        "test": "Numerically compare both sides over deterministic prime gaps and θ0 values.",
+        "theorem": "z_(k+1)/z_k=(q exp(iθ0))^(g_k) for integer g_k.",
+        "token_vazio": [
+          "GLOBAL_NOVELTY",
+          "APPLICATION_CLAIM"
+        ]
+      },
       "gaps": [
         "PRIOR_ART"
       ],
@@ -288,6 +875,41 @@
       "code": "ChipQuantum:src/geometry/sqrt3_geometry_matrix/global_context_closure_v4.py",
       "evidence": "EXACT_CLOSED_FORM",
       "expression": "x_(n+1)=q x_n+c; x*=c/(1-q); x_n=x*+q^n(x_0-x*)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "geometric progression"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "affine recurrence equals closed form for deterministic parameter sets"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "x_(n+1)=q x_n+c and fixed point x*=c/(1-q).",
+        "evidence_boundary": "Classical affine recurrence.",
+        "lemma": "Let y_n=x_n-x*. Then y_(n+1)=q y_n.",
+        "prior_art_state": "CLASSICAL",
+        "proof": {
+          "kind": "CHANGE_OF_VARIABLES",
+          "steps": [
+            "Subtract fixed point equation x*=qx*+c.",
+            "Obtain y_(n+1)=qy_n.",
+            "Iterate y_n=q^ny_0.",
+            "Add x* back; contraction follows for |q|<1."
+          ]
+        },
+        "signature": {
+          "codomain": "R sequence",
+          "domain": "q∈R,q≠1; c,x0∈R; n∈N0"
+        },
+        "status": "PROVED_AFFINE_RECURRENCE",
+        "test": "Verify recurrence and closed form for rational-like deterministic parameters.",
+        "theorem": "x_n=x*+q^n(x_0-x*). If |q|<1, x_n→x*.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-018",
       "kind": "DYNAMICAL_SYSTEM",
@@ -301,6 +923,14 @@
       "code": "TOKEN_VAZIO_DEDICATED_VERIFIER",
       "evidence": "EXACT_NEGATIVE_RESULT_ROUTE",
       "expression": "D_42(n)=|1-q^42||x_n-x*|",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "VERIFIER",
         "PRIOR_ART"
@@ -317,6 +947,14 @@
       "code": "TOKEN_VAZIO_DEDICATED_COMPARATOR",
       "evidence": "HYPOTHESIS_TEST",
       "expression": "sec(π/p_n)≈((n+1)/n)^2",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "DEFINE_p_n",
         "ERROR_METRIC",
@@ -334,6 +972,43 @@
       "code": "ChipQuantum:src/geometry/sqrt3_geometry_matrix/global_context_closure_v4.py",
       "evidence": "SHIFT_EQUIVALENCE_TO_FIBONACCI",
       "expression": "F^R_1=2; F^R_2=4; F^R_n=F^R_(n-1)+F^R_(n-2)-1",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "Fibonacci recurrence F_0=0,F_1=1"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "F^R_n=F_n+2F_(n-1)+1 checked n=1..50"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "F^R_1=2,F^R_2=4 and F^R_n=F^R_(n-1)+F^R_(n-2)-1 for n≥3.",
+        "evidence_boundary": "Core recurrence is Fibonacci-equivalent after shift; authorship may concern parametrization/usage, not the classical recurrence law.",
+        "lemma": "G_n:=F^R_n-1 satisfies G_n=G_(n-1)+G_(n-2), with G_1=1,G_2=3.",
+        "prior_art_state": "CLASSICAL_CORE_AUTHORIAL_REPARAMETERIZATION",
+        "proof": {
+          "kind": "SHIFT_AND_INDUCTION",
+          "steps": [
+            "Shift by 1 to remove the affine term.",
+            "Match G_1=1,G_2=3 with F_n+2F_(n-1).",
+            "Both satisfy the same homogeneous recurrence, so equality follows by induction.",
+            "Add 1 back."
+          ]
+        },
+        "signature": {
+          "codomain": "Z",
+          "domain": "n∈Z,n≥1"
+        },
+        "status": "PROVED_REPARAMETERIZATION",
+        "test": "Compare both constructions for n=1..50.",
+        "theorem": "F^R_n=F_n+2F_(n-1)+1 for n≥1.",
+        "token_vazio": [
+          "GLOBAL_NOVELTY"
+        ]
+      },
       "gaps": [
         "CANONICAL_INDEX_CONVENTION"
       ],
@@ -349,6 +1024,39 @@
       "code": "TOKEN_VAZIO",
       "evidence": "EXACT_DERIVATION",
       "expression": "F^R_(n-2)=F^R_n-F^R_(n-1)+1",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "CRF-021"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "reverse recurrence checked n=3..50"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Solve the CRF-021 recurrence for F^R_(n-2).",
+        "evidence_boundary": "Algebraic rearrangement of CRF-021.",
+        "lemma": "F^R_n=F^R_(n-1)+F^R_(n-2)-1.",
+        "prior_art_state": "CLASSICAL_ALGEBRA",
+        "proof": {
+          "kind": "ALGEBRAIC_REARRANGEMENT",
+          "steps": [
+            "Add 1 to both sides.",
+            "Subtract F^R_(n-1)."
+          ]
+        },
+        "signature": {
+          "codomain": "Z predecessor",
+          "domain": "CRF-021 sequence; n≥3"
+        },
+        "status": "PROVED_ALGEBRAIC_INVERSE_STEP",
+        "test": "Verify on the first 50 generated terms.",
+        "theorem": "F^R_(n-2)=F^R_n-F^R_(n-1)+1.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-022",
       "kind": "RECURRENCE_INVERSE",
@@ -362,6 +1070,41 @@
       "code": "ChipQuantum:src/geometry/sqrt3_geometry_matrix/global_context_closure_v4.py",
       "evidence": "FINITE_SPECTRAL_WITNESS",
       "expression": "λ_k=2w6+2w7-2w6 cos(2π6k/42)-2w7 cos(2π7k/42)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "Fourier characters of finite cyclic group"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "all 42 Fourier modes satisfy the weighted Laplacian eigenvalue formula"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "(Lf)(j)=2(w6+w7)f(j)-w6[f(j+6)+f(j-6)]-w7[f(j+7)+f(j-7)].",
+        "evidence_boundary": "Classical circulant spectral theory applied to the project graph.",
+        "lemma": "v_k(j)=exp(2πikj/42) is an eigenvector of every cyclic shift.",
+        "prior_art_state": "CLASSICAL_CIRCULANT_SPECTRAL_THEORY",
+        "proof": {
+          "kind": "FOURIER_DIAGONALIZATION",
+          "steps": [
+            "Apply L to v_k.",
+            "Replace shifts by phase factors exp(±2πi6k/42), exp(±2πi7k/42).",
+            "Pair conjugate exponentials as 2cos.",
+            "Collect coefficients."
+          ]
+        },
+        "signature": {
+          "codomain": "42 Laplacian eigenvalues",
+          "domain": "weighted circulant graph on Z_42 with jumps ±6,±7; real weights w6,w7"
+        },
+        "status": "PROVED_CIRCULANT_LAPLACIAN_SPECTRUM",
+        "test": "Numerically verify L v_k=λ_k v_k for all k=0..41 with fixed nonzero weights.",
+        "theorem": "L v_k=λ_k v_k with the stated λ_k.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-023",
       "kind": "SPECTRAL_GRAPH",
@@ -375,6 +1118,14 @@
       "code": "TOKEN_VAZIO",
       "evidence": "FORMULATED",
       "expression": "X=Z_42×Z_4; |X|=168; E=E_spatial∪E_temporal∪E_cross",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "DEFINE_EDGE_FAMILIES",
         "VERIFIER"
@@ -391,6 +1142,40 @@
       "code": "TOKEN_VAZIO",
       "evidence": "CLASSICAL_COMPANION_MATRIX",
       "expression": "x_(n+1)=a x_n+b x_(n-1)+c x_(n-2)+d x_(n-3); companion M",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "matrix multiplication"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "companion matrix first row/shift rows match scalar recurrence"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "State s_n=(x_n,x_(n-1),x_(n-2),x_(n-3))^T and companion matrix M=[[a,b,c,d],[1,0,0,0],[0,1,0,0],[0,0,1,0]].",
+        "evidence_boundary": "Classical companion-matrix construction.",
+        "lemma": "The lower three rows shift the state history by one position.",
+        "prior_art_state": "CLASSICAL_LINEAR_SYSTEMS",
+        "proof": {
+          "kind": "COMPONENTWISE_MATRIX_MULTIPLICATION",
+          "steps": [
+            "First row produces ax_n+bx_(n-1)+cx_(n-2)+dx_(n-3)=x_(n+1).",
+            "Rows 2-4 shift x_n,x_(n-1),x_(n-2).",
+            "Thus the vector recurrence is equivalent."
+          ]
+        },
+        "signature": {
+          "codomain": "first-order R^4 linear system",
+          "domain": "fourth-order scalar linear recurrence"
+        },
+        "status": "PROVED_STATE_SPACE_REPRESENTATION",
+        "test": "Compare matrix step with scalar recurrence for deterministic coefficients/states.",
+        "theorem": "s_(n+1)=M s_n iff the scalar recurrence holds.",
+        "token_vazio": []
+      },
       "gaps": [],
       "id": "CRF-025",
       "kind": "LINEAR_DYNAMICS",
@@ -404,6 +1189,14 @@
       "code": "Papers:src/asm/bitraf64_prototype_Version4.py",
       "evidence": "Papers:src/asm/bitraf_mobile.c",
       "expression": "6+3+10+12+11=42; B=(opcode_6,direction_3,layer_10,immediate_12,flags_11)",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "FREEZE_FIELDS",
         "TEST"
@@ -420,6 +1213,44 @@
       "code": "TOKEN_VAZIO_CANONICAL_IMPLEMENTATION",
       "evidence": "FORMULATED",
       "expression": "E_mod(x)=x mod 2^42; E_strict(x)=x if 0<=x<2^42 else VOID",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "integer modulo",
+            "typed VOID/TOKEN_VAZIO boundary"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "strict/modular boundary values checked exactly"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "E_mod is residue reduction; E_strict accepts exactly the representable unsigned 42-bit interval.",
+        "evidence_boundary": "Encoding policy definition; does not establish novelty or cryptographic security.",
+        "lemma": "For 0≤x<2^42, E_mod(x)=E_strict(x)=x.",
+        "prior_art_state": "STANDARD_OVERFLOW_BOUNDARY_PROJECT_TYPING",
+        "proof": {
+          "kind": "DEFINITION_AND_DIVISION_ALGORITHM",
+          "steps": [
+            "Modulo 2^42 has a unique residue in [0,2^42).",
+            "Inside that range the residue equals x.",
+            "The strict encoder is defined to reject all other integers."
+          ]
+        },
+        "signature": {
+          "codomain": "Z_(2^42) for modular; {0..2^42-1}∪{VOID} for strict",
+          "domain": "x∈Z"
+        },
+        "status": "DEFINED_AND_BOUNDARY_PROVED",
+        "test": "Check boundary points -1,0,1,2^42-1,2^42,2^42+1 and larger signed values.",
+        "theorem": "E_mod always returns a representable residue; E_strict returns VOID exactly outside the representable interval.",
+        "token_vazio": [
+          "GLOBAL_NOVELTY",
+          "SECURITY_CLAIM"
+        ]
+      },
       "gaps": [
         "TEST_VECTORS"
       ],
@@ -435,6 +1266,14 @@
       "code": "TOKEN_VAZIO_DEDICATED_VALIDATOR",
       "evidence": "Teoremas:AUDITORIA_TEORIA_ATRACTOR_42_20260808.md",
       "expression": "σ_j(X)=Σ_(i∈S_j) w_i X_i mod M",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "EXPLICIT_WEIGHT_SYMMETRY",
         "VALIDATOR"
@@ -451,6 +1290,45 @@
       "code": "TOKEN_VAZIO_DEDICATED_VALIDATOR",
       "evidence": "Teoremas:AUDITORIA_TEORIA_ATRACTOR_42_20260808.md",
       "expression": "Π(n)=(n mod7,n mod10,n mod12,n mod20)",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "modular arithmetic",
+            "lcm"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "420 unique residue tuples on Z/420Z",
+          "periodicity n→n+420 checked"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "Π maps n to its four residue classes.",
+        "evidence_boundary": "Classical modular arithmetic/CRT-style reasoning; project contribution is the chosen multibase tuple.",
+        "lemma": "lcm(7,10,12,20)=420.",
+        "prior_art_state": "CLASSICAL_CRT",
+        "proof": {
+          "kind": "LCM_CONGRUENCE",
+          "steps": [
+            "420 is divisible by all four moduli, giving periodicity.",
+            "If Π(a)=Π(b), then a-b is divisible by 7,10,12,20.",
+            "Therefore a-b is divisible by their lcm 420.",
+            "Hence the induced map from Z/420Z is injective."
+          ]
+        },
+        "signature": {
+          "codomain": "Z_7×Z_10×Z_12×Z_20",
+          "domain": "n∈Z"
+        },
+        "status": "PROVED_PERIODIC_RESIDUE_EMBEDDING",
+        "test": "Exhaustively verify 420 distinct tuples for n=0..419 and periodicity n→n+420.",
+        "theorem": "Π(n+420)=Π(n) for all n, and Π restricted to Z/420Z is injective.",
+        "token_vazio": [
+          "GLOBAL_NOVELTY"
+        ]
+      },
       "gaps": [],
       "id": "CRF-029",
       "kind": "MODULAR_ARITHMETIC",
@@ -464,6 +1342,44 @@
       "code": "Matem-tica-:src/verify_delta_void_frontier.py",
       "evidence": "Papers:docs/vazio-toroidal-drive-research-note.md",
       "expression": "⊥_τ=(absence,reason,risk,next_test,τ); f(⊥_τ)=⊥_(τ')",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "tagged sum/partial type semantics"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "typed absence propagates without numeric/PASS coercion"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "⊥_τ is a tagged non-numeric absence record carrying reason, risk, next_test and type τ. A lifted function propagates absence to the output type without coercing it to a numeric value.",
+        "evidence_boundary": "This proves the internal typed-absence contract, not novelty relative to option/error/bottom types.",
+        "lemma": "The lifted function never maps ⊥_τ to an ordinary numeric zero or PASS value.",
+        "prior_art_state": "OPTION_ERROR_BOTTOM_TYPE_PRIOR_ART_REQUIRED",
+        "proof": {
+          "kind": "BY_CONSTRUCTION",
+          "steps": [
+            "Define the lifted function by case split.",
+            "On ordinary values, apply f.",
+            "On ⊥_τ, construct ⊥_(τ') carrying the provenance fields.",
+            "No numeric coercion occurs."
+          ]
+        },
+        "signature": {
+          "codomain": "typed partial values Value_τ' ∪ {⊥_τ'}",
+          "domain": "typed partial values Value_τ ∪ {⊥_τ}"
+        },
+        "status": "DEFINED_TYPED_ABSENCE_PROPAGATION",
+        "test": "Instantiate typed absence records and verify propagation/type-tag replacement.",
+        "theorem": "Under the declared lift, f̂(⊥_τ)=⊥_(τ') and type/absence status is preserved.",
+        "token_vazio": [
+          "GLOBAL_NOVELTY",
+          "FULL_ALGEBRAIC_LAWS"
+        ]
+      },
       "gaps": [
         "ALGEBRAIC_LAWS",
         "PRIOR_ART"
@@ -480,6 +1396,43 @@
       "code": "TOKEN_VAZIO",
       "evidence": "FORMULATED",
       "expression": "C(c)=I_source I_method I_execution I_artifact I_reproduction",
+      "formalization": {
+        "certificate": {
+          "dependencies": [
+            "Boolean arithmetic"
+          ],
+          "operator": "FORMALIZE_A_V1",
+          "receipt": "provenance/receipts/RLL_CRF_A_FORMALIZATION_V1_20260924.json",
+          "source": "CROSSREPO_FORMULA_FORMALIZATION_MAP_V1"
+        },
+        "ci_test_details": [
+          "all 32 Boolean gate tuples exhaustively verified"
+        ],
+        "ci_test_status": "PASS",
+        "definition": "C is the product of five binary gate indicators.",
+        "evidence_boundary": "Formal gate algebra; operational definitions of each indicator must be supplied by the calling protocol.",
+        "lemma": "A product of binary values equals 1 iff every factor equals 1.",
+        "prior_art_state": "PRIOR_ART_REQUIRED_FOR_PROJECT_METRIC",
+        "proof": {
+          "kind": "FINITE_BOOLEAN_PRODUCT",
+          "steps": [
+            "If all five indicators are 1, their product is 1.",
+            "If any indicator is 0, the product contains a zero factor and is 0.",
+            "These exhaust all binary cases."
+          ]
+        },
+        "signature": {
+          "codomain": "{0,1}",
+          "domain": "five binary indicators in {0,1}"
+        },
+        "status": "PROVED_BOOLEAN_GATE_CONJUNCTION",
+        "test": "Exhaustively evaluate all 2^5=32 indicator tuples.",
+        "theorem": "C(c)=1 iff source, method, execution, artifact and reproduction gates are all 1; otherwise C(c)=0.",
+        "token_vazio": [
+          "OPERATIONAL_INDICATOR_BINDINGS",
+          "GLOBAL_NOVELTY"
+        ]
+      },
       "gaps": [
         "OPERATIONAL_INDICATORS"
       ],
@@ -495,6 +1448,14 @@
       "code": "TOKEN_VAZIO_CANONICAL_IMPLEMENTATION",
       "evidence": "USED_OPERATIONALLY",
       "expression": "R3=(F_ok,F_gap,F_next); R3^(n+1)=U(R3^n,e_n)",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "DEFINE_U",
         "STATE_INVARIANTS"
@@ -511,6 +1472,14 @@
       "code": "TOKEN_VAZIO_SCHEMA",
       "evidence": "MULTIPLE_PROVENANCE_DOCS",
       "expression": "G_P=(A,T,E); relations={generatedBy,splitInto,derivedFrom,indexedBy}",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "SCHEMA",
         "PRIOR_ART"
@@ -527,6 +1496,14 @@
       "code": "TOKEN_VAZIO_CANONICAL_RUNTIME",
       "evidence": "FORMULATED",
       "expression": "R=(S,A,E,Γ,T); T:S×A×E→S×E; Γ(s,a,e)∈{0,1}",
+      "formalization": {
+        "ci_test_details": [],
+        "ci_test_status": "NOT_RUN",
+        "status": "NOT_FORMALIZED_IN_A_V1",
+        "token_vazio": [
+          "FORMALIZATION_PENDING_BY_READINESS_GATE"
+        ]
+      },
       "gaps": [
         "DECOMPOSE_PROPERTIES",
         "IMPLEMENTATION",
@@ -542,7 +1519,7 @@
     }
   ],
   "page_rule": "page consumes artifact only; page does not scrape source repositories",
-  "schema": "rll.crf_page_data.v1",
+  "schema": "rll.crf_page_data.v2",
   "source": {
     "git_blob_sha1": "c0419c91b213773377518752a15983416773f1c7",
     "path": "data/registries/CROSSREPO_FORMULA_FORMALIZATION_MAP_V1.json",

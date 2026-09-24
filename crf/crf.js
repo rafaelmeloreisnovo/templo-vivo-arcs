@@ -49,6 +49,30 @@ function render(){
       field("Gaps",item.gaps)
     );
     details.append(grid);
+
+    const fm=item.formalization||{};
+    const formal=make("div","formalization-panel");
+    formal.append(make("h4","","Formalização"));
+    formal.append(field("Status",fm.status));
+    formal.append(field("CI test",fm.ci_test_status));
+    if(fm.signature){
+      formal.append(field("Domain",fm.signature.domain));
+      formal.append(field("Codomain",fm.signature.codomain));
+    }
+    if(fm.definition) formal.append(field("Definition",fm.definition));
+    if(fm.lemma) formal.append(field("Lemma",fm.lemma));
+    if(fm.theorem) formal.append(field("Theorem",fm.theorem));
+    if(fm.proof){
+      formal.append(field("Proof kind",fm.proof.kind));
+      formal.append(field("Proof steps",fm.proof.steps));
+    }
+    if(fm.test) formal.append(field("Formal test",fm.test));
+    formal.append(field("CI test details",fm.ci_test_details));
+    if(fm.evidence_boundary) formal.append(field("Evidence boundary",fm.evidence_boundary));
+    if(fm.prior_art_state) formal.append(field("Prior-art state",fm.prior_art_state));
+    formal.append(field("TOKEN_VAZIO",fm.token_vazio));
+    if(fm.certificate) formal.append(field("Certificate",JSON.stringify(fm.certificate,null,2)));
+    details.append(formal);
     card.append(details);
     host.append(card);
   }
@@ -58,7 +82,7 @@ async function boot(){
   const response=await fetch("page_data.json",{cache:"no-store"});
   if(!response.ok) throw new Error("PAGE_DATA indisponível: "+response.status);
   const data=await response.json();
-  if(data.schema!=="rll.crf_page_data.v1" || data.claim_allowed!==false) throw new Error("Contrato PAGE_DATA inválido.");
+  if(data.schema!=="rll.crf_page_data.v2" || data.claim_allowed!==false) throw new Error("Contrato PAGE_DATA inválido.");
   state.data=data;
   document.querySelector("#count-total").textContent=data.counts.total;
   document.querySelector("#count-a").textContent=data.counts.A;

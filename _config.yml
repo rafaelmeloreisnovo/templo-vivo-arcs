@@ -1,0 +1,15 @@
+title: "Templo Vivo ARCS · RAFAELIA"
+description: "Portal público de RAFAELIA: código, pesquisa, documentação, proveniência e criação simbólica."
+url: "https://rafaelmeloreisnovo.github.io"
+baseurl: "/templo-vivo-arcs"
+lang: "pt-BR"
+timezone: "America/Sao_Paulo"
+markdown: kramdown
+permalink: pretty
+exclude:
+  - .git
+  - .github
+  - android
+  - build
+  - releases
+  - vendor

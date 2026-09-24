@@ -12,7 +12,9 @@ on:
       - "sitemap.xml"
       - "manifest.webmanifest"
       - "assets/**"
+      - "crf/**"
       - "scripts/verify_pages_site.py"
+      - "scripts/verify_crf_page.py"
       - ".github/workflows/jekyll-gh-pages.yml"
   workflow_dispatch:
 
@@ -34,6 +36,9 @@ jobs:
 
       - name: Verify Pages contract
         run: python3 scripts/verify_pages_site.py
+
+      - name: Verify CRF artifact page
+        run: python3 scripts/verify_crf_page.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

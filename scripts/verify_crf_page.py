@@ -6,7 +6,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 DATA=ROOT/"crf"/"page_data.json"
 HTML=ROOT/"crf"/"index.html"
 JS=ROOT/"crf"/"crf.js"
-EXPECTED_SHA="1964a1203a68b580cbb4b0636add101ecf322fdb5587e9b02192f870889227df"
+EXPECTED_SHA="9e73e19a231df145dfa22d81814eea2a3dca14ab053402f0bb6a56d092a61bc1"
 EXPECTED_BLOB="c0419c91b213773377518752a15983416773f1c7"
 
 errors=[]
@@ -20,12 +20,18 @@ if DATA.is_file():
     except Exception as exc:
         errors.append(f"json:{exc.__class__.__name__}")
         obj={}
-    if obj.get("schema")!="rll.crf_page_data.v1": errors.append("schema")
+    if obj.get("schema")!="rll.crf_page_data.v2": errors.append("schema")
     if obj.get("claim_allowed") is not False: errors.append("claim_allowed")
     if obj.get("counts")!={"A":25,"B":8,"C":1,"total":34}: errors.append("counts")
+    if obj.get("formalization_counts")!={"A_fail":0,"A_pass":25,"A_total":25}: errors.append("formalization_counts")
     items=obj.get("items",[])
     ids=[x.get("id") for x in items] if isinstance(items,list) else []
     if ids!=[f"CRF-{i:03d}" for i in range(1,35)]: errors.append("ids")
+    for item in items:
+        fm=item.get("formalization",{})
+        if item.get("readiness")=="A":
+            if fm.get("ci_test_status")!="PASS" or not fm.get("definition") or not fm.get("lemma") or not fm.get("theorem") or not fm.get("proof"): errors.append("formalization:"+str(item.get("id")))
+        elif fm.get("ci_test_status")!="NOT_RUN": errors.append("non_A_status:"+str(item.get("id")))
     if obj.get("source",{}).get("git_blob_sha1")!=EXPECTED_BLOB: errors.append("source_blob")
 if HTML.is_file():
     h=HTML.read_text(encoding="utf-8")

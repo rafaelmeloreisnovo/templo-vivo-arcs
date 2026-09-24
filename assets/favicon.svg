@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#090d14"/>
+  <circle cx="64" cy="64" r="42" fill="none" stroke="#8ef0c1" stroke-width="4"/>
+  <path d="M64 24 92 82H36Z" fill="none" stroke="#eef5ff" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="64" cy="64" r="6" fill="#86b7ff"/>
+  <text x="64" y="111" text-anchor="middle" font-size="16" font-family="system-ui,sans-serif" fill="#8ef0c1">Ω</text>
+</svg>

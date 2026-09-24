@@ -1,0 +1,11 @@
+{
+  "name": "Templo Vivo ARCS · RAFAELIA",
+  "short_name": "Templo Vivo",
+  "description": "Portal público de RAFAELIA: código, pesquisa, documentação e proveniência.",
+  "start_url": "/templo-vivo-arcs/",
+  "scope": "/templo-vivo-arcs/",
+  "display": "standalone",
+  "background_color": "#090d14",
+  "theme_color": "#090d14",
+  "lang": "pt-BR"
+}

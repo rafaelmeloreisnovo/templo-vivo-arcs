@@ -37,3 +37,7 @@ Transformar produção textual dispersa em um **sistema de pesquisa auditável**
 ## Resultado esperado
 
 Uma base documental **profissional, formal e verificável**, adequada para leitura acadêmica avançada e evolução contínua do projeto.
+
+## Ponte semântica — Livro Vivo (2026-10-21)
+
+- [PONTE_LIVROVIVO_ANCORAGEM_SEMANTICA_20261021.md](./PONTE_LIVROVIVO_ANCORAGEM_SEMANTICA_20261021.md) — rotas tipadas e limites de evidência da parábola dos Sete Sons; narrativa-fonte em `instituto-Rafael/LivroVivo_ThisBookLives:docs/SEMENTE_SETESONS_ANCORAGEM_INFORMACAO_20261021.md`. Não há teste empírico ou autorização de nova licença implícita.

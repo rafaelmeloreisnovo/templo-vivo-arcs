@@ -41,3 +41,8 @@ Uma base documental **profissional, formal e verificável**, adequada para leitu
 ## Ponte semântica — Livro Vivo (2026-10-21)
 
 - [PONTE_LIVROVIVO_ANCORAGEM_SEMANTICA_20261021.md](./PONTE_LIVROVIVO_ANCORAGEM_SEMANTICA_20261021.md) — rotas tipadas e limites de evidência da parábola dos Sete Sons; narrativa-fonte em `instituto-Rafael/LivroVivo_ThisBookLives:docs/SEMENTE_SETESONS_ANCORAGEM_INFORMACAO_20261021.md`. Não há teste empírico ou autorização de nova licença implícita.
+
+
+## Retificação de escopo — esfera e contabilidade sem descarte (2026-10-21)
+
+A ponte Livro Vivo acima é apenas narrativa: não reduz nem substitui a composição integral da esfera geodésica, altura do triângulo, secções circulares, cópias de escalas independentes, colisões e percursos, quatro sementes Fibonacci e a representação 77/33 (fator comum 11) proposta pelo autor. Fórmulas/métodos no produtor Matem-tica-:docs/formal/SEMENTE_INTEGRAL_ESFERA_LENTES_ESPELHOS_FIBONACCI_20261021.md; teses e falsificadores em Papers:research_notes/2026-10-21_GEODESIC_REFLECTION_LENS_FORMULA_CENSUS_BRIDGE.md. Nenhuma consequência física, religiosa ou jurídica é deduzida automaticamente. Censo ≥600 = UNVERIFIED; evitar suprimir ou inventar fórmulas. Licenças e textos sagrados anteriores inalterados.

@@ -1,0 +1,35 @@
+name: Templo Vivo legal i18n V7 (no grant; no deploy)
+on:
+  pull_request:
+    paths:
+      - "governance/legal/i18n/v1/**"
+      - ".github/workflows/tvarcs-license-i18n-v7.yml"
+permissions:
+  contents: read
+jobs:
+  i18n-falsifiers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Source integrity and language structural gate
+        run: python3 governance/legal/i18n/v1/validate_i18n.py
+      - name: Test fail-closed adversarial conditions
+        run: python3 -m unittest discover -s governance/legal/i18n/v1 -p 'test_validate_i18n.py' -v
+      - name: Reject unrelated or licensing changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess, sys
+          sys.path.insert(0,"governance/legal/i18n/v1")
+          from validate_i18n import changed_files_allowed
+          base,head=os.environ["BASE_SHA"],os.environ["HEAD_SHA"]
+          paths=subprocess.check_output(["git","diff","--name-only",base,head],text=True).splitlines()
+          changed_files_allowed(paths)
+          print("PASS_SCOPED_FILES",len(paths))
+          PY

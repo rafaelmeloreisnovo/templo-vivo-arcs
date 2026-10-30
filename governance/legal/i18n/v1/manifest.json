@@ -1,0 +1,92 @@
+{
+  "schema": "TVARCS-LICENSE-I18N-V1",
+  "created": "2026-10-30",
+  "license_authority": "Original English LICENSE_POLICY.md and LICENSE-RAFCODE-PROPRIETARY-V1.md only, subject to mandatory applicable law",
+  "source_files": {
+    "LICENSE_POLICY.md": "6e83eca92b4546ad5006efc08aaa5abd7114b41c",
+    "LICENSE-RAFCODE-PROPRIETARY-V1.md": "d89df5b35aacee581b30d28276d1e700eca6564a",
+    "LICENSES/RIGHTS_NOTICE_AND_LICENSE_BOUNDARIES_V3.md": "7cd8d8a2d68d9312f864c5d2c3f3b2826be58b46"
+  },
+  "language_codes": [
+    "pt-BR",
+    "en-US",
+    "es-ES",
+    "fr-FR",
+    "de-DE",
+    "it-IT",
+    "ja-JP",
+    "zh-CN"
+  ],
+  "per_locale": {
+    "pt-BR": {
+      "path": "governance/legal/i18n/v1/pt-BR.md",
+      "status": "DRAFT_TRANSLATION",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    },
+    "en-US": {
+      "path": "governance/legal/i18n/v1/en-US.md",
+      "status": "ENGLISH_REFERENCE_COPY",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    },
+    "es-ES": {
+      "path": "governance/legal/i18n/v1/es-ES.md",
+      "status": "DRAFT_TRANSLATION",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    },
+    "fr-FR": {
+      "path": "governance/legal/i18n/v1/fr-FR.md",
+      "status": "DRAFT_TRANSLATION",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    },
+    "de-DE": {
+      "path": "governance/legal/i18n/v1/de-DE.md",
+      "status": "DRAFT_TRANSLATION",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    },
+    "it-IT": {
+      "path": "governance/legal/i18n/v1/it-IT.md",
+      "status": "DRAFT_TRANSLATION",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    },
+    "ja-JP": {
+      "path": "governance/legal/i18n/v1/ja-JP.md",
+      "status": "DRAFT_TRANSLATION",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    },
+    "zh-CN": {
+      "path": "governance/legal/i18n/v1/zh-CN.md",
+      "status": "DRAFT_TRANSLATION",
+      "human_legal_review": "TOKEN_VAZIO",
+      "backtranslation_review": "TOKEN_VAZIO",
+      "release_authorized": false
+    }
+  },
+  "policy_clauses": 13,
+  "proprietary_clauses": 13,
+  "safeguards": 5,
+  "linked_jurisdictional_research": "governance/legal/v6/README.md",
+  "rights_boundaries": "LICENSES/RIGHTS_NOTICE_AND_LICENSE_BOUNDARIES_V3.md",
+  "software_license_decision": "LICENSES/SOFTWARE_LICENSE_DECISION.md",
+  "human_legal_review_completed": false,
+  "certified_legal_translation": false,
+  "claim_allowed": false,
+  "promotion": "HOLD",
+  "automated_merging": false,
+  "operative_grants_changed": false,
+  "checks_description": "structural clause parity, source Git blob hashes, mandatory warnings, negative adversarial tests; not semantic equivalence or legal validity",
+  "acceptance_gate": "Locale-by-locale qualified human review of authoritative source, local public-law/privacy/consumer/IP applicability, terminology, usability, third-party rights, signed approval and release receipt"
+}

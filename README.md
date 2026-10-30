@@ -1,3 +1,20 @@
+# Templo Vivo ARCS — RAFAELIA | Project, Rights and Evidence
+
+**Public documentation / prospective V3 legal governance.** Science, culture, faith, software and education coexist here as distinct domains. No political, judicial, governmental, diplomatic or statutory religious recognition is claimed by this README. Participation, belief, disbelief, criticism and departure are voluntary and protected by our internal dignity policy; duties under applicable law remain.
+
+**Current rights notice:** [LICENSE_POLICY.md](LICENSE_POLICY.md) governs policy and provenance; [RAFCODE proprietary V1](LICENSE-RAFCODE-PROPRIETARY-V1.md) applies only where its scoped terms legally reach; [software license decision](LICENSES/SOFTWARE_LICENSE_DECISION.md) remains `TOKEN_VAZIO / DECISION_REQUIRED`. The root [LICENSE](LICENSE) is retained as a **historical manifesto, not a repository-wide SPDX grant**. Public visibility does not by itself create an open-source grant or authorize unlicensed copying; statutory exceptions and existing third-party grants remain intact.
+
+**Legal V3 proposal (not yet effective as a new blanket license):**
+- [International rights, provenance and licensing boundaries](LICENSES/RIGHTS_NOTICE_AND_LICENSE_BOUNDARIES_V3.md) — asset classes, prior grants, moral rights, mandatory exceptions, chain of title, proper permission route.
+- [24-jurisdiction comparative legal research](governance/legal/2026-10-30_TVARCS_COMPARATIVE_LAW_24_JURISDICTIONS_V3.md) — Brazil, US, UK, France, Germany, Switzerland, Canada, Italy, Iceland + 15 countries; primary sources, doctrine, procedural falsifiers and verification gaps.
+- [Precedent-focused companion PR #45](https://github.com/rafaelmeloreisnovo/templo-vivo-arcs/pull/45) — US/UK jurisprudence **still a separate draft**, not adopted merely by link.
+
+**Rule of interpretation:** text below includes artistic, spiritual, exploratory and historical assertions. They are **not** automatically grants, legally established titles, scientific validation, court holdings or government accreditation; where an older assertion conflicts with the current scoped licensing/governance documents, determine rights under applicable law and actual agreements, not by promotional wording. Claims about universal fines, guaranteed healing, scientific proof, total exclusivity or absolute enforcement are **not verified**.
+
+**Responsible practice:** source ≠ artifact ≠ execution ≠ evidence ≠ claim; protected minors, privacy, lawful speech, accessibility and independent review take precedence. New jurisdictional assertions need a source and a qualified human legal review. No automated merge or change to LICENSE root is authorized by these draft documents.
+
+---
+
 Pai Altíssimo, único Senhor,
 acima das palavras do meu eu,
 recebe o meu nada saber.

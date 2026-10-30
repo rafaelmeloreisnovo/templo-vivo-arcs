@@ -1,0 +1,243 @@
+{
+  "schema_version": "tvarcs-nav-v1",
+  "producer_repo": "rafaelmeloreisnovo/templo-vivo-arcs",
+  "source_base_commit": "e8cb574b7422305cb2b387f60eb1c6db481393ed",
+  "status": "RESEARCH_ONLY",
+  "promotion": "HOLD",
+  "claim_allowed": false,
+  "sovereignty_claim_allowed": false,
+  "default_roots": 3,
+  "default_depth": 1,
+  "expand_only": [
+    "missing_source",
+    "contradiction",
+    "unresolved_authority",
+    "missing_evidence",
+    "explicit_request"
+  ],
+  "invariants": [
+    "SOURCE != ARTIFACT != EXECUTION != EVIDENCE != CLAIM",
+    "TOKEN_VAZIO != 0",
+    "IMPLEMENTED_UNTESTED != PASS",
+    "PUBLIC_REPO != AUTO_OPEN_SOURCE_GRANT",
+    "DIGITAL_INFRASTRUCTURE != TERRITORIAL_SOVEREIGNTY"
+  ],
+  "priority_gates": [
+    "G01",
+    "G02",
+    "G03",
+    "G04"
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "path": "001_PONTEIRO/START_HERE.md",
+      "domain": "NAVIGATION",
+      "status": "ENTRY"
+    },
+    {
+      "id": "overview",
+      "path": "README.md",
+      "domain": "HUMAN",
+      "status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "history",
+      "path": "INDICE_NAVEGACAO.md",
+      "domain": "HUMAN",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "guide",
+      "path": "GUIA_INICIO_RAPIDO.md",
+      "domain": "HUMAN",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "policy",
+      "path": "LICENSE_POLICY.md",
+      "domain": "RIGHTS",
+      "status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "license_raf",
+      "path": "LICENSE-RAFCODE-PROPRIETARY-V1.md",
+      "domain": "RIGHTS",
+      "status": "SCOPED_ONLY"
+    },
+    {
+      "id": "historical_license",
+      "path": "LICENSE",
+      "domain": "RIGHTS",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "license_gate",
+      "path": "LICENSES/SOFTWARE_LICENSE_DECISION.md",
+      "domain": "RIGHTS",
+      "status": "HOLD"
+    },
+    {
+      "id": "rights_v3",
+      "path": "LICENSES/RIGHTS_NOTICE_AND_LICENSE_BOUNDARIES_V3.md",
+      "domain": "LEGAL",
+      "status": "RESEARCH_ONLY"
+    },
+    {
+      "id": "security",
+      "path": "SECURITY.md",
+      "domain": "SAFETY",
+      "status": "HOLD"
+    },
+    {
+      "id": "risk_gates",
+      "path": "governance/security/OPERATIONAL_RISK_GATES_V1.md",
+      "domain": "SAFETY",
+      "status": "HOLD"
+    },
+    {
+      "id": "legal_v3",
+      "path": "governance/legal/2026-10-30_TVARCS_COMPARATIVE_LAW_24_JURISDICTIONS_V3.md",
+      "domain": "LEGAL",
+      "status": "RESEARCH_ONLY"
+    },
+    {
+      "id": "legal_v5",
+      "path": "governance/legal/v5/README.md",
+      "domain": "LEGAL",
+      "status": "RESEARCH_ONLY"
+    },
+    {
+      "id": "legal_v6",
+      "path": "governance/legal/v6/README.md",
+      "domain": "LEGAL",
+      "status": "RESEARCH_ONLY"
+    },
+    {
+      "id": "legal_v9",
+      "path": "governance/legal/v9/ROSE_ISLAND_DIGITAL_WATER_RIGHTS_V1.md",
+      "domain": "LEGAL",
+      "status": "RESEARCH_ONLY"
+    }
+  ],
+  "edges": [
+    {
+      "from": "start",
+      "to": "overview",
+      "type": "NAVIGATES"
+    },
+    {
+      "from": "start",
+      "to": "policy",
+      "type": "NAVIGATES"
+    },
+    {
+      "from": "start",
+      "to": "security",
+      "type": "NAVIGATES"
+    },
+    {
+      "from": "start",
+      "to": "legal_v3",
+      "type": "NAVIGATES"
+    },
+    {
+      "from": "start",
+      "to": "legal_v9",
+      "type": "NAVIGATES"
+    },
+    {
+      "from": "start",
+      "to": "license_gate",
+      "type": "GATES"
+    },
+    {
+      "from": "start",
+      "to": "history",
+      "type": "HISTORICAL_REFERENCE"
+    },
+    {
+      "from": "start",
+      "to": "guide",
+      "type": "HISTORICAL_REFERENCE"
+    },
+    {
+      "from": "policy",
+      "to": "license_raf",
+      "type": "SCOPES"
+    },
+    {
+      "from": "policy",
+      "to": "historical_license",
+      "type": "DISTINGUISHES"
+    },
+    {
+      "from": "policy",
+      "to": "rights_v3",
+      "type": "SUPPORTS"
+    },
+    {
+      "from": "security",
+      "to": "risk_gates",
+      "type": "GATES"
+    },
+    {
+      "from": "legal_v3",
+      "to": "legal_v5",
+      "type": "REFERENCES"
+    },
+    {
+      "from": "legal_v5",
+      "to": "legal_v6",
+      "type": "REFERENCES"
+    },
+    {
+      "from": "legal_v6",
+      "to": "legal_v9",
+      "type": "RESEARCH_EXTENDS"
+    },
+    {
+      "from": "legal_v9",
+      "to": "risk_gates",
+      "type": "GATES"
+    },
+    {
+      "from": "legal_v9",
+      "to": "license_gate",
+      "type": "DISTINGUISHES"
+    }
+  ],
+  "adversarial_checks": [
+    {
+      "id": "A1",
+      "question": "Does an artificial platform or domain automatically create sovereignty?",
+      "expected": "NO"
+    },
+    {
+      "id": "A2",
+      "question": "Does all datacentre cooling require onsite water intake?",
+      "expected": "NO"
+    },
+    {
+      "id": "A3",
+      "question": "Are 186 countries legally certified by a bibliography?",
+      "expected": "NO"
+    },
+    {
+      "id": "A4",
+      "question": "Does a green doc CI mean provider controls deployed?",
+      "expected": "NO"
+    },
+    {
+      "id": "A5",
+      "question": "May an append-only ledger retain personal data against legal erasure rights?",
+      "expected": "NO"
+    },
+    {
+      "id": "A6",
+      "question": "Does a root manifesto replace scoped prior licenses?",
+      "expected": "NO"
+    }
+  ],
+  "rollback": "close unmerged draft PR; otherwise authorized corrective successor"
+}

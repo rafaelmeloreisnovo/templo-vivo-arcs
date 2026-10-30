@@ -41,3 +41,11 @@ Leia [responsibility_register.json](responsibility_register.json) como inventár
 **F_ok:** registrar exigência de papel/evidência por área e testar contra aprovações falsas. **F_gap:** pessoas/mandatos, provedores, execução, crianças/dados, advogados locais. **F_next:** nomear um responsável real por G01–G04 de forma privada e aprovada; coletar receipts; abrir sucessor auditável para fechar cada caso.
 
 **Rollback:** fechar PR draft sem merge; correção depois de merge somente por commit sucessor. No files under `LICENSE*`, `README.md` raiz, CI existente, provedor ou dados pessoais são alterados.
+
+## V11 successor — G02 P0 observed and human handoff (2026-10-30)
+
+**New evidence:** [p0_handoff_g02.json](p0_handoff_g02.json) pins `main.protected=false`, `protection.enabled=false`, `required_status_checks.enforcement_level=off` at `main@8b002de05dd01862b1f1ca7a2d3702afe06e4d9b` using the GitHub branch endpoint. The dedicated branch-protection endpoint returned HTTP 403 to this integration; the repository rulesets list returned an empty array. Do not infer from either call that organization-level policies are absent. `G02=FAIL_OBSERVED_SCOPED`, **not VERIFIED**, not closed.
+
+[**P0_HANDOFF.md**](P0_HANDOFF.md) is the human-action checklist covering private acceptance for G01 credential rotation, G02 branch protections, G03 safeguarding and G04 privacy. It names **roles only**, never assumed people, children, private vulnerabilities or credential values. Any administrator must independently validate provider scope and reverse path, apply proportionate controls with authorized change management, and collect a sanitized after-state readback and review.
+
+The structural CI now includes these two new files, with negative tests for fake G02 closure, illegal assignment, false source interpretation and fictitious receipts. These checks do **not** install a provider rule. Existing historical registry remains unmodified, preventing retroactive rewriting; correction to the observation requires dated successor and fresh source evidence.

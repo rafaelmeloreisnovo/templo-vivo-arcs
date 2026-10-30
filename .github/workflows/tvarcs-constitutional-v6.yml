@@ -1,0 +1,20 @@
+name: Templo Vivo constitutional sources V6 structural gate
+on:
+  pull_request:
+    paths:
+      - 'governance/legal/v6/**'
+      - '.github/workflows/tvarcs-constitutional-v6.yml'
+permissions:
+  contents: read
+jobs:
+  structural-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate source registry
+        run: python3 governance/legal/v6/validate_sources.py
+      - name: Negative-case tests
+        run: python3 -m unittest discover -s governance/legal/v6 -p 'test_validate_sources.py' -v

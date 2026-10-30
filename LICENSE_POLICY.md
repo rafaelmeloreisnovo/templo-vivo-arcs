@@ -67,3 +67,14 @@ When a standard open-source or source-available license is selected for a define
 ## No legal advice
 
 This policy is a repository governance instrument, not legal advice. Jurisdiction-specific enforcement, registration, patent strategy, contractual restrictions and disputes should be reviewed by qualified counsel.
+## V3 comparative legal hardening — prospective index (2026-10-30)
+
+The following are **draft supplemental research/governance documents**, not an automatic relicensing of this repository:
+- [Rights notice and boundaries V3](LICENSES/RIGHTS_NOTICE_AND_LICENSE_BOUNDARIES_V3.md) — chain of title, per-asset scope, prior licenses, exceptions and permission request.
+- [24-jurisdiction comparative matrix V3](governance/legal/2026-10-30_TVARCS_COMPARATIVE_LAW_24_JURISDICTIONS_V3.md) — sources and case-law verification gates.
+
+**Interpretation:** The historical root `LICENSE` remains preserved; no additional repository-wide software permission is conferred by this amendment. The RAFCODE proprietary V1 text is not broadened, revoked or replaced by this index. This amendment cannot terminate pre-existing valid grants, extinguish coauthors' rights, or affect upstream copyright owners. Any apparent conflict must be resolved against the actual source rights, applicable law and existing agreements rather than against unverified promotional claims.
+
+**Notices are not court orders.** No global registration, universal copyright monopoly over ideas, automatic penalty, legal immunity or worldwide jurisdiction is declared. Dissent, research, lawful reverse engineering, criticism and statutory exceptions remain subject to their own legal tests. Local law and case-specific professional review control disputes.
+
+**Promotion gate:** `NEW_LICENSE_GRANT = HOLD` until specific asset inventory, ownership verification, upstream-license compatibility, affirmative rights-holder decision, counsel review and exact versioned release receipt. All statuses under V3 are `PROPOSED / CLAIM_ALLOWED=false`; GitHub merge is a separate, expressly authorized act.

@@ -1,0 +1,94 @@
+{
+  "schema": "TVARCS_SECURITY_READINESS_V1",
+  "date": "2026-10-30",
+  "status": "DRAFT_HOLD",
+  "scope": "PUBLIC_NON_SENSITIVE_METADATA_ONLY",
+  "release_allowed": false,
+  "claim_allowed": false,
+  "authority": "HUMAN_ADMIN_REVIEW_REQUIRED",
+  "evidence_rule": "PROVIDER_OR_OPERATOR_READBACK_PLUS_INDEPENDENT_REVIEW",
+  "source_ref": "github:rafaelmeloreisnovo/templo-vivo-arcs/governance/security/OPERATIONAL_RISK_GATES_V1.md",
+  "gates": [
+    {
+      "id": "G01",
+      "priority": "P0",
+      "topic": "historical_credential_rotation",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G02",
+      "priority": "P0",
+      "topic": "main_branch_provider_protection",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G03",
+      "priority": "P0",
+      "topic": "child_safeguarding_operator",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G04",
+      "priority": "P0",
+      "topic": "religious_and_child_data_controls",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G05",
+      "priority": "P1",
+      "topic": "private_security_reporting",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G06",
+      "priority": "P1",
+      "topic": "software_supply_chain",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G07",
+      "priority": "P1",
+      "topic": "rights_and_upstream_licenses",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G08",
+      "priority": "P1",
+      "topic": "exact_head_release_security",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    },
+    {
+      "id": "G09",
+      "priority": "P1",
+      "topic": "incident_response_restore_drill",
+      "state": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "verified_at": "TOKEN_VAZIO"
+    }
+  ]
+}

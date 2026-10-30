@@ -19,6 +19,8 @@ PINNED={
 }
 ALLOWED_FILES={
     "governance/ops/ownership_v1/README.md",
+    "governance/ops/ownership_v1/P0_HANDOFF.md",
+    "governance/ops/ownership_v1/p0_handoff_g02.json",
     "governance/ops/ownership_v1/responsibility_register.json",
     "governance/ops/ownership_v1/validate_register.py",
     "governance/ops/ownership_v1/test_validate_register.py",
@@ -81,6 +83,55 @@ def validate(doc):
         a=rec.get("asset_ref","")
         require(isinstance(a,str) and a and not a.startswith("/") and ".." not in Path(a).parts and (ROOT/a).is_file(),"ungrounded asset: "+id)
     return True
+
+def validate_p0_handoff(doc):
+    require(doc.get("schema")=="TVARCS_P0_HUMAN_HANDOFF_V1","handoff schema")
+    require(doc.get("producer_repo")=="rafaelmeloreisnovo/templo-vivo-arcs","handoff repo")
+    require(doc.get("observed_main_sha")=="8b002de05dd01862b1f1ca7a2d3702afe06e4d9b","G02 source snapshot drift")
+    expected={
+        "main_branch":("OBSERVED","protected=false; protection.enabled=false; required_status_checks.enforcement_level=off"),
+        "detailed_branch_protection":("ACCESS_DENIED","403 Resource not accessible by integration"),
+        "repository_rulesets":("OBSERVED_LIMITED","[] empty list from accessible repository rulesets endpoint; no inference about inherited rules/other administrative planes"),
+    }
+    endpoints=doc.get("source_endpoints")
+    require(isinstance(endpoints,list) and len(endpoints)==3,"G02 provider evidence count")
+    scopes=[x.get("scope") for x in endpoints]
+    require(set(scopes)==set(expected) and len(scopes)==len(set(scopes)),"G02 provider evidence scopes")
+    for item in endpoints:
+        scope=item["scope"]
+        obs,claim=expected[scope]
+        require(item.get("readback")==obs and item.get("observation")==claim,"provider evidence mutation: "+scope)
+        require(item.get("url")=="https://api.github.com/repos/rafaelmeloreisnovo/templo-vivo-arcs/"+{
+            "main_branch":"branches/main",
+            "detailed_branch_protection":"branches/main/protection",
+            "repository_rulesets":"rulesets",
+        }[scope],"unexpected provider evidence URL")
+    gates=doc.get("gates")
+    require(isinstance(gates,list) and len(gates)==4,"G01-G04 handoff coverage")
+    require([x.get("gate") for x in gates]==["G01","G02","G03","G04"],"gate order and uniqueness")
+    owner_roles={"G01":"AUTHORIZED_PROVIDER_ADMIN","G02":"AUTHORIZED_PROVIDER_ADMIN",
+        "G03":"AUTHORIZED_CHILD_SAFETY_RESPONSIBLE_PERSON","G04":"AUTHORIZED_DATA_CONTROLLER_OR_PRIVACY_OFFICER"}
+    topics={"G01":"credential_rotation","G02":"branch_protection",
+            "G03":"child_safeguarding_operator","G04":"religious_and_minor_sensitive_data"}
+    for g in gates:
+        name=g["gate"]
+        require(g.get("topic")==topics[name],"unexpected gate topic")
+        require(g.get("observation_state")==("FAIL_OBSERVED_SCOPED" if name=="G02" else VOID),
+                "false closure/failure evidence: "+name)
+        require(g.get("required_owner")==owner_roles[name],"role authorization")
+        for key in ("owner","owner_acceptance_ref","private_receipt_ref"):
+            require(g.get(key)==VOID,"invented human/private evidence: "+name+":"+key)
+    for key in ("operator_assessed","security_controls_enforced","formal_appointments_done",
+                "privacy_data_mapping_complete","minors_safeguarding_implemented",
+                "provider_write_performed","secrets_collected","personal_data_collected",
+                "release_allowed","claim_allowed","review_complete"):
+        require(doc.get(key) is False,"unsupported provider/people flag: "+key)
+    require(doc.get("promotion")=="HOLD" and doc.get("current_result")=="P0_UNCLOSED","P0 risk laundering")
+    require("no inference about inherited rules" in expected["repository_rulesets"][1],"uncertainty boundary")
+    require("Do not publish credentials" in doc.get("private_evidence_boundary",""),"privacy boundary")
+    require("authorized GitHub repository administrator" in doc.get("required_provider_followup",""),"admin authority")
+    return True
+
 def validate_diff(paths):
     require(len(paths)==len(set(paths)) and set(paths)==ALLOWED_FILES,"unexpected or missing files; no license/provider/main mutations")
     return True
@@ -88,6 +139,7 @@ def run():
     source_integrity()
     doc=json.loads((HERE/"responsibility_register.json").read_text(encoding="utf-8"))
     validate(doc)
+    validate_p0_handoff(json.loads((HERE/"p0_handoff_g02.json").read_text(encoding="utf-8")))
     print("PASS: exact source blobs, 15 gated areas, 5 P0 retained, all human slots TOKEN_VAZIO, false-approval gates")
     print("LEGAL_STATUS=HOLD | PROVIDER_ENFORCEMENT=TOKEN_VAZIO | CLAIM_ALLOWED=false")
 if __name__=="__main__":

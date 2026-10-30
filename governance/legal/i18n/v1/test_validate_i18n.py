@@ -42,7 +42,7 @@ class TranslationFalsifiers(unittest.TestCase):
     def test_untranslated_placeholder_rejected(self):
         self.broken(lambda:validate_translation("pt-BR",PT.replace("Aplica-se somente","TODO TRANSLATE Aplica-se somente")))
     def test_japanese_script_missing_rejected(self):
-        damaged="".join("x" if ("\\u3040"<=c<="\\u9fff") else c for c in JA)
+        damaged="".join("x" if ("\u3040"<=c<="\u9fff") else c for c in JA)
         self.broken(lambda:validate_translation("ja-JP",damaged))
     def test_chinese_script_missing_rejected(self):
         self.broken(lambda:validate_translation("zh-CN",ZH.translate(str.maketrans({c:"x" for c in set(ZH) if "\u4e00"<=c<="\u9fff"}))))

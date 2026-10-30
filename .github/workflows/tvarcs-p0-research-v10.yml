@@ -1,0 +1,22 @@
+name: TVARCS V10 P0 Facts Gate (research only)
+on:
+  pull_request:
+    paths:
+      - 'governance/security/v10/**'
+      - 'governance/legal/v10/**'
+      - 'scripts/audit/v10/**'
+      - '.github/workflows/tvarcs-p0-research-v10.yml'
+permissions:
+  contents: read
+jobs:
+  evidence-structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate evidence boundaries
+        run: python3 scripts/audit/v10/validate_v10_readiness.py
+      - name: Adversarial tests
+        run: python3 -m unittest discover -s scripts/audit/v10 -p 'test_*.py' -v

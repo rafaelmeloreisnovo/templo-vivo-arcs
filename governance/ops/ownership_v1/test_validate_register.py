@@ -3,9 +3,10 @@ import copy
 import json
 import unittest
 from validate_register import (
-    ALLOWED_FILES, GateError, HERE, validate, validate_diff, source_integrity, run
+    ALLOWED_FILES, GateError, HERE, validate, validate_diff, validate_p0_handoff, source_integrity, run
 )
 BASE=json.loads((HERE/"responsibility_register.json").read_text(encoding="utf-8"))
+HANDOFF=json.loads((HERE/"p0_handoff_g02.json").read_text(encoding="utf-8"))
 class Falsifiers(unittest.TestCase):
     def bad(self,fn):
         with self.assertRaises(GateError): fn()
@@ -57,4 +58,46 @@ class Falsifiers(unittest.TestCase):
         self.bad(lambda:validate_diff(sorted(ALLOWED_FILES-{"governance/ops/ownership_v1/README.md"})))
     def test_not_claiming_8_certified_translations(self):
         self.bad(lambda:validate(self.mutate(lambda d:d["source_claims"].update(qualified_translation_reviews=8))))
+    def test_p0_handoff_source_state(self):
+        self.assertTrue(validate_p0_handoff(HANDOFF))
+    def test_g02_false_protection_pass_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["gates"][1]["observation_state"]="VERIFIED_PROTECTED"
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_g02_403_as_security_evidence_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["source_endpoints"][1]["readback"]="OBSERVED_PROTECTED"
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_g02_ruleset_empty_claim_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["source_endpoints"][2]["observation"]="[] means no protection anywhere"
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_g02_readback_mutation_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["source_endpoints"][0]["observation"]="protected=true"
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_admin_auto_assignment_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["gates"][0]["owner"]="rafaelmeloreisnovo"
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_secret_receipt_forgery_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["gates"][0]["private_receipt_ref"]="approved"
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_child_guardian_forgery_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["gates"][2]["owner_acceptance_ref"]="assumed"
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_p0_release_flag_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["release_allowed"]=True
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_p0_false_write_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["provider_write_performed"]=True
+        self.bad(lambda:validate_p0_handoff(d))
+    def test_p0_duplicate_gate_rejected(self):
+        d=copy.deepcopy(HANDOFF)
+        d["gates"][3]["gate"]="G03"
+        self.bad(lambda:validate_p0_handoff(d))
 if __name__=="__main__":unittest.main()

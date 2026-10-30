@@ -1,0 +1,47 @@
+name: TVARCS Legal Evidence V5 (scoped, fail-closed)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "governance/legal/v5/**"
+      - ".github/workflows/tvarcs-legal-evidence-v5.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tvarcs-legal-evidence-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  legal-evidence-v5:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4.4.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate exact checked-out content
+        run: python3 governance/legal/v5/check_evidence.py
+      - name: Falsification regression suite
+        run: python3 -m unittest discover -s governance/legal/v5 -p "test_check_evidence.py" -v
+      - name: Reject unrelated or historically licensed file changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import subprocess
+          import sys
+          sys.path.insert(0, "governance/legal/v5")
+          from check_evidence import check_changed_files
+          base, head = os.environ["BASE_SHA"], os.environ["HEAD_SHA"]
+          paths = subprocess.check_output(
+              ["git", "diff", "--name-only", base, head],
+              text=True).splitlines()
+          check_changed_files(paths)
+          print("PASS_SCOPED_CHANGED_FILES", len(paths))
+          PY

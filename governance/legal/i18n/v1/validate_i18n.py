@@ -30,15 +30,15 @@ KEYWORDS = {
 }
 def git_blob_sha(path):
     raw = path.read_bytes()
-    return hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\\0"+raw).hexdigest()
+    return hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest()
 
 def clauses(text, tag):
-    pat = r"(?m)^### "+tag+r" ([PLS]\\d{2}) — [^\\n]+\\n"
+    pat = r"(?m)^### "+tag+r" ([PLS]\d{2}) — [^\n]+\n"
     matches = list(re.finditer(pat,text))
     result = []
     for i,m in enumerate(matches):
         nxt = matches[i+1].start() if i+1<len(matches) else len(text)
-        body = text[m.end():nxt].split("\\n## ")[0].split("\\n### ")[0].strip()
+        body = text[m.end():nxt].split("\n## ")[0].split("\n### ")[0].strip()
         result.append((m.group(1),body))
     return result
 
@@ -46,7 +46,7 @@ def expected_ids(letter, n):
     return [f"{letter}{i:02d}" for i in range(1,n+1)]
 
 def original_sections(raw):
-    return [x.partition("\\n")[2].strip() for x in re.split(r"(?m)^## ",raw)[1:]]
+    return [x.partition("\n")[2].strip() for x in re.split(r"(?m)^## ",raw)[1:]]
 
 def validate_manifest(data):
     assert data["schema"]=="TVARCS-LICENSE-I18N-V1"

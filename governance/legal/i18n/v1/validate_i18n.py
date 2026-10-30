@@ -33,7 +33,7 @@ def git_blob_sha(path):
     return hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest()
 
 def clauses(text, tag):
-    pat = r"(?m)^### "+tag+r" ([PLS]\d{2}) — [^\n]+\n"
+    pat = r"(?m)^### "+tag+r" ([PLS]\d{2})(?: — [^\n]+)?\n"
     matches = list(re.finditer(pat,text))
     result = []
     for i,m in enumerate(matches):

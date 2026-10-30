@@ -7,7 +7,7 @@
 **Legal V3 proposal (not yet effective as a new blanket license):**
 - [International rights, provenance and licensing boundaries](LICENSES/RIGHTS_NOTICE_AND_LICENSE_BOUNDARIES_V3.md) — asset classes, prior grants, moral rights, mandatory exceptions, chain of title, proper permission route.
 - [24-jurisdiction comparative legal research](governance/legal/2026-10-30_TVARCS_COMPARATIVE_LAW_24_JURISDICTIONS_V3.md) — Brazil, US, UK, France, Germany, Switzerland, Canada, Italy, Iceland + 15 countries; primary sources, doctrine, procedural falsifiers and verification gaps.
-- [Precedent-focused companion PR #45](https://github.com/rafaelmeloreisnovo/templo-vivo-arcs/pull/45) — US/UK jurisprudence **still a separate draft**, not adopted merely by link.
+- [Precedent-focused companion PR #45](https://github.com/rafaelmeloreisnovo/templo-vivo-arcs/pull/45) — US/UK jurisprudence **merged into main at 3f03496b1ead230057f3a4bf3b20ccd67070b66a on 2026-10-30**; its document still carries a historical DRAFT label. Its scientific/legal conclusions remain unverified.
 
 **Rule of interpretation:** text below includes artistic, spiritual, exploratory and historical assertions. They are **not** automatically grants, legally established titles, scientific validation, court holdings or government accreditation; where an older assertion conflicts with the current scoped licensing/governance documents, determine rights under applicable law and actual agreements, not by promotional wording. Claims about universal fines, guaranteed healing, scientific proof, total exclusivity or absolute enforcement are **not verified**.
 

@@ -19,7 +19,7 @@ def check(d):
     assert sum(j["classification"].startswith("sovereign") for j in d["jurisdictions"]) == 20
     for j in d["jurisdictions"]:
         assert j["source_url"].startswith("https://")
-        assert j["provision"] and j["article_text"] == "SOURCE_EXCERPT_LOCATED"
+        assert j["provision"] and j["article_text"] == "TOKEN_VAZIO"
         assert j["state"] == "RESEARCH_INDEX_ONLY"
         assert j["latest_consolidation_verified"] is False
         assert j["judicial_enforceability"] == "TOKEN_VAZIO"

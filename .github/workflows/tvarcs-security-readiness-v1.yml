@@ -1,0 +1,22 @@
+name: Templo Vivo ARCS — security readiness V1 (structure only)
+on:
+  pull_request:
+    paths:
+      - SECURITY.md
+      - governance/security/**
+      - .github/workflows/tvarcs-security-readiness-v1.yml
+permissions:
+  contents: read
+jobs:
+  non_promoting_static_gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout PR source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate non-promoting registry
+        run: python3 governance/security/check_readiness.py governance/security/readiness_v1.json
+      - name: Run negative-case falsifiers
+        run: python3 -m unittest discover -s governance/security -p 'test_readiness.py' -v

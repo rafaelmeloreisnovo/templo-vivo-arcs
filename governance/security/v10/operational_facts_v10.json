@@ -1,0 +1,154 @@
+{
+  "schema": "TVARCS_OPERATIONS_P0_V10",
+  "date": "2026-10-30",
+  "source_repo": "rafaelmeloreisnovo/templo-vivo-arcs",
+  "main_at_observation": "e8cb574b7422305cb2b387f60eb1c6db481393ed",
+  "status": "SCOPED_FACTS_WITH_BLOCKERS",
+  "promotion": "HOLD",
+  "release_allowed": false,
+  "legal_claim_allowed": false,
+  "operational_controls_claim_allowed": false,
+  "real_world_operations": [
+    {
+      "id": "OP01",
+      "item": "public_git_repository",
+      "observation": "REPO_METADATA_OBSERVED",
+      "evidence_ref": "github:repo:957203368",
+      "source_scope": "public repo, default main; administrative access via connector",
+      "unknown": "external service use/other deployments=TOKEN_VAZIO"
+    },
+    {
+      "id": "OP02",
+      "item": "portal_static_source",
+      "observation": "SOURCE_OBSERVED",
+      "evidence_ref": "github:blob:9d15b2390cf32af4153a1369ff851c1cbda639da",
+      "source_scope": "root index.html identifies project GitHub Pages canonical URL; inspected static markup only",
+      "unknown": "actual response/live site, traffic, server/CDN logs=TOKEN_VAZIO"
+    },
+    {
+      "id": "OP03",
+      "item": "pages_deploy_workflow",
+      "observation": "SOURCE_OBSERVED",
+      "evidence_ref": "github:blob:e3fa3dbf1f2312e300635da58e6012bda3e0de43",
+      "source_scope": "push main trigger for scoped paths, contents:read/pages:write/id-token:write",
+      "unknown": "provider environment, enforcement, current deployment runtime=TOKEN_VAZIO"
+    },
+    {
+      "id": "OP04",
+      "item": "historical_pages_receipt",
+      "observation": "HISTORICAL_RECEIPT_OBSERVED",
+      "evidence_ref": "github:blob:66efe9bd65b38f7a2858b06a67e9bcc8ecd839bb",
+      "source_scope": "2026-09-24 receipt references Pages workflow run35978442143 SUCCESS, not freshly rerun",
+      "unknown": "today's HTTP availability and all current functionality=TOKEN_VAZIO"
+    },
+    {
+      "id": "OP05",
+      "item": "other_services_android_or_community",
+      "observation": "SOURCE_COMPONENTS_ONLY",
+      "evidence_ref": "github:README.md",
+      "source_scope": "source references lib/, android/, scripts/; neither live device nor user-community operations verified",
+      "unknown": "deployed APK, UGC, registration, age access, customers, users, processing=TOKEN_VAZIO"
+    },
+    {
+      "id": "OP06",
+      "item": "external_live_http_check",
+      "observation": "NOT_VERIFIED",
+      "evidence_ref": "TOKEN_VAZIO",
+      "source_scope": "public URL request from current research tool did not yield response; no conclusion about uptime",
+      "unknown": "HTTP status, TLS and external accessibility=TOKEN_VAZIO"
+    }
+  ],
+  "p0_gates": [
+    {
+      "id": "G01",
+      "topic": "credential_rotation",
+      "state": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "required": "authorized GitHub/provider admin private revocation+rotation/least-privilege attestation with sanitized receipt; no secret values in repository"
+    },
+    {
+      "id": "G02",
+      "topic": "branch_protection",
+      "state": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "required": "authenticated provider ruleset and protection readback, review/check requirements, no force push/deletion and bypass rules; previous historical claim main unprotected not current proof"
+    },
+    {
+      "id": "G03",
+      "topic": "child_safeguarding_operator",
+      "state": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "required": "named authorized safeguarding officer recorded privately, escalation/drill and safe reporting channel, child-access service classification"
+    },
+    {
+      "id": "G04",
+      "topic": "religious_and_child_data_controls",
+      "state": "TOKEN_VAZIO",
+      "owner": "TOKEN_VAZIO",
+      "evidence_ref": "TOKEN_VAZIO",
+      "required": "private operator data-flow inventory, child-likely access, risk assessment/legal basis, processors and retention/deletion tests; no default collection"
+    }
+  ],
+  "jurisdiction_review": [
+    {
+      "id": "BR",
+      "source": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15211.htm",
+      "adjacent": "https://www2.camara.leg.br/legin/fed/decret/2026/decreto-12880-18-marco-2026-798813-publicacaooriginal-178481-pe.html",
+      "issue": "ECA Digital + LGPD and child-sensitive-data if services in scope",
+      "operator_nexus": "TOKEN_VAZIO",
+      "counsel": "TOKEN_VAZIO",
+      "legal_status": "HOLD"
+    },
+    {
+      "id": "US",
+      "source": "https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions",
+      "issue": "COPPA applicability to child-directed services or known under-13 data collection; law and state-specific IP/privacy",
+      "operator_nexus": "TOKEN_VAZIO",
+      "counsel": "TOKEN_VAZIO",
+      "legal_status": "HOLD"
+    },
+    {
+      "id": "UK",
+      "source": "https://www.ofcom.org.uk/online-safety/protecting-children/protection-of-children-duties-under-the-online-safety-act",
+      "issue": "OSA 2023 applies to in-scope services: child-access and risk assessments; not presumed for static website",
+      "operator_nexus": "TOKEN_VAZIO",
+      "counsel": "TOKEN_VAZIO",
+      "legal_status": "HOLD"
+    },
+    {
+      "id": "FR",
+      "source": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "issue": "GDPR art 9 + national French rules; DSA art28 only if covered online platform; check site functions",
+      "operator_nexus": "TOKEN_VAZIO",
+      "counsel": "TOKEN_VAZIO",
+      "legal_status": "HOLD"
+    },
+    {
+      "id": "DE",
+      "source": "https://eur-lex.europa.eu/eli/reg/2022/2065/oj",
+      "issue": "DSA/GDPR plus German law if territory nexus, licensing, consumer/safeguarding",
+      "operator_nexus": "TOKEN_VAZIO",
+      "counsel": "TOKEN_VAZIO",
+      "legal_status": "HOLD"
+    },
+    {
+      "id": "MX",
+      "source": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFDA.pdf",
+      "issue": "authorship, Mexican constitutional/free-belief + privacy/child/association classification conditional",
+      "operator_nexus": "TOKEN_VAZIO",
+      "counsel": "TOKEN_VAZIO",
+      "legal_status": "HOLD"
+    }
+  ],
+  "release_predicate": {
+    "p0_must_be_independently_verified": true,
+    "applicable_jurisdiction_packet_must_be_signed": true,
+    "source_version_required": true,
+    "real_operator_and_service_map_required": true,
+    "never_promote_from_ci_alone": true
+  },
+  "rollback": "close unmerged PR, or authorized additive corrective successor only"
+}

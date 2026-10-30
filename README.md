@@ -1,5 +1,7 @@
 # Templo Vivo ARCS — RAFAELIA | Project, Rights and Evidence
 
+> **START HERE para humanos e IAs:** [001_PONTEIRO/START_HERE.md](001_PONTEIRO/START_HERE.md) · [grafo de rotas auditáveis](001_PONTEIRO/routes_v1.json) · [Ilha das Rosas, água e Estado de Direito digital — pesquisa V9](governance/legal/v9/ROSE_ISLAND_DIGITAL_WATER_RIGHTS_V1.md). Este ponteiro é apenas navegação; não altera direitos, licenças ou status jurídico.
+
 **Public documentation / prospective V3 legal governance.** Science, culture, faith, software and education coexist here as distinct domains. No political, judicial, governmental, diplomatic or statutory religious recognition is claimed by this README. Participation, belief, disbelief, criticism and departure are voluntary and protected by our internal dignity policy; duties under applicable law remain.
 
 **Current rights notice:** [LICENSE_POLICY.md](LICENSE_POLICY.md) governs policy and provenance; [RAFCODE proprietary V1](LICENSE-RAFCODE-PROPRIETARY-V1.md) applies only where its scoped terms legally reach; [software license decision](LICENSES/SOFTWARE_LICENSE_DECISION.md) remains `TOKEN_VAZIO / DECISION_REQUIRED`. The root [LICENSE](LICENSE) is retained as a **historical manifesto, not a repository-wide SPDX grant**. Public visibility does not by itself create an open-source grant or authorize unlicensed copying; statutory exceptions and existing third-party grants remain intact.

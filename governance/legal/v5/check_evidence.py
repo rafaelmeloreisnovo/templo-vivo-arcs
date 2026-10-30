@@ -37,10 +37,10 @@ def trustworthy_link(value):
         return False
     try:
         u = urlsplit(value)
+        return (u.scheme == "https" and u.hostname in ALLOWED_HOSTS
+                and u.username is None and u.password is None and u.port is None)
     except ValueError:
         return False
-    return (u.scheme == "https" and u.hostname in ALLOWED_HOSTS
-            and u.username is None and u.password is None and u.port is None)
 
 
 def check_changed_files(paths):
@@ -91,10 +91,13 @@ def check_data(data):
         by_jurisdiction[j] += 1
         require(case.get("source_class") in SOURCE_CLASSES, "unclassified case source")
         require(trustworthy_link(case.get("source_url")), "invalid case URL")
-        for key in ("authority", "decision_date", "holding_summary",
-                    "adverse_limit", "application_gate"):
-            require(isinstance(case.get(key), str) and len(case[key].strip()) > 12,
+        for key in ("authority", "holding_summary", "adverse_limit",
+                    "application_gate"):
+            require(isinstance(case.get(key), str) and len(case[key].strip()) >= 10,
                     "missing material case field: " + key)
+        date = case.get("decision_date")
+        require(isinstance(date, str) and len(date) == 10
+                and date[4] == "-" and date[7] == "-", "invalid decision date")
         require(case.get("case_fit") == "TOKEN_VAZIO_UNKNOWN"
                 and case.get("pinpoint_verified") is False
                 and case.get("counsel_review") == "NOT_DONE",

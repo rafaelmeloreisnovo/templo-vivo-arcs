@@ -23,6 +23,15 @@ class ConstitutionRegisterTests(unittest.TestCase):
     def test_dedup(self):
         x=copy.deepcopy(D); x["jurisdictions"][-1]["code"]="BR"
         with self.assertRaises(AssertionError): check(x)
+    def test_mexico_present_exactly_once(self):
+        self.assertEqual([j["code"] for j in D["jurisdictions"]].count("MX"), 1)
+        x=copy.deepcopy(D)
+        x["jurisdictions"]=[j for j in x["jurisdictions"] if j["code"]!="MX"]
+        with self.assertRaises(AssertionError): check(x)
+    def test_mexico_cannot_be_promoted(self):
+        x=copy.deepcopy(D)
+        next(j for j in x["jurisdictions"] if j["code"]=="MX")["article_text"]="artigo supostamente verificado"
+        with self.assertRaises(AssertionError): check(x)
     def test_no_auto_license(self):
         x=copy.deepcopy(D); x["license_change"]=True
         with self.assertRaises(AssertionError): check(x)

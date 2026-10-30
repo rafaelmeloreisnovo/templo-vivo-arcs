@@ -385,6 +385,23 @@
       "state": "RESEARCH_INDEX_ONLY"
     },
     {
+      "code": "MX",
+      "name": "México",
+      "classification": "sovereign",
+      "provision": "Constitución Política de los Estados Unidos Mexicanos arts. 1, 6, 7, 24 y 130 (derechos, expresión, libertad religiosa y marco de asociaciones); LFDA y LARCP en fuente separada",
+      "source_url": "https://te.gob.mx/legislacion/",
+      "article_text": "TOKEN_VAZIO",
+      "latest_consolidation_verified": false,
+      "official_language_crosschecked": false,
+      "treaty_party_status": "TOKEN_VAZIO",
+      "reservations": "TOKEN_VAZIO",
+      "judicial_enforceability": "TOKEN_VAZIO",
+      "real_world_enforcement": "TOKEN_VAZIO",
+      "case_nexus": "TOKEN_VAZIO",
+      "local_counsel": "TOKEN_VAZIO",
+      "state": "RESEARCH_INDEX_ONLY"
+    },
+    {
       "code": "GB-SCT",
       "name": "Escócia (jurisdição do Reino Unido)",
       "classification": "subnational_non_codel",

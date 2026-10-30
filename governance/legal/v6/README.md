@@ -21,7 +21,10 @@ A contagem exige uma decisão explícita de universo (Estados soberanos, observa
 
 ## 2. Evidência inicial sem promoção indevida
 
-`constitutional_sources.json` contém **20 países/Estados soberanos com normas localizadas** e **1 rota escocesa subnacional**. Trata-se de _identificação documental de dispositivo e fonte_, sem avaliação completa de consolidação, interpretação judicial, restrições, exigibilidade, ratificação, reservas ou caso concreto. Em particular, textos de China/Rússia e texto de direitos do Reino Unido não devem ser comparados como se tivessem aplicação judicial ou efeitos operacionais idênticos.
+`constitutional_sources.json` contém **21 países/Estados soberanos com normas localizadas** e **1 rota escocesa subnacional**. Trata-se de _identificação documental de dispositivo e fonte_, sem avaliação completa de consolidação, interpretação judicial, restrições, exigibilidade, ratificação, reservas ou caso concreto. Em particular, textos de China/Rússia e texto de direitos do Reino Unido não devem ser comparados como se tivessem aplicação judicial ou efeitos operacionais idênticos.
+
+### México 🇲🇽 — inclusão incremental V8 (2026-10-30)
+O México já integrava a matriz V3 de 24 jurisdições (linha 24); esta adição cria seu registro **MX** na matriz constitucional V6 sem duplicar o país no V3 e sem mudar licença. Fontes: [Constituição — Tribunal Electoral/legislação atualizada em 07-10-2026](https://te.gob.mx/legislacion/), [Ley Federal del Derecho de Autor — Câmara dos Deputados, reforma 14-05-2026](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFDA.pdf), [Convenção de Berna — OMPI/México](https://www.wipo.int/wipolex/es/treaties/parties/remarks/MX/15) e [registro de associações religiosas — SEGOB](https://www.gob.mx/segob/acciones-y-programas/registro-de-asociacion-religiosa). Nota com fronteiras e fontes: [MEXICO_MX_LEGAL_SOURCE_NOTE_20261030.md](MEXICO_MX_LEGAL_SOURCE_NOTE_20261030.md). Pesquisa bibliográfica não equivale a qualificação jurídica por advogado local. `CLAIM_ALLOWED=false`, `HOLD`.
 
 ### Casos negativos de teste e proteção ética
 - Pessoa pode **crer, mudar de crença, deixar a comunidade ou não crer** sem coerção, perseguição ou perda arbitrária de direitos.

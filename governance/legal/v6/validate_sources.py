@@ -16,7 +16,8 @@ def check(d):
     assert len(d["jurisdictions"]) >= 20
     codes = [j["code"] for j in d["jurisdictions"]]
     assert len(set(codes)) == len(codes)
-    assert sum(j["classification"].startswith("sovereign") for j in d["jurisdictions"]) == 20
+    assert sum(j["classification"].startswith("sovereign") for j in d["jurisdictions"]) == 21
+    assert codes.count("MX") == 1
     for j in d["jurisdictions"]:
         assert j["source_url"].startswith("https://")
         assert j["provision"] and j["article_text"] == "TOKEN_VAZIO"

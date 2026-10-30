@@ -1,0 +1,24 @@
+name: TVARCS Human AI Navigation V9 (scope only)
+on:
+  pull_request:
+    paths:
+      - '001_PONTEIRO/**'
+      - 'governance/legal/v9/**'
+      - 'scripts/audit/validate_tvarcs_navigation_v1.py'
+      - 'scripts/audit/test_tvarcs_navigation_v1.py'
+      - '.github/workflows/tvarcs-navigation-v9.yml'
+      - 'README.md'
+permissions:
+  contents: read
+jobs:
+  navigation-structural:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fail-closed navigation graph
+        run: python3 scripts/audit/validate_tvarcs_navigation_v1.py
+      - name: Run adversarial controls (research-only)
+        run: python3 -m unittest discover -s scripts/audit -p 'test_tvarcs_navigation_v1.py' -v

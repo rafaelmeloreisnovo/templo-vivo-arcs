@@ -42,9 +42,10 @@ class TranslationFalsifiers(unittest.TestCase):
     def test_untranslated_placeholder_rejected(self):
         self.broken(lambda:validate_translation("pt-BR",PT.replace("Aplica-se somente","TODO TRANSLATE Aplica-se somente")))
     def test_japanese_script_missing_rejected(self):
-        self.broken(lambda:validate_translation("ja-JP",JA.replace("著","X").replace("作","X").replace("権","X").replace("許","X").replace("諾","X").replace("的","X").replace("法","X").replace("律","X").replace("未","X").replace("第","X").replace("者","X").replace("記","X").replace("録","X").replace("自","X").replace("由","X").replace("現","X").replace("存","X").replace("条","X").replace("項","X").replace("版","X").replace("確","X").replace("認","X").replace("保","X").replace("護","X")))
+        damaged="".join("x" if ("\\u3040"<=c<="\\u9fff") else c for c in JA)
+        self.broken(lambda:validate_translation("ja-JP",damaged))
     def test_chinese_script_missing_rejected(self):
-        self.broken(lambda:validate_translation("zh-CN",ZH.translate(str.maketrans({c:"x" for c in set(ZH) if "\\u4e00"<=c<="\\u9fff"}))))
+        self.broken(lambda:validate_translation("zh-CN",ZH.translate(str.maketrans({c:"x" for c in set(ZH) if "\u4e00"<=c<="\u9fff"}))))
     def test_license_root_mutation_rejected(self):
         self.broken(lambda:changed_files_allowed(list(ALLOWED)+["LICENSE"]))
     def test_wrong_file_scope_rejected(self):

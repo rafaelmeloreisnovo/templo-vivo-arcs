@@ -37,7 +37,7 @@ Para cada linha do censo, coletar, em repositório privado e mediante autorizaç
 **Critérios de evidência:** arquivos originais/datados, histórico do produtor, contratos/cessões quando cabíveis, autorizações de mídia, lista de créditos, permissões upstream completas, notas sobre IA e contribuições humanas e registro de versões. Nenhuma declaração de terceiro é fabricada; ausência recebe `TOKEN_VAZIO_UNVERIFIED`. Credenciais, dados de crianças, imagens identificáveis e contratos privados NÃO entram no repositório público.
 
 ## E. Verificação legal/falsificação — 24 países
-Referência matriz existente: [V3 24 jurisdições](../../2026-10-30_TVARCS_COMPARATIVE_LAW_24_JURISDICTIONS_V3.md). O censo de arquivos NÃO valida por si só os julgamentos dos 24 países.
+Referência matriz existente: [V3 24 jurisdições](../2026-10-30_TVARCS_COMPARATIVE_LAW_24_JURISDICTIONS_V3.md). O censo de arquivos NÃO valida por si só os julgamentos dos 24 países.
 
 **Nesta rodada, fontes primárias examinadas de forma direcionada:**
 - **Brasil:** [Lei 9.610/1998 arts. 7, 8, 24, 29, 49](https://www.planalto.gov.br/ccivil_03/leis/l9610.htm) distingue expressão/método, direitos morais, autorizações e cessão; [CPC art. 927](https://normas.leg.br/?urn=urn:lex:br:federal:lei:2015-03-16;13105!art927) distingue espécies de precedentes.

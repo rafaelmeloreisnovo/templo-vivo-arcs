@@ -1,6 +1,6 @@
 # Templo Vivo ARCS — 24-jurisdiction comparative legal matrix (V3)
 **2026-10-30 · PROPOSED / EVIDENCE-FIRST / LEGAL_REVIEW_REQUIRED / CLAIM_ALLOWED=false**
-**Producer:** rafaelmeloreisnovo/templo-vivo-arcs · **parent:** merged PR #44 + draft PR #45 (US/UK case-law). This document is independent and does not silently merge PR #45.
+**Producer:** rafaelmeloreisnovo/templo-vivo-arcs · **parent:** merged PR #44 + **merged PR #45** (US/UK case-law, main@3f03496b1ead230057f3a4bf3b20ccd67070b66a; file text still says DRAFT historically). This research is independent and does not alter the predecessor.
 
 ## I. Research question and method
 Can original expressive works and an ethical educational/spiritual project be protected and responsibly published across 24 systems without inventing a global license, immunities, authorial monopolies over ideas, or binding universal precedent? **Framework answer:** legal protection is territorial and fact-specific; Berne is a floor/coordination framework, not a supranational registrar or copyright court.

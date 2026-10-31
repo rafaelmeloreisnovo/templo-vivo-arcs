@@ -1,0 +1,79 @@
+{
+  "schema": "TVARCS_P0_HUMAN_HANDOFF_V1",
+  "observation_date_utc": "2026-10-30",
+  "producer_repo": "rafaelmeloreisnovo/templo-vivo-arcs",
+  "observed_main_sha": "8b002de05dd01862b1f1ca7a2d3702afe06e4d9b",
+  "source_endpoints": [
+    {
+      "scope": "main_branch",
+      "url": "https://api.github.com/repos/rafaelmeloreisnovo/templo-vivo-arcs/branches/main",
+      "observation": "protected=false; protection.enabled=false; required_status_checks.enforcement_level=off",
+      "readback": "OBSERVED"
+    },
+    {
+      "scope": "detailed_branch_protection",
+      "url": "https://api.github.com/repos/rafaelmeloreisnovo/templo-vivo-arcs/branches/main/protection",
+      "observation": "403 Resource not accessible by integration",
+      "readback": "ACCESS_DENIED"
+    },
+    {
+      "scope": "repository_rulesets",
+      "url": "https://api.github.com/repos/rafaelmeloreisnovo/templo-vivo-arcs/rulesets",
+      "observation": "[] empty list from accessible repository rulesets endpoint; no inference about inherited rules/other administrative planes",
+      "readback": "OBSERVED_LIMITED"
+    }
+  ],
+  "gates": [
+    {
+      "gate": "G01",
+      "topic": "credential_rotation",
+      "observation_state": "TOKEN_VAZIO",
+      "required_owner": "AUTHORIZED_PROVIDER_ADMIN",
+      "owner": "TOKEN_VAZIO",
+      "owner_acceptance_ref": "TOKEN_VAZIO",
+      "private_receipt_ref": "TOKEN_VAZIO"
+    },
+    {
+      "gate": "G02",
+      "topic": "branch_protection",
+      "observation_state": "FAIL_OBSERVED_SCOPED",
+      "required_owner": "AUTHORIZED_PROVIDER_ADMIN",
+      "owner": "TOKEN_VAZIO",
+      "owner_acceptance_ref": "TOKEN_VAZIO",
+      "private_receipt_ref": "TOKEN_VAZIO"
+    },
+    {
+      "gate": "G03",
+      "topic": "child_safeguarding_operator",
+      "observation_state": "TOKEN_VAZIO",
+      "required_owner": "AUTHORIZED_CHILD_SAFETY_RESPONSIBLE_PERSON",
+      "owner": "TOKEN_VAZIO",
+      "owner_acceptance_ref": "TOKEN_VAZIO",
+      "private_receipt_ref": "TOKEN_VAZIO"
+    },
+    {
+      "gate": "G04",
+      "topic": "religious_and_minor_sensitive_data",
+      "observation_state": "TOKEN_VAZIO",
+      "required_owner": "AUTHORIZED_DATA_CONTROLLER_OR_PRIVACY_OFFICER",
+      "owner": "TOKEN_VAZIO",
+      "owner_acceptance_ref": "TOKEN_VAZIO",
+      "private_receipt_ref": "TOKEN_VAZIO"
+    }
+  ],
+  "operator_assessed": false,
+  "security_controls_enforced": false,
+  "formal_appointments_done": false,
+  "privacy_data_mapping_complete": false,
+  "minors_safeguarding_implemented": false,
+  "provider_write_performed": false,
+  "secrets_collected": false,
+  "personal_data_collected": false,
+  "release_allowed": false,
+  "claim_allowed": false,
+  "promotion": "HOLD",
+  "private_evidence_boundary": "Do not publish credentials, tokens, passwords, personal contact addresses, child reports, religious belief records, private incident details, API responses containing secrets, or unredacted legal documents.",
+  "required_provider_followup": "An authorized GitHub repository administrator must independently inspect and apply suitable ruleset/main protection, preserving CI and Pages operations; take sanitized after-state readback and separate human review.",
+  "review_complete": false,
+  "current_result": "P0_UNCLOSED"
+}

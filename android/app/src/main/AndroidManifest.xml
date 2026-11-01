@@ -3,15 +3,15 @@
 
     <application
         android:label="ψONE"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/ic_launcher">
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.psione.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+            android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

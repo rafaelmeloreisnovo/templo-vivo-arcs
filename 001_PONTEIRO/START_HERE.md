@@ -3,7 +3,7 @@
 **Escopo:** índice aditivo da versão V9; não altera licença, estatuto religioso, código ou publicação. **Estado:** DRAFT / RESEARCH_ONLY / PROMOTION=HOLD / claim_allowed=false.
 
 ## 30 segundos para um humano
-1. **Direitos/licenças atuais** → [LICENSE_POLICY](../LICENSE_POLICY.md), [RAFCODE proprietary V1](../LICENSE-RAFCODE-PROPRIETARY-V1.md), [decisão do software](../LICENSES/SOFTWARE_LICENSE_DECISION.md). O [LICENSE raiz](../LICENSE) é **manifesto histórico**, não uma concessão SPDX geral.
+1. **Direitos/licenças atuais** → [aviso de proteção automática Berna/TRIPS V1](../LICENSES/BERNE_TRIPS_DEFAULT_RIGHTS_NOTICE_V1.md), [LICENSE_POLICY](../LICENSE_POLICY.md), [RAFCODE proprietary V1](../LICENSE-RAFCODE-PROPRIETARY-V1.md), [decisão do software](../LICENSES/SOFTWARE_LICENSE_DECISION.md). O [LICENSE raiz](../LICENSE) é **manifesto histórico**, não uma concessão SPDX geral.
 2. **Segurança e infância** → [SECURITY](../SECURITY.md) e [gates de risco](../governance/security/OPERATIONAL_RISK_GATES_V1.md); política escrita ≠ controle implantado.
 3. **Direito internacional e evidência** → [V3 comparado](../governance/legal/2026-10-30_TVARCS_COMPARATIVE_LAW_24_JURISDICTIONS_V3.md), [V5 precedentes](../governance/legal/v5/README.md), [V6 constitucional](../governance/legal/v6/README.md).
 4. **Rosas, soberania e água digital** → [estudo adversarial V9](../governance/legal/v9/ROSE_ISLAND_DIGITAL_WATER_RIGHTS_V1.md).

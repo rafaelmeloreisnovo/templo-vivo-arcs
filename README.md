@@ -1,5 +1,10 @@
 # Templo Vivo ARCS — RAFAELIA | Project, Rights and Evidence
 
+> ⚖️ **DIREITOS AUTORAIS RESERVADOS POR PADRÃO — AVISO INTERNACIONAL.** A visibilidade pública deste repositório **não concede licença geral** para copiar, modificar, redistribuir ou comercializar materiais originais protegidos. Valem as licenças específicas, permissões anteriores, direitos de terceiros, termos da plataforma e exceções previstas em lei. Consulte o [aviso Berna/TRIPS, Lei 9.609/1998 e jurisprudência](LICENSES/BERNE_TRIPS_DEFAULT_RIGHTS_NOTICE_V1.md), a [política de licenças](LICENSE_POLICY.md) e a [decisão pendente sobre licença geral de software](LICENSES/SOFTWARE_LICENSE_DECISION.md). **Este aviso não altera o manifesto histórico `LICENSE` nem concede ou revoga direitos.**
+>
+> **English:** Rights reserved by default for protectable original material, subject to existing grants, third-party rights, platform terms and legal exceptions. Public access ≠ blanket reuse permission.
+
+
 > **START HERE para humanos e IAs:** [001_PONTEIRO/START_HERE.md](001_PONTEIRO/START_HERE.md) · [grafo de rotas auditáveis](001_PONTEIRO/routes_v1.json) · [Ilha das Rosas, água e Estado de Direito digital — pesquisa V9](governance/legal/v9/ROSE_ISLAND_DIGITAL_WATER_RIGHTS_V1.md). Este ponteiro é apenas navegação; não altera direitos, licenças ou status jurídico.
 
 **Public documentation / prospective V3 legal governance.** Science, culture, faith, software and education coexist here as distinct domains. No political, judicial, governmental, diplomatic or statutory religious recognition is claimed by this README. Participation, belief, disbelief, criticism and departure are voluntary and protected by our internal dignity policy; duties under applicable law remain.

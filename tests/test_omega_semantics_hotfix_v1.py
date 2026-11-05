@@ -292,6 +292,13 @@ class OmegaAmbiguityHotfixTests(unittest.TestCase):
         with self.assertRaises(SemanticGateError):
             verify_cases(x)
 
+    def test_joint_mutation_of_literal_and_type_still_rejected(self):
+        rowset = copy.deepcopy(CASES)
+        rowset[9]["literal"] = "changed literal"
+        rowset[9]["expected_kind"] = "TEXT_LITERAL_UNINTERPRETED"
+        with self.assertRaises(SemanticGateError):
+            verify_cases(rowset)
+
     def test_four_space_seed_tamper_rejected(self):
         x = copy.deepcopy(CASES)
         x[9]["literal"] = ""

@@ -1,0 +1,93 @@
+{
+  "schema_version": "tvarcs-eight-axes-v1",
+  "producer": "rafaelmeloreisnovo/templo-vivo-arcs",
+  "source_main_sha": "4be76adb135db2b3ab469cb650b0f7c7b402f2cb",
+  "status": "DRAFT_RESEARCH_ONLY",
+  "claim_allowed": false,
+  "promotion": "HOLD",
+  "license_change": false,
+  "child_safety_gate": "TOKEN_VAZIO",
+  "human_legal_reviewer": "TOKEN_VAZIO",
+  "axes": [
+    {
+      "id": "HUMAN_RIGHTS_BELIEF",
+      "body": "ONU/OHCHR",
+      "source": "https://www.un.org/en/about-us/universal-declaration-of-human-rights",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    },
+    {
+      "id": "CHILD_SAFEGUARDING",
+      "body": "UNICEF/CRC",
+      "source": "https://www.unicef.org/child-rights-convention/convention-text",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    },
+    {
+      "id": "CULTURE_EDUCATION",
+      "body": "UNESCO",
+      "source": "https://www.unesco.org/en/legal-affairs/unesco-universal-declaration-cultural-diversity",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    },
+    {
+      "id": "HEALTH_CLAIMS",
+      "body": "WHO",
+      "source": "https://www.who.int/about/governance/constitution/",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    },
+    {
+      "id": "PRIVACY_CHILD_DIGITAL",
+      "body": "BRAZIL_LEGISLATION",
+      "source": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15211.htm",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    },
+    {
+      "id": "COPYRIGHT_LICENSING",
+      "body": "WIPO",
+      "source": "https://www.wipo.int/en/web/treaties/ip/berne/index",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    },
+    {
+      "id": "AI_RESEARCH_ETHICS",
+      "body": "UNESCO",
+      "source": "https://www.unesco.org/en/legal-affairs/recommendation-ethics-artificial-intelligence?hub=1063",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    },
+    {
+      "id": "RULE_OF_LAW",
+      "body": "UN",
+      "source": "https://www.un.org/ruleoflaw/en/what-is-the-rule-of-law",
+      "source_class": "PRIMARY_OR_INSTITUTIONAL",
+      "application": "REQUIRES_SCOPE_REVIEW",
+      "evidence": "SOURCE_REFERENCE_ONLY",
+      "qualified_review": "TOKEN_VAZIO",
+      "claim_allowed": false
+    }
+  ]
+}

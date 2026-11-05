@@ -1,5 +1,13 @@
 # Templo Vivo ARCS — RAFAELIA | Project, Rights and Evidence
 
+## Governança jurídico-acadêmica — oito eixos (proposta pós-doutoral V1)
+
+**Estado: DRAFT / RESEARCH_ONLY / PROMOTION=HOLD / claim_allowed=false.** [Dossiê de direitos, doutrinas e falsificadores](docs/posdoc_estrutura/05_DOSSIE_JURIDICO_OITO_EIXOS_V1.md) · [interpretação da licença sem nova concessão](LICENSES/LEGAL_INTERPRETATION_EIGHT_AREAS_V1.md) · [registro estruturado auditável](governance/legal/v12/eight_axes_registry_v1.json).
+
+**Proteção infantil em primeiro lugar:** direitos da criança (UNICEF/Convenção), dignidade, liberdade de crença e não crença, cultura (UNESCO), saúde (OMS), dados digitais, direitos autorais (OMPI), integridade científica/IA e Estado de Direito (ONU). As referências às organizações são **fontes**, nunca alegação de parceria, autorização, aval, certificação ou licença concedida. A legislação incidente, a titularidade e a implementação dos controles exigem verificação específica. **O arquivo raiz `LICENSE` permanece histórico; não há novo grant geral de software.**
+
+---
+
 > ⚖️ **TODOS OS DIREITOS AUTORAIS LEGALMENTE PROTEGIDOS SÃO RESERVADOS POR PADRÃO.** A visibilidade pública **NÃO CONCEDE LICENÇA GERAL** de reprodução, adaptação, redistribuição, sublicenciamento, incorporação ou exploração comercial de expressão original protegida. Quem pretender praticar um ato dependente de consentimento deve identificar uma autorização válida para aquele uso ou uma hipótese legal independente de autorização. **Não se presume uma licença geral apenas pelo acesso público.** Leia a [fundamentação internacional ampliada V2 — Berna, TRIPS, WCT e sete jurisdições](LICENSES/INTERNATIONAL_RIGHTS_RESERVED_ENFORCEMENT_V2.md), o [aviso inicial V1](LICENSES/BERNE_TRIPS_DEFAULT_RIGHTS_NOTICE_V1.md), a [política de licenças](LICENSE_POLICY.md) e a [decisão pendente sobre licença geral de software](LICENSES/SOFTWARE_LICENSE_DECISION.md). Licenças prévias, direitos de terceiros, termos da plataforma, licenças implícitas comprovadas e exceções legais **permanecem aplicáveis**. Este aviso não altera o manifesto histórico `LICENSE` nem concede, extingue ou revoga direitos.
 >
 > **English:** **ALL LAWFULLY HELD COPYRIGHT RIGHTS RESERVED BY DEFAULT — NO BLANKET REUSE LICENSE.** Public visibility alone does not authorize restricted reproduction, adaptation, redistribution or commercial exploitation. Existing permissions, proven implied licenses, third-party rights, platform terms and statutory exceptions remain effective.

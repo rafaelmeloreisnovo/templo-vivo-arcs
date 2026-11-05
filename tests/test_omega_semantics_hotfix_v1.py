@@ -17,7 +17,7 @@ from omega_semantics_hotfix_v1 import (  # noqa: E402
     MISSING, SOURCE_REF, SemanticGateError, observe, verify_cases
 )
 
-CASES = [
+CASES = json.loads(r'''[
   {
     "id": "Ω00",
     "literal": "molho",
@@ -194,7 +194,7 @@ CASES = [
     "forecast_status": "TOKEN_VAZIO_FORECAST",
     "claim_allowed": false
   }
-]
+]''')
 
 
 class OmegaAmbiguityHotfixTests(unittest.TestCase):

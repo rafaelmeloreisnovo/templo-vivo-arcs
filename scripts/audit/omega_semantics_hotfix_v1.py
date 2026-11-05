@@ -16,6 +16,26 @@ MISSING = object()
 EXPECTED_CASE_IDS = frozenset(f"Ω{index:02d}" for index in range(16))
 SOURCE_REF = "USER_PROMPT_OMEGA00_OMEGA15_20261105"
 
+# Frozen literal UTF-8 fingerprints; not provenance or semantic proof.
+SEED_UTF8_SHA256 = {
+    "Ω00": "62edc7722a1f6117e52963676d1ab01e46beb410f316fc55615457b76e713331",
+    "Ω01": "2a0cbe606f658a1a46bea89ccaea15a258f04655dc36878b791f5ba37a1297da",
+    "Ω02": "c4dd67368286d02d62bdaa7a775b7594765d5210c9ad20cc3c24148d493353d7",
+    "Ω03": "78b8de92ede47b0c168012d627b911294ce2da7ae8824fde77a0290be15b71e5",
+    "Ω04": "73c8ffe9553f8c24730219e392209eaa97d52ee18633550b3ce8526c9955e6e0",
+    "Ω05": "ac5a7b838a9549ddcd9a53d98e7a3147d872e8f27be1ea85b6fbac01609320dc",
+    "Ω06": "ddce9439cc3e31d942167bae761f2b181daab006d6a0df1ff821568a1e563fd3",
+    "Ω07": "62edc7722a1f6117e52963676d1ab01e46beb410f316fc55615457b76e713331",
+    "Ω08": "cdaa27d976cdadc8a36b690c8be8661b1fa9932b59d3de09b724d7613ccdcaac",
+    "Ω09": "1a0f564ddc6039457b2fb26b3d6a316c15eba20a886449847c3210c35821a693",
+    "Ω10": "173b6275a5500442958b5ce18449880dc1f4d4adfe84f376ed331a994fa0005f",
+    "Ω11": "abf7d9f5d79f314e3171a446a50c117fcaf1b69ce810e94e2887ebb017f4aeb4",
+    "Ω12": "5e642081894886f4f74a2eb7c0b202786bf1e0e4499cad007a089ce7e428221d",
+    "Ω13": "6a6ea5bad9154044024d03f195592048f26643cc70f6121255fdb9b7016cd575",
+    "Ω14": "840ce7db9eb471fc8dca7cb202a9591e882e04c2f3533188cb0017c2d599cdbe",
+    "Ω15": "c809a304e5af2ec0397905f4e732492f5ac639b4c7c43367bc3b10c934a437a4",
+}
+
 
 class SemanticGateError(ValueError):
     """Fail-closed: lost provenance, collapsed types or unsupported claims."""
@@ -96,6 +116,8 @@ def verify_cases(cases):
         require(type(case.get("expected_kind")) is str, "missing exact type")
         require(observe(case["literal"])["kind"] == case["expected_kind"],
                 "type collapse or changed input bytes")
+        require(observe(case["literal"])["utf8_sha256"] == SEED_UTF8_SHA256[case_id],
+                "seed bytes changed even if type label was also altered")
         require(type(case.get("falsifier")) is str
                 and len(case["falsifier"].strip()) >= 12,
                 "falsifier not specified")

@@ -78,3 +78,7 @@ The following are **draft supplemental research/governance documents**, not an a
 **Notices are not court orders.** No global registration, universal copyright monopoly over ideas, automatic penalty, legal immunity or worldwide jurisdiction is declared. Dissent, research, lawful reverse engineering, criticism and statutory exceptions remain subject to their own legal tests. Local law and case-specific professional review control disputes.
 
 **Promotion gate:** `NEW_LICENSE_GRANT = HOLD` until specific asset inventory, ownership verification, upstream-license compatibility, affirmative rights-holder decision, counsel review and exact versioned release receipt. All statuses under V3 are `PROPOSED / CLAIM_ALLOWED=false`; GitHub merge is a separate, expressly authorized act.
+
+## V1 proposal — Eight-area interpretation index (2026-11-05)
+
+This additive index points to [eight-domain legal interpretation](LICENSES/LEGAL_INTERPRETATION_EIGHT_AREAS_V1.md) and [postdoctoral-format research protocol](docs/posdoc_estrutura/05_DOSSIE_JURIDICO_OITO_EIXOS_V1.md). These **DRAFT** documents are not a new repository-wide license, do not replace the historic root `LICENSE`, do not affect existing grants or third-party rights, and do not constitute UNICEF/UNESCO/WHO/UN endorsement. The software-license decision remains `TOKEN_VAZIO / DECISION_REQUIRED`. Child safeguarding and privacy checks are `P0 / REVIEW_REQUIRED`; no compliant-status claim is made.

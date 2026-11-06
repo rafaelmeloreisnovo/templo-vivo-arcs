@@ -33,3 +33,9 @@
 `claim_id | source_url | pin_citation | norm_version | jurisdiction | temporal_scope | rights_holder | operator_nexus | facts | adverse_authority | falsifier | evidence_ref | reviewer | legal_status | receipt`.
 
 **Diretório canônico:** este ponteiro é novo e não substitui registros históricos. Correções: novo commit/receipts `parent/supersedes`; rollback: fechar PR sem merge ou commit corretivo revisado. O repositório produtor governa implementação; Drive guarda estado, índices e receipts privados.
+
+## Oito eixos pós-doutorais — proposta V1
+- [Dossiê jurídico, doutrinas, direitos da criança e oito áreas](../docs/posdoc_estrutura/05_DOSSIE_JURIDICO_OITO_EIXOS_V1.md).
+- [Limites da licença, titularidade e ausência de novo grant](../LICENSES/LEGAL_INTERPRETATION_EIGHT_AREAS_V1.md).
+- [Registro JSON das oito áreas (HOLD)](../governance/legal/v12/eight_axes_registry_v1.json).
+- UNICEF/ONU/UNESCO/OMS/OMPI são **fontes de referência**, não certificadores, parceiros ou titulares. Política infantil operacional, Parecer jurídico, adoção de licença geral = `TOKEN_VAZIO`.
